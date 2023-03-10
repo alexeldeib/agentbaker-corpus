@@ -59,7 +59,7 @@
 				
 				<option value="file1">/github/workspace/build-out/src/agentbaker/fuzz/customdata/main.go (100.0%)</option>
 				
-				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (50.9%)</option>
+				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (51.2%)</option>
 				
 				<option value="file3">/github/workspace/build-out/src/agentbaker/pkg/agent/bakerapi.go (0.0%)</option>
 				
@@ -69,11 +69,11 @@
 				
 				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/sig_config.go (10.8%)</option>
 				
-				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (28.8%)</option>
+				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (30.4%)</option>
 				
 				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (5.0%)</option>
 				
-				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (76.9%)</option>
+				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (78.0%)</option>
 				
 				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (52.0%)</option>
 				
@@ -571,7 +571,7 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         return cs.Properties.OrchestratorProfile.IsKubernetes()
                 }</span>,
                 "GetKubernetesEndpoint": func() string <span class="cov8" title="1">{
-                        if cs.Properties.HostedMasterProfile == nil </span><span class="cov0" title="0">{
+                        if cs.Properties.HostedMasterProfile == nil </span><span class="cov8" title="1">{
                                 return ""
                         }</span>
                         <span class="cov8" title="1">if cs.Properties.HostedMasterProfile.IPAddress != "" </span><span class="cov0" title="0">{
@@ -3190,7 +3190,7 @@ func (p *Properties) GetClusterID() string <span class="cov8" title="1">{
                 h := fnv.New64a()
                 if p.HostedMasterProfile != nil </span><span class="cov8" title="1">{
                         h.Write([]byte(p.HostedMasterProfile.DNSPrefix))
-                }</span> else<span class="cov0" title="0"> if len(p.AgentPoolProfiles) &gt; 0 </span><span class="cov0" title="0">{
+                }</span> else<span class="cov8" title="1"> if len(p.AgentPoolProfiles) &gt; 0 </span><span class="cov8" title="1">{
                         h.Write([]byte(p.AgentPoolProfiles[0].Name))
                 }</span>
                 <span class="cov8" title="1">r := rand.New(rand.NewSource(int64(h.Sum64())))
@@ -3254,7 +3254,7 @@ func (p *Properties) K8sOrchestratorName() string <span class="cov8" title="1">{
                 if p.HostedMasterProfile != nil </span><span class="cov8" title="1">{
                         return DefaultHostedProfileMasterName
                 }</span>
-                <span class="cov0" title="0">return DefaultOrchestratorName</span>
+                <span class="cov8" title="1">return DefaultOrchestratorName</span>
         }
         <span class="cov0" title="0">return ""</span>
 }
@@ -3276,7 +3276,7 @@ func (p *Properties) GetVMType() string <span class="cov8" title="1">{
         if p.HasVMSSAgentPool() </span><span class="cov8" title="1">{
                 return VMSSVMType
         }</span>
-        <span class="cov0" title="0">return StandardVMType</span>
+        <span class="cov8" title="1">return StandardVMType</span>
 }
 
 // HasVMSSAgentPool returns true if the cluster contains Virtual Machine Scale Sets agent pools
@@ -3286,7 +3286,7 @@ func (p *Properties) HasVMSSAgentPool() bool <span class="cov8" title="1">{
                         return true
                 }</span>
         }
-        <span class="cov0" title="0">return false</span>
+        <span class="cov8" title="1">return false</span>
 }
 
 // GetSubnetName returns the subnet name of the cluster based on its current configuration.
@@ -4990,7 +4990,7 @@ func assignKubernetesParametersFromAgentProfile(profile *datamodel.AgentPoolProf
                                 addValue(parametersMap, "teleportdPluginURL", config.TeleportdPluginURL)
                         }</span>
                         <span class="cov8" title="1">addValue(parametersMap, "containerdPackageURL", config.ContainerdPackageURL)</span>
-                } else<span class="cov0" title="0"> {
+                } else<span class="cov8" title="1"> {
                         addValue(parametersMap, "cliTool", "docker")
                 }</span>
         }
