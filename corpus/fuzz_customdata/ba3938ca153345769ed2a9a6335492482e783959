@@ -1,13 +1,0 @@
-{
-    "ContainerService": {
-        "id": "", "ContainerServ
-        "location": "eastus",
-        "name": "",
-        "tags": null,
-        "type": "icrosoft.ContainerService/ManagedClusters",
-        "properties": {
-            "orchestratorProfile": {
-                "orchestratorType": "Kubernetes",
-                "orchestratorVersion": "1.24.0",
-                "kubernetesConfigRL": "https://acs-mirrorseInstanceMetadata": true,
-                    "cloudProv
