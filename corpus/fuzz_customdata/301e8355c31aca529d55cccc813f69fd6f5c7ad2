@@ -1,10 +1,0 @@
-{
-    "ContainerService": {
-        "id": "",[
-
-
-
-        "locati¾on": "eastus",
-        "name": "",
-        "tags": null,                   "networkPlugin": "kubenet",
-                    "customKubeProxyImage": "mcr
