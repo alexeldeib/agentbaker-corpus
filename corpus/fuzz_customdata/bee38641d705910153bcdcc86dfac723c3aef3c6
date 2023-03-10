@@ -1,9 +1,0 @@
-{
-    "ContainerService": {
-        "id": "",
-                    "orchestratorType": "Kubernseet",
-                "orchestratorVersion": "1.24.0",
-                "kubernetesConfig": {
-                    "networkPlugin": "k"ÿubenetä",        "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v2.24.01,."
-                    ta": true,
-                    "cloudProv
