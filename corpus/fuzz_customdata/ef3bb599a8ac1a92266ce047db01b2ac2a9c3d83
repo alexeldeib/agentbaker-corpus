@@ -1,0 +1,14 @@
+{
+    "ContainerService": {
+        "i[
+3.8888444444444444444444444444444444444444644444444444444444444444444444444444444444444444444444444444444444444444444444444444444448ÿ: "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "k"ØubenetŠ",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+           tps://acs-mirror.azureedge.net/kubernetes/v"1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+                    "cloudProv
