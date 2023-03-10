@@ -1,0 +1,21 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                       "cloudProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDisableOutboundSNAT": fal                "customKubeBinaryURL": "https://acs-88888mirror.azureedge.net/kubernetes/v2.24.0/binaries/kuber.available\u003c750Mi,nodefs.available\u003c10%,nodefs.inodesFree\u003c5%",
+        "--feature-gates": "RotateKubeletServerC      "tenantID": "",
+        "subscriptionID": "",
+        "galleries": null
+    },
+    "IsARM32": false
+}
