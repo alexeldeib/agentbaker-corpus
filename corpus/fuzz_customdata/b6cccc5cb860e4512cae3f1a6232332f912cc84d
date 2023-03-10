@@ -1,0 +1,16 @@
+{
+    "ContainerService": {
+        "id": "", "ContainerServ
+_        "location": "eastus"
+
+
+
+
+
+
+
+
+
+"properties": {
+            "orchestratorType": "Kubernetes",
+    loudProv
