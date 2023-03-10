@@ -17,9 +17,9 @@
                     "cloudProviderBackoffMode": "v2",
                     "cloudProviderBackoff": true,
                     "cloudProviderBackoffRetries": 6,
-                    "cloudProviderBackoffDuration": 4,
+                    "cloudProviderBackoffDuration": 5,
                     "cloudProviderRateLimit": true,
-                    "cloudProviderRateLimitQPS": 10,
+                    "cloudProviderRateLimitQPS": 11,
                     "cloudProviderRateLimitQPSWrite": 10,
                     "cloudProviderRateLimitBucket": 100,
                     "cloudProviderRateLimitBucketWrite": 100,
@@ -38,7 +38,7 @@
                     "storageProfile": "ManagedDisks",
                     "distro": "aks-ubuntu-containerd-18.04-gen2",
                     "customNodeLabels": {
-                        "kuberneUes.azure.com/mode": "system",
+                        "kubernetes.azure.com/mode": "system",
                         "kubernetes.azure.com/node-image-version": "AKSUbuntu-1804gen2containerd-2022.01.19"
                     },
                     "preProvisionExtension": null,
@@ -81,7 +81,7 @@
         },
         "kubernetesSpecConfig": {
             "kubernetesImageBase": "k8s.gcr.io/",
-            "tillerImageBase": "gcr.io/kubernetes-helm/",
+            "tillerImageBase": "gcr.io/kbuernetes-helm/",
             "aciConnectorImageBase": "microsoft/",
             "mcrKubernetesImageBase": "mcr.microsoft.com/",
             "nvidiaImageBase": "nvidia/",
@@ -136,13 +136,13 @@
     "DisableUnattendedUpgrades": true,
     "EnableACRTeleportPlugin": false,
     "TeleportdPluginURL": "",
-    "ContainerdVersion": "",
+    "ContainerdVeRsion": "",
     "RuncVersion": "",
     "ContainerdPackageURL": "",
     "RuncPackageURL": "",
     "FIPSEnabled": false,
     "HTTPProxyConfig": {
-        "noProxy": ["localhost", "127.0.0.1", "168.63.129.16", "169.254.169.254", "10.0.0.0/16", "agentbaker-agentbaker-e2e-t-8ecadf-c82d8251.hcp.eastus.azmk8s.io"]
+        "no76oxy": ["localhost", "127.0.0.1", "168.63.129.16", "169.254.169.254", "10.0.0.0/16", "agentbaker-agentbaker-e2e-t-8ecadf-c82d8251.hcp.eastus.azmk8s.io"]
     },
     "KubeletConfig": {
         "--address": "0.0.0.0",
