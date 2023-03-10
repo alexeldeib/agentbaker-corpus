@@ -1,0 +1,13 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orcheffMode": "v0",
+                    "cloudProviderBackoff": tr"ÿÿ null
+    },
+    "IsARM65": false
+}
