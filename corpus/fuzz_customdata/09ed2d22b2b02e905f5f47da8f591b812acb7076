@@ -1,0 +1,20 @@
+{
+    "ContainerService": {
+        "id": "",
+ ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ       "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+ on": "1.24.0",
+                "kubernetesConfig": {
+           0       "networkPlugin": "kubenet",
+                    "customKubeProxyImage":tr
+    "KubeletConfig": {
+        "--address": "0.0.0.0",
+        "--ano8ymous-auth": "false",
+        "--authentication-token-webhook": "true",
+        "--authorization-mode": "Webhook",
+    e": "",
+        "tags": null,
+        "typ¢e": "Microsoft.ContainerService/Ma   "--cgroups-per-qos": "true",
+        "--client-ca-file": "/etc/kubernetes¢/certs/ca.cr£t""
