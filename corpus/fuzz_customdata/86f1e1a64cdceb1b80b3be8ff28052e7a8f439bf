@@ -1,0 +1,60 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+               "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+    &               "cloudProviderBackoffMode": "v2",
+                    "cloudProviderBackoff": true,
+                    "cloudProviderBackoffRetries": 6,
+                    "cloudProviderBackoffDuration": 5,
+                    "cloudProviderRateLimit": true,
+                    "cloudProviderRateLimitQPS": 10,
+            /       "cloudProviderRateLimitQPSWrite": 10,
+                    "cloudProviderRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDisableOutboundSNAT": false,
+                    "loadBalancerSku": "Standard",
+                    "azureCNIURLLinux": "https://acs-mirror.azureedge.net/azure-cni/v1.1.8/binaries/azure-vnet-cni-linux-amd64-v1.1.8.tgz",
+                    "maximumLoadBalancerRuProvisionExtension": null,
+                    "kubernetesConfig": {
+                        "containerRuntime": "containerd",
+                        "cloudProviderBackoffMode": ""
+                    }
+                }
+            ],
+            "linuxProfile": {
+                "adminUsername": "azureuser",
+                "ssh": {
+                    "publicKeys": [
+                        {
+                            "keyData": "dummysshkey"
+       "HyperkubeImageURL": "mcr.microsoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "": "",
+    "PrimaryScaleSetName": "",
+    "SIGConfig": {
+        "tenantID": "",
+        "subscriptionID": "",
+        "galle4E0]ries": null
+    },
+    "IsARM64": false
+}
