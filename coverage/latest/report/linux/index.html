@@ -55,31 +55,31 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">/github/workspace/build-out/src/agentbaker/fuzz/csecmd/main.go (50.0%)</option>
+				<option value="file0">/github/workspace/build-out/src/agentbaker/fuzz/csecmd/main.go (100.0%)</option>
 				
-				<option value="file1">/github/workspace/build-out/src/agentbaker/fuzz/customdata/main.go (50.0%)</option>
+				<option value="file1">/github/workspace/build-out/src/agentbaker/fuzz/customdata/main.go (100.0%)</option>
 				
-				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (0.0%)</option>
+				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (49.3%)</option>
 				
 				<option value="file3">/github/workspace/build-out/src/agentbaker/pkg/agent/bakerapi.go (0.0%)</option>
 				
-				<option value="file4">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/helper.go (0.0%)</option>
+				<option value="file4">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/helper.go (8.3%)</option>
 				
 				<option value="file5">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/mocks.go (0.0%)</option>
 				
-				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/sig_config.go (7.2%)</option>
+				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/sig_config.go (10.8%)</option>
 				
-				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (0.0%)</option>
+				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (27.8%)</option>
 				
 				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (5.0%)</option>
 				
-				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (0.0%)</option>
+				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (76.9%)</option>
 				
-				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (0.4%)</option>
+				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (50.4%)</option>
 				
-				<option value="file11">/github/workspace/build-out/src/agentbaker/pkg/agent/variables.go (0.0%)</option>
+				<option value="file11">/github/workspace/build-out/src/agentbaker/pkg/agent/variables.go (60.0%)</option>
 				
-				<option value="file12">/github/workspace/build-out/src/agentbaker/pkg/templates/templates_generated.go (0.0%)</option>
+				<option value="file12">/github/workspace/build-out/src/agentbaker/pkg/templates/templates_generated.go (28.5%)</option>
 				
 				</select>
 			</div>
@@ -110,7 +110,7 @@ func Fuzz(data []byte) int <span class="cov8" title="1">{
         }</span>
 
         // should not panic
-        <span class="cov0" title="0">baker := agent.InitializeTemplateGenerator()
+        <span class="cov8" title="1">baker := agent.InitializeTemplateGenerator()
         baker.GetNodeBootstrappingCmd(&amp;config)
 
         return 0</span>
@@ -134,7 +134,7 @@ func Fuzz(data []byte) int <span class="cov8" title="1">{
         }</span>
 
         // should not panic
-        <span class="cov0" title="0">baker := agent.InitializeTemplateGenerator()
+        <span class="cov8" title="1">baker := agent.InitializeTemplateGenerator()
         baker.GetNodeBootstrappingPayload(&amp;config)
 
         return 0</span>
@@ -164,25 +164,25 @@ import (
 type TemplateGenerator struct{}
 
 // InitializeTemplateGenerator creates a new template generator object
-func InitializeTemplateGenerator() *TemplateGenerator <span class="cov0" title="0">{
+func InitializeTemplateGenerator() *TemplateGenerator <span class="cov8" title="1">{
         t := &amp;TemplateGenerator{}
         return t
 }</span>
 
 // GetNodeBootstrappingPayload get node bootstrapping data
-func (t *TemplateGenerator) GetNodeBootstrappingPayload(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
+func (t *TemplateGenerator) GetNodeBootstrappingPayload(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov8" title="1">{
         var customData string
         if config.AgentPoolProfile.IsWindows() </span><span class="cov0" title="0">{
                 customData = getCustomDataFromJSON(t.getWindowsNodeCustomDataJSONObject(config))
-        }</span> else<span class="cov0" title="0"> {
+        }</span> else<span class="cov8" title="1"> {
                 customData = getCustomDataFromJSON(t.getLinuxNodeCustomDataJSONObject(config))
         }</span>
-        <span class="cov0" title="0">return base64.StdEncoding.EncodeToString([]byte(customData))</span>
+        <span class="cov8" title="1">return base64.StdEncoding.EncodeToString([]byte(customData))</span>
 }
 
 // GetLinuxNodeCustomDataJSONObject returns Linux customData JSON object in the form
 // { "customData": "&lt;customData string&gt;" }
-func (t *TemplateGenerator) getLinuxNodeCustomDataJSONObject(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
+func (t *TemplateGenerator) getLinuxNodeCustomDataJSONObject(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov8" title="1">{
         // validate and fix input
         validateAndSetLinuxNodeBootstrappingConfiguration(config)
         // get parameters
@@ -196,7 +196,7 @@ func (t *TemplateGenerator) getLinuxNodeCustomDataJSONObject(config *datamodel.N
                 panic(e)</span>
         }
 
-        <span class="cov0" title="0">return fmt.Sprintf("{\"customData\": \"%s\"}", str)</span>
+        <span class="cov8" title="1">return fmt.Sprintf("{\"customData\": \"%s\"}", str)</span>
 }
 
 // GetWindowsNodeCustomDataJSONObject returns Windows customData JSON object in the form
@@ -229,15 +229,15 @@ func (t *TemplateGenerator) getWindowsNodeCustomDataJSONObject(config *datamodel
 }
 
 // GetNodeBootstrappingCmd get node bootstrapping cmd
-func (t *TemplateGenerator) GetNodeBootstrappingCmd(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
+func (t *TemplateGenerator) GetNodeBootstrappingCmd(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov8" title="1">{
         if config.AgentPoolProfile.IsWindows() </span><span class="cov0" title="0">{
                 return t.getWindowsNodeCSECommand(config)
         }</span>
-        <span class="cov0" title="0">return t.getLinuxNodeCSECommand(config)</span>
+        <span class="cov8" title="1">return t.getLinuxNodeCSECommand(config)</span>
 }
 
 // getLinuxNodeCSECommand returns Linux node custom script extension execution command
-func (t *TemplateGenerator) getLinuxNodeCSECommand(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
+func (t *TemplateGenerator) getLinuxNodeCSECommand(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov8" title="1">{
         // validate and fix input
         validateAndSetLinuxNodeBootstrappingConfiguration(config)
         // get parameters
@@ -256,7 +256,7 @@ func (t *TemplateGenerator) getLinuxNodeCSECommand(config *datamodel.NodeBootstr
         }
         // NOTE: we break the one-line CSE command into different lines in a file for better management
         // so we need to combine them into one line here
-        <span class="cov0" title="0">return strings.Replace(str, "\n", " ", -1)</span>
+        <span class="cov8" title="1">return strings.Replace(str, "\n", " ", -1)</span>
 }
 
 // getWindowsNodeCSECommand returns Windows node custom script extension execution command
@@ -290,13 +290,13 @@ func (t *TemplateGenerator) getWindowsNodeCSECommand(config *datamodel.NodeBoots
 // getSingleLineForTemplate returns the file as a single line for embedding in an arm template
 func (t *TemplateGenerator) getSingleLineForTemplate(textFilename string, profile interface{},
         funcMap template.FuncMap,
-) (string, error) <span class="cov0" title="0">{
+) (string, error) <span class="cov8" title="1">{
         expandedTemplate, err := t.getSingleLine(textFilename, profile, funcMap)
         if err != nil </span><span class="cov0" title="0">{
                 return "", err
         }</span>
 
-        <span class="cov0" title="0">textStr := escapeSingleLine(expandedTemplate)
+        <span class="cov8" title="1">textStr := escapeSingleLine(expandedTemplate)
 
         return textStr, nil</span>
 }
@@ -304,74 +304,74 @@ func (t *TemplateGenerator) getSingleLineForTemplate(textFilename string, profil
 // getSingleLine returns the file as a single line
 func (t *TemplateGenerator) getSingleLine(textFilename string, profile interface{},
         funcMap template.FuncMap,
-) (string, error) <span class="cov0" title="0">{
+) (string, error) <span class="cov8" title="1">{
         b, err := templates.Asset(textFilename)
         if err != nil </span><span class="cov0" title="0">{
                 return "", fmt.Errorf("yaml file %s does not exist", textFilename)
         }</span>
 
         // use go templates to process the text filename
-        <span class="cov0" title="0">templ := template.New("customdata template").Option("missingkey=zero").Funcs(funcMap)
+        <span class="cov8" title="1">templ := template.New("customdata template").Option("missingkey=zero").Funcs(funcMap)
         if _, err = templ.New(textFilename).Parse(string(b)); err != nil </span><span class="cov0" title="0">{
                 return "", fmt.Errorf("error parsing file %s: %v", textFilename, err)
         }</span>
 
-        <span class="cov0" title="0">var buffer bytes.Buffer
+        <span class="cov8" title="1">var buffer bytes.Buffer
         if err = templ.ExecuteTemplate(&amp;buffer, textFilename, profile); err != nil </span><span class="cov0" title="0">{
                 return "", fmt.Errorf("error executing template for file %s: %v", textFilename, err)
         }</span>
-        <span class="cov0" title="0">expandedTemplate := buffer.String()
+        <span class="cov8" title="1">expandedTemplate := buffer.String()
 
         return expandedTemplate, nil</span>
 }
 
 // getTemplateFuncMap returns the general purpose template func map from getContainerServiceFuncMap
-func getBakerFuncMap(config *datamodel.NodeBootstrappingConfiguration, params paramsMap, variables paramsMap) template.FuncMap <span class="cov0" title="0">{
+func getBakerFuncMap(config *datamodel.NodeBootstrappingConfiguration, params paramsMap, variables paramsMap) template.FuncMap <span class="cov8" title="1">{
         funcMap := getContainerServiceFuncMap(config)
 
-        funcMap["GetParameter"] = func(s string) interface{} </span><span class="cov0" title="0">{
-                if v, ok := params[s].(paramsMap); ok &amp;&amp; v != nil </span><span class="cov0" title="0">{
+        funcMap["GetParameter"] = func(s string) interface{} </span><span class="cov8" title="1">{
+                if v, ok := params[s].(paramsMap); ok &amp;&amp; v != nil </span><span class="cov8" title="1">{
                         if v["value"] == nil </span><span class="cov0" title="0">{
                                 // return empty string so we don't get &lt;no value&gt; from go template
                                 return ""
                         }</span>
-                        <span class="cov0" title="0">return v["value"]</span>
+                        <span class="cov8" title="1">return v["value"]</span>
                 }
-                <span class="cov0" title="0">return ""</span>
+                <span class="cov8" title="1">return ""</span>
         }
 
         // TODO: GetParameterPropertyLower
-        <span class="cov0" title="0">funcMap["GetParameterProperty"] = func(s, p string) interface{} </span><span class="cov0" title="0">{
-                if v, ok := params[s].(paramsMap); ok &amp;&amp; v != nil </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">funcMap["GetParameterProperty"] = func(s, p string) interface{} </span><span class="cov8" title="1">{
+                if v, ok := params[s].(paramsMap); ok &amp;&amp; v != nil </span><span class="cov8" title="1">{
                         if v["value"].(paramsMap)[p] == nil </span><span class="cov0" title="0">{
                                 // return empty string so we don't get &lt;no value&gt; from go template
                                 return ""
                         }</span>
-                        <span class="cov0" title="0">return v["value"].(paramsMap)[p]</span>
+                        <span class="cov8" title="1">return v["value"].(paramsMap)[p]</span>
                 }
                 <span class="cov0" title="0">return ""</span>
         }
 
-        <span class="cov0" title="0">funcMap["GetVariable"] = func(s string) interface{} </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">funcMap["GetVariable"] = func(s string) interface{} </span><span class="cov8" title="1">{
                 if variables[s] == nil </span><span class="cov0" title="0">{
                         // return empty string so we don't get &lt;no value&gt; from go template
                         return ""
                 }</span>
-                <span class="cov0" title="0">return variables[s]</span>
+                <span class="cov8" title="1">return variables[s]</span>
         }
 
-        <span class="cov0" title="0">funcMap["GetVariableProperty"] = func(v, p string) interface{} </span><span class="cov0" title="0">{
-                if v, ok := variables[v].(paramsMap); ok &amp;&amp; v != nil </span><span class="cov0" title="0">{
-                        if v[p] == nil </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">funcMap["GetVariableProperty"] = func(v, p string) interface{} </span><span class="cov8" title="1">{
+                if v, ok := variables[v].(paramsMap); ok &amp;&amp; v != nil </span><span class="cov8" title="1">{
+                        if v[p] == nil </span><span class="cov8" title="1">{
                                 // return empty string so we don't get &lt;no value&gt; from go template
                                 return ""
                         }</span>
-                        <span class="cov0" title="0">return v[p]</span>
+                        <span class="cov8" title="1">return v[p]</span>
                 }
                 <span class="cov0" title="0">return ""</span>
         }
 
-        <span class="cov0" title="0">return funcMap</span>
+        <span class="cov8" title="1">return funcMap</span>
 }
 
 // normalizeResourceGroupNameForLabel normalizes resource group name to be used as a label,
@@ -390,7 +390,7 @@ func getBakerFuncMap(config *datamodel.NodeBootstrappingConfiguration, params pa
 //        [take(replace(replace(resourceGroup().name, '(', '-'), ')', '-'), 63)]
 //
 // This function does the same processing.
-func normalizeResourceGroupNameForLabel(resourceGroupName string) string <span class="cov0" title="0">{
+func normalizeResourceGroupNameForLabel(resourceGroupName string) string <span class="cov8" title="1">{
         truncated := resourceGroupName
         truncated = strings.ReplaceAll(truncated, "(", "-")
         truncated = strings.ReplaceAll(truncated, ")", "-")
@@ -399,7 +399,7 @@ func normalizeResourceGroupNameForLabel(resourceGroupName string) string <span c
                 truncated = truncated[0:maxLen]
         }</span>
 
-        <span class="cov0" title="0">if strings.HasSuffix(truncated, "-") ||
+        <span class="cov8" title="1">if strings.HasSuffix(truncated, "-") ||
                 strings.HasSuffix(truncated, "_") ||
                 strings.HasSuffix(truncated, ".") </span><span class="cov0" title="0">{
 
@@ -409,23 +409,23 @@ func normalizeResourceGroupNameForLabel(resourceGroupName string) string <span c
                         return truncated + "z"
                 }</span>
         }
-        <span class="cov0" title="0">return truncated</span>
+        <span class="cov8" title="1">return truncated</span>
 }
 
-func validateAndSetLinuxNodeBootstrappingConfiguration(config *datamodel.NodeBootstrappingConfiguration) <span class="cov0" title="0">{
+func validateAndSetLinuxNodeBootstrappingConfiguration(config *datamodel.NodeBootstrappingConfiguration) <span class="cov8" title="1">{
         // If using kubelet config file, disable DynamicKubeletConfig feature gate and remove dynamic-config-dir
         // we should only allow users to configure from API (20201101 and later)
         profile := config.AgentPoolProfile
-        if config.KubeletConfig != nil </span><span class="cov0" title="0">{
+        if config.KubeletConfig != nil </span><span class="cov8" title="1">{
                 kubeletFlags := config.KubeletConfig
                 delete(kubeletFlags, "--dynamic-config-dir")
                 delete(kubeletFlags, "--non-masquerade-cidr")
-                if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntime != "" &amp;&amp; profile.KubernetesConfig.ContainerRuntime == "containerd" </span><span class="cov0" title="0">{
-                        for _, flag := range dockerShimFlags </span><span class="cov0" title="0">{
+                if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntime != "" &amp;&amp; profile.KubernetesConfig.ContainerRuntime == "containerd" </span><span class="cov8" title="1">{
+                        for _, flag := range dockerShimFlags </span><span class="cov8" title="1">{
                                 delete(kubeletFlags, flag)
                         }</span>
                 }
-                <span class="cov0" title="0">if IsKubernetesVersionGe(config.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion, "1.24.0") </span><span class="cov0" title="0">{
+                <span class="cov8" title="1">if IsKubernetesVersionGe(config.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion, "1.24.0") </span><span class="cov8" title="1">{
                         kubeletFlags["--feature-gates"] = removeFeatureGateString(kubeletFlags["--feature-gates"], "DynamicKubeletConfig")
                 }</span> else<span class="cov0" title="0"> if IsKubernetesVersionGe(config.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion, "1.11.0") </span><span class="cov0" title="0">{
                         kubeletFlags["--feature-gates"] = addFeatureGateString(kubeletFlags["--feature-gates"], "DynamicKubeletConfig", false)
@@ -434,8 +434,8 @@ func validateAndSetLinuxNodeBootstrappingConfiguration(config *datamodel.NodeBoo
                 // ContainerInsights depends on GPU accelerator Usage metrics from Kubelet cAdvisor endpoint but deprecation of this feature moved to beta which breaks the ContainerInsights customers with K8s version 1.20 or higher
                 // Until Container Insights move to new API adding this feature gate to get the GPU metrics continue to work
                 // Reference - https://github.com/kubernetes/enhancements/tree/master/keps/sig-node/1867-disable-accelerator-usage-metrics
-                <span class="cov0" title="0">if IsKubernetesVersionGe(config.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion, "1.20.0") &amp;&amp;
-                        !IsKubernetesVersionGe(config.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion, "1.25.0") </span><span class="cov0" title="0">{
+                <span class="cov8" title="1">if IsKubernetesVersionGe(config.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion, "1.20.0") &amp;&amp;
+                        !IsKubernetesVersionGe(config.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion, "1.25.0") </span><span class="cov8" title="1">{
                         kubeletFlags["--feature-gates"] = addFeatureGateString(kubeletFlags["--feature-gates"], "DisableAcceleratorUsageMetrics", false)
                 }</span>
         }
@@ -465,7 +465,7 @@ func validateAndSetWindowsNodeBootstrappingConfiguration(config *datamodel.NodeB
 // getContainerServiceFuncMap returns all functions used in template generation
 // These funcs are a thin wrapper for template generation operations,
 // all business logic is implemented in the underlying func
-func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration) template.FuncMap <span class="cov0" title="0">{
+func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration) template.FuncMap <span class="cov8" title="1">{
         cs := config.ContainerService
         profile := config.AgentPoolProfile
         return template.FuncMap{
@@ -475,16 +475,16 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                 // This was DisableUnattendedUpgrade when we had UU enabled by default in image.
                 // Now we don't, so we have to deliberately enable it.
                 // Someone smarter than me can fix the API.
-                "EnableUnattendedUpgrade": func() bool <span class="cov0" title="0">{
+                "EnableUnattendedUpgrade": func() bool <span class="cov8" title="1">{
                         return !config.DisableUnattendedUpgrades
                 }</span>,
                 "IsIPMasqAgentEnabled": func() bool <span class="cov0" title="0">{
                         return cs.Properties.IsIPMasqAgentEnabled()
                 }</span>,
-                "IsKubernetesVersionGe": func(version string) bool <span class="cov0" title="0">{
+                "IsKubernetesVersionGe": func(version string) bool <span class="cov8" title="1">{
                         return cs.Properties.OrchestratorProfile.IsKubernetes() &amp;&amp; IsKubernetesVersionGe(cs.Properties.OrchestratorProfile.OrchestratorVersion, version)
                 }</span>,
-                "GetAgentKubernetesLabels": func(profile *datamodel.AgentPoolProfile) string <span class="cov0" title="0">{
+                "GetAgentKubernetesLabels": func(profile *datamodel.AgentPoolProfile) string <span class="cov8" title="1">{
                         return profile.GetKubernetesLabels(normalizeResourceGroupNameForLabel(config.ResourceGroupName),
                                 false, config.EnableNvidia, config.FIPSEnabled, config.OSSKU)
                 }</span>,
@@ -492,7 +492,7 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         return profile.GetKubernetesLabels(normalizeResourceGroupNameForLabel(config.ResourceGroupName),
                                 true, config.EnableNvidia, config.FIPSEnabled, config.OSSKU)
                 }</span>,
-                "GetGPUInstanceProfile": func() string <span class="cov0" title="0">{
+                "GetGPUInstanceProfile": func() string <span class="cov8" title="1">{
                         return config.GPUInstanceProfile
                 }</span>,
                 "IsMIGEnabledNode": func() bool <span class="cov0" title="0">{
@@ -501,19 +501,19 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                 "GetKubeletConfigFileContent": func() string <span class="cov0" title="0">{
                         return GetKubeletConfigFileContent(config.KubeletConfig, profile.CustomKubeletConfig)
                 }</span>,
-                "GetKubeletConfigFileContentBase64": func() string <span class="cov0" title="0">{
+                "GetKubeletConfigFileContentBase64": func() string <span class="cov8" title="1">{
                         return base64.StdEncoding.EncodeToString([]byte(GetKubeletConfigFileContent(config.KubeletConfig, profile.CustomKubeletConfig)))
                 }</span>,
-                "IsKubeletConfigFileEnabled": func() bool <span class="cov0" title="0">{
+                "IsKubeletConfigFileEnabled": func() bool <span class="cov8" title="1">{
                         return IsKubeletConfigFileEnabled(cs, profile, config.EnableKubeletConfigFile)
                 }</span>,
-                "IsKubeletClientTLSBootstrappingEnabled": func() bool <span class="cov0" title="0">{
+                "IsKubeletClientTLSBootstrappingEnabled": func() bool <span class="cov8" title="1">{
                         return IsKubeletClientTLSBootstrappingEnabled(config.KubeletClientTLSBootstrapToken)
                 }</span>,
-                "GetTLSBootstrapTokenForKubeConfig": func() string <span class="cov0" title="0">{
+                "GetTLSBootstrapTokenForKubeConfig": func() string <span class="cov8" title="1">{
                         return GetTLSBootstrapTokenForKubeConfig(config.KubeletClientTLSBootstrapToken)
                 }</span>,
-                "GetKubeletConfigKeyVals": func() string <span class="cov0" title="0">{
+                "GetKubeletConfigKeyVals": func() string <span class="cov8" title="1">{
                         return GetOrderedKubeletConfigFlagString(config.KubeletConfig, cs, profile, config.EnableKubeletConfigFile)
                 }</span>,
                 "GetKubeletConfigKeyValsPsh": func() string <span class="cov0" title="0">{
@@ -522,7 +522,7 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                 "GetKubeproxyConfigKeyValsPsh": func() string <span class="cov0" title="0">{
                         return config.GetOrderedKubeproxyConfigStringForPowershell()
                 }</span>,
-                "Is2204VHD": func() bool <span class="cov0" title="0">{
+                "Is2204VHD": func() bool <span class="cov8" title="1">{
                         return profile.Is2204VHDDistro()
                 }</span>,
                 "GetKubeProxyFeatureGatesPsh": func() string <span class="cov0" title="0">{
@@ -541,43 +541,43 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         }</span>
                         <span class="cov0" title="0">return nil</span>
                 },
-                "ShouldConfigTransparentHugePage": func() bool <span class="cov0" title="0">{
+                "ShouldConfigTransparentHugePage": func() bool <span class="cov8" title="1">{
                         return profile.CustomLinuxOSConfig != nil &amp;&amp; (profile.CustomLinuxOSConfig.TransparentHugePageEnabled != "" || profile.CustomLinuxOSConfig.TransparentHugePageDefrag != "")
                 }</span>,
-                "GetTransparentHugePageEnabled": func() string <span class="cov0" title="0">{
-                        if profile.CustomLinuxOSConfig == nil </span><span class="cov0" title="0">{
+                "GetTransparentHugePageEnabled": func() string <span class="cov8" title="1">{
+                        if profile.CustomLinuxOSConfig == nil </span><span class="cov8" title="1">{
                                 return ""
                         }</span>
                         <span class="cov0" title="0">return profile.CustomLinuxOSConfig.TransparentHugePageEnabled</span>
                 },
-                "GetTransparentHugePageDefrag": func() string <span class="cov0" title="0">{
-                        if profile.CustomLinuxOSConfig == nil </span><span class="cov0" title="0">{
+                "GetTransparentHugePageDefrag": func() string <span class="cov8" title="1">{
+                        if profile.CustomLinuxOSConfig == nil </span><span class="cov8" title="1">{
                                 return ""
                         }</span>
                         <span class="cov0" title="0">return profile.CustomLinuxOSConfig.TransparentHugePageDefrag</span>
                 },
-                "ShouldConfigSwapFile": func() bool <span class="cov0" title="0">{
+                "ShouldConfigSwapFile": func() bool <span class="cov8" title="1">{
                         // only configure swap file when FailSwapOn is false and SwapFileSizeMB is valid
                         return profile.CustomKubeletConfig != nil &amp;&amp; profile.CustomKubeletConfig.FailSwapOn != nil &amp;&amp; !*profile.CustomKubeletConfig.FailSwapOn &amp;&amp;
                                 profile.CustomLinuxOSConfig != nil &amp;&amp; profile.CustomLinuxOSConfig.SwapFileSizeMB != nil &amp;&amp; *profile.CustomLinuxOSConfig.SwapFileSizeMB &gt; 0
                 }</span>,
-                "GetSwapFileSizeMB": func() int32 <span class="cov0" title="0">{
+                "GetSwapFileSizeMB": func() int32 <span class="cov8" title="1">{
                         if profile.CustomLinuxOSConfig != nil &amp;&amp; profile.CustomLinuxOSConfig.SwapFileSizeMB != nil </span><span class="cov0" title="0">{
                                 return *profile.CustomLinuxOSConfig.SwapFileSizeMB
                         }</span>
-                        <span class="cov0" title="0">return 0</span>
+                        <span class="cov8" title="1">return 0</span>
                 },
                 "IsKubernetes": func() bool <span class="cov0" title="0">{
                         return cs.Properties.OrchestratorProfile.IsKubernetes()
                 }</span>,
-                "GetKubernetesEndpoint": func() string <span class="cov0" title="0">{
+                "GetKubernetesEndpoint": func() string <span class="cov8" title="1">{
                         if cs.Properties.HostedMasterProfile == nil </span><span class="cov0" title="0">{
                                 return ""
                         }</span>
-                        <span class="cov0" title="0">if cs.Properties.HostedMasterProfile.IPAddress != "" </span><span class="cov0" title="0">{
+                        <span class="cov8" title="1">if cs.Properties.HostedMasterProfile.IPAddress != "" </span><span class="cov0" title="0">{
                                 return cs.Properties.HostedMasterProfile.IPAddress
                         }</span>
-                        <span class="cov0" title="0">return cs.Properties.HostedMasterProfile.FQDN</span>
+                        <span class="cov8" title="1">return cs.Properties.HostedMasterProfile.FQDN</span>
                 },
                 "IsAzureCNI": func() bool <span class="cov0" title="0">{
                         return cs.Properties.OrchestratorProfile.IsAzureCNI()
@@ -585,14 +585,14 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                 "IsNoneCNI": func() bool <span class="cov0" title="0">{
                         return cs.Properties.OrchestratorProfile.IsNoneCNI()
                 }</span>,
-                "IsMariner": func() bool <span class="cov0" title="0">{
+                "IsMariner": func() bool <span class="cov8" title="1">{
                         // TODO(ace): do we care about both? 2nd one should be more general and catch custom VHD for mariner
                         return profile.Distro.IsCBLMarinerDistro() || isMariner(config.OSSKU)
                 }</span>,
-                "IsKata": func() bool <span class="cov0" title="0">{
+                "IsKata": func() bool <span class="cov8" title="1">{
                         return profile.Distro.IsKataDistro()
                 }</span>,
-                "EnableHostsConfigAgent": func() bool <span class="cov0" title="0">{
+                "EnableHostsConfigAgent": func() bool <span class="cov8" title="1">{
                         return cs.Properties.OrchestratorProfile.KubernetesConfig != nil &amp;&amp;
                                 cs.Properties.OrchestratorProfile.KubernetesConfig.PrivateCluster != nil &amp;&amp;
                                 to.Bool(cs.Properties.OrchestratorProfile.KubernetesConfig.PrivateCluster.EnableHostsConfigAgent)
@@ -642,31 +642,31 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         }
                         <span class="cov0" title="0">return base64.StdEncoding.EncodeToString(buf.Bytes())</span>
                 },
-                "IsNSeriesSKU": func() bool <span class="cov0" title="0">{
+                "IsNSeriesSKU": func() bool <span class="cov8" title="1">{
                         return config.EnableNvidia
                 }</span>,
-                "HasCustomSearchDomain": func() bool <span class="cov0" title="0">{
+                "HasCustomSearchDomain": func() bool <span class="cov8" title="1">{
                         return cs.Properties.LinuxProfile != nil &amp;&amp; cs.Properties.LinuxProfile.HasSearchDomain()
                 }</span>,
-                "GetSearchDomainName": func() string <span class="cov0" title="0">{
+                "GetSearchDomainName": func() string <span class="cov8" title="1">{
                         if cs.Properties.LinuxProfile != nil &amp;&amp; cs.Properties.LinuxProfile.HasSearchDomain() </span><span class="cov0" title="0">{
                                 return cs.Properties.LinuxProfile.CustomSearchDomain.Name
                         }</span>
-                        <span class="cov0" title="0">return ""</span>
+                        <span class="cov8" title="1">return ""</span>
                 },
-                "GetSearchDomainRealmUser": func() string <span class="cov0" title="0">{
+                "GetSearchDomainRealmUser": func() string <span class="cov8" title="1">{
                         if cs.Properties.LinuxProfile != nil &amp;&amp; cs.Properties.LinuxProfile.HasSearchDomain() </span><span class="cov0" title="0">{
                                 return cs.Properties.LinuxProfile.CustomSearchDomain.RealmUser
                         }</span>
-                        <span class="cov0" title="0">return ""</span>
+                        <span class="cov8" title="1">return ""</span>
                 },
-                "GetSearchDomainRealmPassword": func() string <span class="cov0" title="0">{
+                "GetSearchDomainRealmPassword": func() string <span class="cov8" title="1">{
                         if cs.Properties.LinuxProfile != nil &amp;&amp; cs.Properties.LinuxProfile.HasSearchDomain() </span><span class="cov0" title="0">{
                                 return cs.Properties.LinuxProfile.CustomSearchDomain.RealmPassword
                         }</span>
-                        <span class="cov0" title="0">return ""</span>
+                        <span class="cov8" title="1">return ""</span>
                 },
-                "HasCalicoNetworkPolicy": func() bool <span class="cov0" title="0">{
+                "HasCalicoNetworkPolicy": func() bool <span class="cov8" title="1">{
                         return cs.Properties.OrchestratorProfile.KubernetesConfig.NetworkPolicy == NetworkPolicyCalico
                 }</span>,
                 "HasAntreaNetworkPolicy": func() bool <span class="cov0" title="0">{
@@ -678,25 +678,25 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                 "HasKubeletClientKey": func() bool <span class="cov0" title="0">{
                         return cs.Properties.CertificateProfile != nil &amp;&amp; cs.Properties.CertificateProfile.ClientPrivateKey != ""
                 }</span>,
-                "GetKubeletClientKey": func() string <span class="cov0" title="0">{
+                "GetKubeletClientKey": func() string <span class="cov8" title="1">{
                         if cs.Properties.CertificateProfile != nil &amp;&amp; cs.Properties.CertificateProfile.ClientPrivateKey != "" </span><span class="cov0" title="0">{
                                 encoded := base64.StdEncoding.EncodeToString([]byte(cs.Properties.CertificateProfile.ClientPrivateKey))
                                 return encoded
                         }</span>
-                        <span class="cov0" title="0">return ""</span>
+                        <span class="cov8" title="1">return ""</span>
                 },
-                "GetKubeletClientCert": func() string <span class="cov0" title="0">{
+                "GetKubeletClientCert": func() string <span class="cov8" title="1">{
                         if cs.Properties.CertificateProfile != nil &amp;&amp; cs.Properties.CertificateProfile.ClientCertificate != "" </span><span class="cov0" title="0">{
                                 encoded := base64.StdEncoding.EncodeToString([]byte(cs.Properties.CertificateProfile.ClientCertificate))
                                 return encoded
                         }</span>
-                        <span class="cov0" title="0">return ""</span>
+                        <span class="cov8" title="1">return ""</span>
                 },
                 "HasServicePrincipalSecret": func() bool <span class="cov0" title="0">{
                         return cs.Properties.ServicePrincipalProfile != nil &amp;&amp; cs.Properties.ServicePrincipalProfile.Secret != ""
                 }</span>,
-                "GetServicePrincipalSecret": func() string <span class="cov0" title="0">{
-                        if cs.Properties.ServicePrincipalProfile != nil &amp;&amp; cs.Properties.ServicePrincipalProfile.Secret != "" </span><span class="cov0" title="0">{
+                "GetServicePrincipalSecret": func() string <span class="cov8" title="1">{
+                        if cs.Properties.ServicePrincipalProfile != nil &amp;&amp; cs.Properties.ServicePrincipalProfile.Secret != "" </span><span class="cov8" title="1">{
                                 encoded := base64.StdEncoding.EncodeToString([]byte(cs.Properties.ServicePrincipalProfile.Secret))
                                 return encoded
                         }</span>
@@ -705,27 +705,27 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                 "WindowsSSHEnabled": func() bool <span class="cov0" title="0">{
                         return cs.Properties.WindowsProfile.GetSSHEnabled()
                 }</span>,
-                "IsIPv6DualStackFeatureEnabled": func() bool <span class="cov0" title="0">{
+                "IsIPv6DualStackFeatureEnabled": func() bool <span class="cov8" title="1">{
                         return cs.Properties.FeatureFlags.IsFeatureEnabled("EnableIPv6DualStack")
                 }</span>,
                 "IsAzureCNIOverlayFeatureEnabled": func() bool <span class="cov0" title="0">{
                         return cs.Properties.OrchestratorProfile.KubernetesConfig.IsUsingNetworkPluginMode("overlay")
                 }</span>,
-                "GetBase64EncodedEnvironmentJSON": func() string <span class="cov0" title="0">{
+                "GetBase64EncodedEnvironmentJSON": func() string <span class="cov8" title="1">{
                         customEnvironmentJSON, _ := cs.Properties.GetCustomEnvironmentJSON(false)
                         return base64.StdEncoding.EncodeToString([]byte(customEnvironmentJSON))
                 }</span>,
                 "GetIdentitySystem": func() string <span class="cov0" title="0">{
                         return datamodel.AzureADIdentitySystem
                 }</span>,
-                "GetPodInfraContainerSpec": func() string <span class="cov0" title="0">{
+                "GetPodInfraContainerSpec": func() string <span class="cov8" title="1">{
                         return config.K8sComponents.PodInfraContainerImageURL
                 }</span>,
-                "IsKubenet": func() bool <span class="cov0" title="0">{
+                "IsKubenet": func() bool <span class="cov8" title="1">{
                         return cs.Properties.OrchestratorProfile.KubernetesConfig.NetworkPlugin == NetworkPluginKubenet
                 }</span>,
-                "NeedsContainerd": func() bool <span class="cov0" title="0">{
-                        if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntime != "" </span><span class="cov0" title="0">{
+                "NeedsContainerd": func() bool <span class="cov8" title="1">{
+                        if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntime != "" </span><span class="cov8" title="1">{
                                 return profile.KubernetesConfig.NeedsContainerd()
                         }</span>
                         <span class="cov0" title="0">return cs.Properties.OrchestratorProfile.KubernetesConfig.NeedsContainerd()</span>
@@ -733,8 +733,8 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                 "UseRuncShimV2": func() bool <span class="cov0" title="0">{
                         return config.EnableRuncShimV2
                 }</span>,
-                "IsDockerContainerRuntime": func() bool <span class="cov0" title="0">{
-                        if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntime != "" </span><span class="cov0" title="0">{
+                "IsDockerContainerRuntime": func() bool <span class="cov8" title="1">{
+                        if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntime != "" </span><span class="cov8" title="1">{
                                 return profile.KubernetesConfig.ContainerRuntime == datamodel.Docker
                         }</span>
                         <span class="cov0" title="0">return cs.Properties.OrchestratorProfile.KubernetesConfig.ContainerRuntime == datamodel.Docker</span>
@@ -745,14 +745,14 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         }</span>
                         <span class="cov0" title="0">return cs.Properties.OrchestratorProfile.KubernetesConfig.RequiresDocker()</span>
                 },
-                "HasDataDir": func() bool <span class="cov0" title="0">{
+                "HasDataDir": func() bool <span class="cov8" title="1">{
                         if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntimeConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntimeConfig[datamodel.ContainerDataDirKey] != "" </span><span class="cov0" title="0">{
                                 return true
                         }</span>
-                        <span class="cov0" title="0">if profile.KubeletDiskType == datamodel.TempDisk </span><span class="cov0" title="0">{
+                        <span class="cov8" title="1">if profile.KubeletDiskType == datamodel.TempDisk </span><span class="cov0" title="0">{
                                 return true
                         }</span>
-                        <span class="cov0" title="0">return cs.Properties.OrchestratorProfile.KubernetesConfig.ContainerRuntimeConfig != nil &amp;&amp; cs.Properties.OrchestratorProfile.KubernetesConfig.ContainerRuntimeConfig[datamodel.ContainerDataDirKey] != ""</span>
+                        <span class="cov8" title="1">return cs.Properties.OrchestratorProfile.KubernetesConfig.ContainerRuntimeConfig != nil &amp;&amp; cs.Properties.OrchestratorProfile.KubernetesConfig.ContainerRuntimeConfig[datamodel.ContainerDataDirKey] != ""</span>
                 },
                 "GetDataDir": func() string <span class="cov0" title="0">{
                         if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntimeConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntimeConfig[datamodel.ContainerDataDirKey] != "" </span><span class="cov0" title="0">{
@@ -763,7 +763,7 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         }</span>
                         <span class="cov0" title="0">return cs.Properties.OrchestratorProfile.KubernetesConfig.ContainerRuntimeConfig[datamodel.ContainerDataDirKey]</span>
                 },
-                "HasKubeletDiskType": func() bool <span class="cov0" title="0">{
+                "HasKubeletDiskType": func() bool <span class="cov8" title="1">{
                         return profile != nil &amp;&amp; profile.KubeletDiskType != "" &amp;&amp; profile.KubeletDiskType != datamodel.OSDisk
                 }</span>,
                 "GetKubeletDiskType": func() string <span class="cov0" title="0">{
@@ -772,7 +772,7 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         }</span>
                         <span class="cov0" title="0">return ""</span>
                 },
-                "IsKrustlet": func() bool <span class="cov0" title="0">{
+                "IsKrustlet": func() bool <span class="cov8" title="1">{
                         return strings.EqualFold(string(profile.WorkloadRuntime), string(datamodel.WasmWasi))
                 }</span>,
                 "GetBase64CertificateAuthorityData": func() string <span class="cov0" title="0">{
@@ -782,10 +782,10 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         }</span>
                         <span class="cov0" title="0">return ""</span>
                 },
-                "GetKubenetTemplate": func() string <span class="cov0" title="0">{
+                "GetKubenetTemplate": func() string <span class="cov8" title="1">{
                         return base64.StdEncoding.EncodeToString([]byte(kubenetCniTemplate))
                 }</span>,
-                "GetContainerdConfigContent": func() string <span class="cov0" title="0">{
+                "GetContainerdConfigContent": func() string <span class="cov8" title="1">{
                         parameters := getParameters(config, "baker", "1.0")
                         // get variable cloudInit
                         variables := getCustomDataVariables(config)
@@ -794,9 +794,9 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         if err := containerdConfigTemplate.Execute(&amp;b, profile); err != nil </span><span class="cov0" title="0">{
                                 panic(fmt.Errorf("failed to execute sysctl template: %s", err))</span>
                         }
-                        <span class="cov0" title="0">return base64.StdEncoding.EncodeToString(b.Bytes())</span>
+                        <span class="cov8" title="1">return base64.StdEncoding.EncodeToString(b.Bytes())</span>
                 },
-                "TeleportEnabled": func() bool <span class="cov0" title="0">{
+                "TeleportEnabled": func() bool <span class="cov8" title="1">{
                         return config.EnableACRTeleportPlugin
                 }</span>,
                 "HasDCSeriesSKU": func() bool <span class="cov0" title="0">{
@@ -805,16 +805,16 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                 "GetHyperkubeImageReference": func() string <span class="cov0" title="0">{
                         return config.K8sComponents.HyperkubeImageURL
                 }</span>,
-                "GetTargetEnvironment": func() string <span class="cov0" title="0">{
+                "GetTargetEnvironment": func() string <span class="cov8" title="1">{
                         if cs.IsAKSCustomCloud() </span><span class="cov0" title="0">{
                                 return cs.Properties.CustomCloudEnv.Name
                         }</span>
-                        <span class="cov0" title="0">return GetCloudTargetEnv(cs.Location)</span>
+                        <span class="cov8" title="1">return GetCloudTargetEnv(cs.Location)</span>
                 },
-                "IsAKSCustomCloud": func() bool <span class="cov0" title="0">{
+                "IsAKSCustomCloud": func() bool <span class="cov8" title="1">{
                         return cs.IsAKSCustomCloud()
                 }</span>,
-                "GetInitAKSCustomCloudFilepath": func() string <span class="cov0" title="0">{
+                "GetInitAKSCustomCloudFilepath": func() string <span class="cov8" title="1">{
                         return initAKSCustomCloudFilepath
                 }</span>,
                 "AKSCustomCloudRepoDepotEndpoint": func() string <span class="cov0" title="0">{
@@ -898,40 +898,40 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                 "AKSCustomCloudResourceIdentifiersStorage": func() string <span class="cov0" title="0">{
                         return cs.Properties.CustomCloudEnv.ResourceIdentifiers.Storage
                 }</span>,
-                "GetCSEHelpersScriptFilepath": func() string <span class="cov0" title="0">{
+                "GetCSEHelpersScriptFilepath": func() string <span class="cov8" title="1">{
                         return cseHelpersScriptFilepath
                 }</span>,
-                "GetCSEHelpersScriptDistroFilepath": func() string <span class="cov0" title="0">{
+                "GetCSEHelpersScriptDistroFilepath": func() string <span class="cov8" title="1">{
                         return cseHelpersScriptDistroFilepath
                 }</span>,
-                "GetCSEInstallScriptFilepath": func() string <span class="cov0" title="0">{
+                "GetCSEInstallScriptFilepath": func() string <span class="cov8" title="1">{
                         return cseInstallScriptFilepath
                 }</span>,
-                "GetCSEInstallScriptDistroFilepath": func() string <span class="cov0" title="0">{
+                "GetCSEInstallScriptDistroFilepath": func() string <span class="cov8" title="1">{
                         return cseInstallScriptDistroFilepath
                 }</span>,
-                "GetCSEConfigScriptFilepath": func() string <span class="cov0" title="0">{
+                "GetCSEConfigScriptFilepath": func() string <span class="cov8" title="1">{
                         return cseConfigScriptFilepath
                 }</span>,
-                "GetCustomSearchDomainsCSEScriptFilepath": func() string <span class="cov0" title="0">{
+                "GetCustomSearchDomainsCSEScriptFilepath": func() string <span class="cov8" title="1">{
                         return customSearchDomainsCSEScriptFilepath
                 }</span>,
-                "GetDHCPv6ServiceCSEScriptFilepath": func() string <span class="cov0" title="0">{
+                "GetDHCPv6ServiceCSEScriptFilepath": func() string <span class="cov8" title="1">{
                         return dhcpV6ServiceCSEScriptFilepath
                 }</span>,
-                "GetDHCPv6ConfigCSEScriptFilepath": func() string <span class="cov0" title="0">{
+                "GetDHCPv6ConfigCSEScriptFilepath": func() string <span class="cov8" title="1">{
                         return dhcpV6ConfigCSEScriptFilepath
                 }</span>,
                 "HasPrivateAzureRegistryServer": func() bool <span class="cov0" title="0">{
                         return cs.Properties.OrchestratorProfile.KubernetesConfig.PrivateAzureRegistryServer != ""
                 }</span>,
-                "GetPrivateAzureRegistryServer": func() string <span class="cov0" title="0">{
+                "GetPrivateAzureRegistryServer": func() string <span class="cov8" title="1">{
                         return cs.Properties.OrchestratorProfile.KubernetesConfig.PrivateAzureRegistryServer
                 }</span>,
-                "OpenBraces": func() string <span class="cov0" title="0">{
+                "OpenBraces": func() string <span class="cov8" title="1">{
                         return "{{"
                 }</span>,
-                "CloseBraces": func() string <span class="cov0" title="0">{
+                "CloseBraces": func() string <span class="cov8" title="1">{
                         return "}}"
                 }</span>,
                 "BoolPtrToInt": func(p *bool) int <span class="cov0" title="0">{
@@ -949,7 +949,7 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         return cs.Properties.OrchestratorProfile.KubernetesConfig.UserAssignedIDEnabled()
                 }</span>,
                 // HTTP proxy related funcs
-                "ShouldConfigureHTTPProxy": func() bool <span class="cov0" title="0">{
+                "ShouldConfigureHTTPProxy": func() bool <span class="cov8" title="1">{
                         return config.HTTPProxyConfig != nil &amp;&amp; (config.HTTPProxyConfig.HTTPProxy != nil || config.HTTPProxyConfig.HTTPSProxy != nil)
                 }</span>,
                 "HasHTTPProxy": func() bool <span class="cov0" title="0">{
@@ -961,49 +961,49 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                 "HasNoProxy": func() bool <span class="cov0" title="0">{
                         return config.HTTPProxyConfig != nil &amp;&amp; config.HTTPProxyConfig.NoProxy != nil
                 }</span>,
-                "GetHTTPProxy": func() string <span class="cov0" title="0">{
+                "GetHTTPProxy": func() string <span class="cov8" title="1">{
                         if config.HTTPProxyConfig != nil &amp;&amp; config.HTTPProxyConfig.HTTPProxy != nil </span><span class="cov0" title="0">{
                                 return *config.HTTPProxyConfig.HTTPProxy
                         }</span>
-                        <span class="cov0" title="0">return ""</span>
+                        <span class="cov8" title="1">return ""</span>
                 },
-                "GetHTTPSProxy": func() string <span class="cov0" title="0">{
+                "GetHTTPSProxy": func() string <span class="cov8" title="1">{
                         if config.HTTPProxyConfig != nil &amp;&amp; config.HTTPProxyConfig.HTTPSProxy != nil </span><span class="cov0" title="0">{
                                 return *config.HTTPProxyConfig.HTTPSProxy
                         }</span>
-                        <span class="cov0" title="0">return ""</span>
+                        <span class="cov8" title="1">return ""</span>
                 },
-                "GetNoProxy": func() string <span class="cov0" title="0">{
-                        if config.HTTPProxyConfig != nil &amp;&amp; config.HTTPProxyConfig.NoProxy != nil </span><span class="cov0" title="0">{
+                "GetNoProxy": func() string <span class="cov8" title="1">{
+                        if config.HTTPProxyConfig != nil &amp;&amp; config.HTTPProxyConfig.NoProxy != nil </span><span class="cov8" title="1">{
                                 return strings.Join(*config.HTTPProxyConfig.NoProxy, ",")
                         }</span>
                         <span class="cov0" title="0">return ""</span>
                 },
-                "ShouldConfigureHTTPProxyCA": func() bool <span class="cov0" title="0">{
+                "ShouldConfigureHTTPProxyCA": func() bool <span class="cov8" title="1">{
                         return config.HTTPProxyConfig != nil &amp;&amp; config.HTTPProxyConfig.TrustedCA != nil
                 }</span>,
-                "GetHTTPProxyCA": func() string <span class="cov0" title="0">{
+                "GetHTTPProxyCA": func() string <span class="cov8" title="1">{
                         if config.HTTPProxyConfig != nil &amp;&amp; config.HTTPProxyConfig.TrustedCA != nil </span><span class="cov0" title="0">{
                                 return *config.HTTPProxyConfig.TrustedCA
                         }</span>
-                        <span class="cov0" title="0">return ""</span>
+                        <span class="cov8" title="1">return ""</span>
                 },
                 "FIPSEnabled": func() bool <span class="cov0" title="0">{
                         return config.FIPSEnabled
                 }</span>,
-                "GetMessageOfTheDay": func() string <span class="cov0" title="0">{
+                "GetMessageOfTheDay": func() string <span class="cov8" title="1">{
                         return profile.MessageOfTheDay
                 }</span>,
-                "GetProxyVariables": func() string <span class="cov0" title="0">{
+                "GetProxyVariables": func() string <span class="cov8" title="1">{
                         return getProxyVariables(config)
                 }</span>,
-                "GetOutboundCommand": func() string <span class="cov0" title="0">{
+                "GetOutboundCommand": func() string <span class="cov8" title="1">{
                         return getOutBoundCmd(config, config.CloudSpecConfig)
                 }</span>,
-                "GPUNeedsFabricManager": func() bool <span class="cov0" title="0">{
+                "GPUNeedsFabricManager": func() bool <span class="cov8" title="1">{
                         return gpuNeedsFabricManager(profile.VMSize)
                 }</span>,
-                "GPUDriverVersion": func() string <span class="cov0" title="0">{
+                "GPUDriverVersion": func() string <span class="cov8" title="1">{
                         return getGPUDriverVersion(profile.VMSize)
                 }</span>,
                 "GetHnsRemediatorIntervalInMinutes": func() uint32 <span class="cov0" title="0">{
@@ -1012,14 +1012,14 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         }</span>
                         <span class="cov0" title="0">return 0</span>
                 },
-                "ShouldConfigureCustomCATrust": func() bool <span class="cov0" title="0">{
+                "ShouldConfigureCustomCATrust": func() bool <span class="cov8" title="1">{
                         return areCustomCATrustCertsPopulated(*config)
                 }</span>,
-                "GetCustomCATrustConfigCerts": func() []string <span class="cov0" title="0">{
+                "GetCustomCATrustConfigCerts": func() []string <span class="cov8" title="1">{
                         if areCustomCATrustCertsPopulated(*config) </span><span class="cov0" title="0">{
                                 return config.CustomCATrustConfig.CustomCATrustCerts
                         }</span>
-                        <span class="cov0" title="0">return []string{}</span>
+                        <span class="cov8" title="1">return []string{}</span>
                 },
                 "GetLogGeneratorIntervalInMinutes": func() uint32 <span class="cov0" title="0">{
                         if cs.Properties.WindowsProfile != nil </span><span class="cov0" title="0">{
@@ -1027,16 +1027,16 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         }</span>
                         <span class="cov0" title="0">return 0</span>
                 },
-                "ShouldDisableSSH": func() bool <span class="cov0" title="0">{
+                "ShouldDisableSSH": func() bool <span class="cov8" title="1">{
                         return config.SSHStatus == datamodel.SSHOff
                 }</span>,
-                "GetSysctlContent": func() string <span class="cov0" title="0">{
+                "GetSysctlContent": func() string <span class="cov8" title="1">{
                         sysctlTemplate := template.Must(template.New("sysctl").Parse(sysctlTemplateString))
                         var b bytes.Buffer
                         if err := sysctlTemplate.Execute(&amp;b, profile); err != nil </span><span class="cov0" title="0">{
                                 panic(fmt.Errorf("failed to execute sysctl template: %s", err))</span>
                         }
-                        <span class="cov0" title="0">return base64.StdEncoding.EncodeToString(b.Bytes())</span>
+                        <span class="cov8" title="1">return base64.StdEncoding.EncodeToString(b.Bytes())</span>
                 },
         }
 }
@@ -1045,34 +1045,34 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
 // they typically use GRID, not CUDA drivers, and will fail to install CUDA drivers.
 // NVv1 seems to run with CUDA, NVv5 requires GRID.
 // NVv3 is untested on AKS, NVv4 is AMD so n/a, and NVv2 no longer seems to exist (?)
-func getGPUDriverVersion(size string) string <span class="cov0" title="0">{
+func getGPUDriverVersion(size string) string <span class="cov8" title="1">{
         if useGridDrivers(size) </span><span class="cov0" title="0">{
                 return datamodel.Nvidia510GridDriverVersion
         }</span>
-        <span class="cov0" title="0">if isStandardNCv1(size) </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if isStandardNCv1(size) </span><span class="cov0" title="0">{
                 return datamodel.Nvidia470CudaDriverVersion
         }</span>
-        <span class="cov0" title="0">return datamodel.Nvidia525CudaDriverVersion</span>
+        <span class="cov8" title="1">return datamodel.Nvidia525CudaDriverVersion</span>
 }
 
-func isStandardNCv1(size string) bool <span class="cov0" title="0">{
+func isStandardNCv1(size string) bool <span class="cov8" title="1">{
         tmp := strings.ToLower(size)
         return strings.HasPrefix(tmp, "standard_nc") &amp;&amp; !strings.Contains(tmp, "_v")
 }</span>
 
-func useGridDrivers(size string) bool <span class="cov0" title="0">{
+func useGridDrivers(size string) bool <span class="cov8" title="1">{
         return datamodel.ConvergedGPUDriverSizes[strings.ToLower(size)]
 }</span>
 
-func gpuNeedsFabricManager(size string) bool <span class="cov0" title="0">{
+func gpuNeedsFabricManager(size string) bool <span class="cov8" title="1">{
         return datamodel.FabricManagerGPUSizes[strings.ToLower(size)]
 }</span>
 
-func areCustomCATrustCertsPopulated(config datamodel.NodeBootstrappingConfiguration) bool <span class="cov0" title="0">{
+func areCustomCATrustCertsPopulated(config datamodel.NodeBootstrappingConfiguration) bool <span class="cov8" title="1">{
         return config.CustomCATrustConfig != nil &amp;&amp; len(config.CustomCATrustConfig.CustomCATrustCerts) &gt; 0
 }</span>
 
-func isMariner(osSku string) bool <span class="cov0" title="0">{
+func isMariner(osSku string) bool <span class="cov8" title="1">{
         return osSku == datamodel.OSSKUCBLMariner || osSku == datamodel.OSSKUMariner
 }</span>
 
@@ -1427,16 +1427,16 @@ func ValidateDNSPrefix(dnsName string) error <span class="cov0" title="0">{
 }
 
 // IsSgxEnabledSKU determines if an VM SKU has SGX driver support
-func IsSgxEnabledSKU(vmSize string) bool <span class="cov0" title="0">{
+func IsSgxEnabledSKU(vmSize string) bool <span class="cov8" title="1">{
         switch vmSize </span>{
         case "Standard_DC2s", "Standard_DC4s":<span class="cov0" title="0">
                 return true</span>
         }
-        <span class="cov0" title="0">return false</span>
+        <span class="cov8" title="1">return false</span>
 }
 
 // IsMIGNode check if the node should be partitioned
-func IsMIGNode(GPUInstanceProfile string) bool <span class="cov0" title="0">{
+func IsMIGNode(GPUInstanceProfile string) bool <span class="cov8" title="1">{
         return GPUInstanceProfile != ""
 }</span>
 
@@ -1889,13 +1889,13 @@ func (d Distro) IsGen2Distro() bool <span class="cov0" title="0">{
         }
         <span class="cov0" title="0">return false</span>
 }
-func (d Distro) IsCBLMarinerDistro() bool <span class="cov0" title="0">{
-        for _, distro := range AvailableCBLMarinerDistros </span><span class="cov0" title="0">{
+func (d Distro) IsCBLMarinerDistro() bool <span class="cov8" title="1">{
+        for _, distro := range AvailableCBLMarinerDistros </span><span class="cov8" title="1">{
                 if d == distro </span><span class="cov0" title="0">{
                         return true
                 }</span>
         }
-        <span class="cov0" title="0">return false</span>
+        <span class="cov8" title="1">return false</span>
 }
 func (d Distro) IsWindowsSIGDistro() bool <span class="cov0" title="0">{
         for _, distro := range AvailableWindowsSIGDistros </span><span class="cov0" title="0">{
@@ -2610,25 +2610,25 @@ const (
         Componentkubelet   CustomConfigurationComponent = "kubelet"
 )
 
-func (d Distro) IsVHDDistro() bool <span class="cov0" title="0">{
-        for _, distro := range AKSDistrosAvailableOnVHD </span><span class="cov0" title="0">{
-                if d == distro </span><span class="cov0" title="0">{
+func (d Distro) IsVHDDistro() bool <span class="cov8" title="1">{
+        for _, distro := range AKSDistrosAvailableOnVHD </span><span class="cov8" title="1">{
+                if d == distro </span><span class="cov8" title="1">{
                         return true
                 }</span>
         }
         <span class="cov0" title="0">return false</span>
 }
 
-func (d Distro) Is2204VHDDistro() bool <span class="cov0" title="0">{
-        for _, distro := range AvailableUbuntu2204Distros </span><span class="cov0" title="0">{
+func (d Distro) Is2204VHDDistro() bool <span class="cov8" title="1">{
+        for _, distro := range AvailableUbuntu2204Distros </span><span class="cov8" title="1">{
                 if d == distro </span><span class="cov0" title="0">{
                         return true
                 }</span>
         }
-        <span class="cov0" title="0">return false</span>
+        <span class="cov8" title="1">return false</span>
 }
 
-func (d Distro) IsKataDistro() bool <span class="cov0" title="0">{
+func (d Distro) IsKataDistro() bool <span class="cov8" title="1">{
         return d == AKSCBLMarinerV2Gen2Kata
 }</span>
 
@@ -3124,7 +3124,7 @@ type ContainerService struct {
 }
 
 // IsAKSCustomCloud checks if it's in AKS custom cloud
-func (cs *ContainerService) IsAKSCustomCloud() bool <span class="cov0" title="0">{
+func (cs *ContainerService) IsAKSCustomCloud() bool <span class="cov8" title="1">{
         return cs.Properties.CustomCloudEnv != nil &amp;&amp;
                 strings.EqualFold(cs.Properties.CustomCloudEnv.Name, "akscustom")
 }</span>
@@ -3157,17 +3157,17 @@ func (p *Properties) IsIPMasqAgentDisabled() bool <span class="cov0" title="0">{
 }
 
 // HasWindows returns true if the cluster contains windows
-func (p *Properties) HasWindows() bool <span class="cov0" title="0">{
-        for _, agentPoolProfile := range p.AgentPoolProfiles </span><span class="cov0" title="0">{
+func (p *Properties) HasWindows() bool <span class="cov8" title="1">{
+        for _, agentPoolProfile := range p.AgentPoolProfiles </span><span class="cov8" title="1">{
                 if strings.EqualFold(string(agentPoolProfile.OSType), string(Windows)) </span><span class="cov0" title="0">{
                         return true
                 }</span>
         }
-        <span class="cov0" title="0">return false</span>
+        <span class="cov8" title="1">return false</span>
 }
 
 // IsAKSCustomCloud checks if it's in AKS custom cloud
-func (p *Properties) IsAKSCustomCloud() bool <span class="cov0" title="0">{
+func (p *Properties) IsAKSCustomCloud() bool <span class="cov8" title="1">{
         return p.CustomCloudEnv != nil &amp;&amp;
                 strings.EqualFold(p.CustomCloudEnv.Name, "akscustom")
 }</span>
@@ -3181,31 +3181,31 @@ func (p *Properties) IsIPMasqAgentEnabled() bool <span class="cov0" title="0">{
 }
 
 // GetClusterID creates a unique 8 string cluster ID.
-func (p *Properties) GetClusterID() string <span class="cov0" title="0">{
+func (p *Properties) GetClusterID() string <span class="cov8" title="1">{
         mutex := &amp;sync.Mutex{}
-        if p.ClusterID == "" </span><span class="cov0" title="0">{
+        if p.ClusterID == "" </span><span class="cov8" title="1">{
                 uniqueNameSuffixSize := 8
                 // the name suffix uniquely identifies the cluster and is generated off a hash
                 // from the master dns name
                 h := fnv.New64a()
-                if p.HostedMasterProfile != nil </span><span class="cov0" title="0">{
+                if p.HostedMasterProfile != nil </span><span class="cov8" title="1">{
                         h.Write([]byte(p.HostedMasterProfile.DNSPrefix))
                 }</span> else<span class="cov0" title="0"> if len(p.AgentPoolProfiles) &gt; 0 </span><span class="cov0" title="0">{
                         h.Write([]byte(p.AgentPoolProfiles[0].Name))
                 }</span>
-                <span class="cov0" title="0">r := rand.New(rand.NewSource(int64(h.Sum64())))
+                <span class="cov8" title="1">r := rand.New(rand.NewSource(int64(h.Sum64())))
                 mutex.Lock()
                 p.ClusterID = fmt.Sprintf("%08d", r.Uint32())[:uniqueNameSuffixSize]
                 mutex.Unlock()</span>
         }
-        <span class="cov0" title="0">return p.ClusterID</span>
+        <span class="cov8" title="1">return p.ClusterID</span>
 }
 
 // AreAgentProfilesCustomVNET returns true if all of the agent profiles in the clusters are configured with VNET.
-func (p *Properties) AreAgentProfilesCustomVNET() bool <span class="cov0" title="0">{
-        if p.AgentPoolProfiles != nil </span><span class="cov0" title="0">{
-                for _, agentPoolProfile := range p.AgentPoolProfiles </span><span class="cov0" title="0">{
-                        if !agentPoolProfile.IsCustomVNET() </span><span class="cov0" title="0">{
+func (p *Properties) AreAgentProfilesCustomVNET() bool <span class="cov8" title="1">{
+        if p.AgentPoolProfiles != nil </span><span class="cov8" title="1">{
+                for _, agentPoolProfile := range p.AgentPoolProfiles </span><span class="cov8" title="1">{
+                        if !agentPoolProfile.IsCustomVNET() </span><span class="cov8" title="1">{
                                 return false
                         }</span>
                 }
@@ -3215,7 +3215,7 @@ func (p *Properties) AreAgentProfilesCustomVNET() bool <span class="cov0" title=
 }
 
 // GetCustomEnvironmentJSON return the JSON format string for custom environment
-func (p *Properties) GetCustomEnvironmentJSON(escape bool) (string, error) <span class="cov0" title="0">{
+func (p *Properties) GetCustomEnvironmentJSON(escape bool) (string, error) <span class="cov8" title="1">{
         var environmentJSON string
         if p.IsAKSCustomCloud() </span><span class="cov0" title="0">{
                 // Workaround to set correct name in AzureStackCloud.json
@@ -3235,7 +3235,7 @@ func (p *Properties) GetCustomEnvironmentJSON(escape bool) (string, error) <span
                         environmentJSON = strings.Replace(environmentJSON, "\"", "\\\"", -1)
                 }</span>
         }
-        <span class="cov0" title="0">return environmentJSON, nil</span>
+        <span class="cov8" title="1">return environmentJSON, nil</span>
 }
 
 // HasDCSeriesSKU returns whether or not there is an DC series SKU agent pool
@@ -3249,9 +3249,9 @@ func (p *Properties) HasDCSeriesSKU() bool <span class="cov0" title="0">{
 }
 
 // K8sOrchestratorName returns the 3 character orchestrator code for kubernetes-based clusters.
-func (p *Properties) K8sOrchestratorName() string <span class="cov0" title="0">{
-        if p.OrchestratorProfile.IsKubernetes() </span><span class="cov0" title="0">{
-                if p.HostedMasterProfile != nil </span><span class="cov0" title="0">{
+func (p *Properties) K8sOrchestratorName() string <span class="cov8" title="1">{
+        if p.OrchestratorProfile.IsKubernetes() </span><span class="cov8" title="1">{
+                if p.HostedMasterProfile != nil </span><span class="cov8" title="1">{
                         return DefaultHostedProfileMasterName
                 }</span>
                 <span class="cov0" title="0">return DefaultOrchestratorName</span>
@@ -3260,29 +3260,29 @@ func (p *Properties) K8sOrchestratorName() string <span class="cov0" title="0">{
 }
 
 // IsVHDDistroForAllNodes returns true if all of the agent pools plus masters are running the VHD image
-func (p *Properties) IsVHDDistroForAllNodes() bool <span class="cov0" title="0">{
-        if len(p.AgentPoolProfiles) &gt; 0 </span><span class="cov0" title="0">{
-                for _, ap := range p.AgentPoolProfiles </span><span class="cov0" title="0">{
+func (p *Properties) IsVHDDistroForAllNodes() bool <span class="cov8" title="1">{
+        if len(p.AgentPoolProfiles) &gt; 0 </span><span class="cov8" title="1">{
+                for _, ap := range p.AgentPoolProfiles </span><span class="cov8" title="1">{
                         if !ap.IsVHDDistro() </span><span class="cov0" title="0">{
                                 return false
                         }</span>
                 }
         }
-        <span class="cov0" title="0">return true</span>
+        <span class="cov8" title="1">return true</span>
 }
 
 // GetVMType returns the type of VM "vmss" or "standard" to be passed to the cloud provider
-func (p *Properties) GetVMType() string <span class="cov0" title="0">{
-        if p.HasVMSSAgentPool() </span><span class="cov0" title="0">{
+func (p *Properties) GetVMType() string <span class="cov8" title="1">{
+        if p.HasVMSSAgentPool() </span><span class="cov8" title="1">{
                 return VMSSVMType
         }</span>
         <span class="cov0" title="0">return StandardVMType</span>
 }
 
 // HasVMSSAgentPool returns true if the cluster contains Virtual Machine Scale Sets agent pools
-func (p *Properties) HasVMSSAgentPool() bool <span class="cov0" title="0">{
-        for _, agentPoolProfile := range p.AgentPoolProfiles </span><span class="cov0" title="0">{
-                if strings.EqualFold(agentPoolProfile.AvailabilityProfile, VirtualMachineScaleSets) </span><span class="cov0" title="0">{
+func (p *Properties) HasVMSSAgentPool() bool <span class="cov8" title="1">{
+        for _, agentPoolProfile := range p.AgentPoolProfiles </span><span class="cov8" title="1">{
+                if strings.EqualFold(agentPoolProfile.AvailabilityProfile, VirtualMachineScaleSets) </span><span class="cov8" title="1">{
                         return true
                 }</span>
         }
@@ -3290,61 +3290,61 @@ func (p *Properties) HasVMSSAgentPool() bool <span class="cov0" title="0">{
 }
 
 // GetSubnetName returns the subnet name of the cluster based on its current configuration.
-func (p *Properties) GetSubnetName() string <span class="cov0" title="0">{
+func (p *Properties) GetSubnetName() string <span class="cov8" title="1">{
         var subnetName string
 
         if p.AreAgentProfilesCustomVNET() </span><span class="cov0" title="0">{
                 subnetName = strings.Split(p.AgentPoolProfiles[0].VnetSubnetID, "/")[DefaultSubnetNameResourceSegmentIndex]
-        }</span> else<span class="cov0" title="0"> {
+        }</span> else<span class="cov8" title="1"> {
                 subnetName = p.K8sOrchestratorName() + "-subnet"
         }</span>
 
-        <span class="cov0" title="0">return subnetName</span>
+        <span class="cov8" title="1">return subnetName</span>
 }
 
 // GetNSGName returns the name of the network security group of the cluster.
-func (p *Properties) GetNSGName() string <span class="cov0" title="0">{
+func (p *Properties) GetNSGName() string <span class="cov8" title="1">{
         return p.GetResourcePrefix() + "nsg"
 }</span>
 
 // GetResourcePrefix returns the prefix to use for naming cluster resources
-func (p *Properties) GetResourcePrefix() string <span class="cov0" title="0">{
+func (p *Properties) GetResourcePrefix() string <span class="cov8" title="1">{
         return p.K8sOrchestratorName() + "-agentpool-" + p.GetClusterID() + "-"
 }</span>
 
 // GetVirtualNetworkName returns the virtual network name of the cluster
-func (p *Properties) GetVirtualNetworkName() string <span class="cov0" title="0">{
+func (p *Properties) GetVirtualNetworkName() string <span class="cov8" title="1">{
         var vnetName string
         if p.AreAgentProfilesCustomVNET() </span><span class="cov0" title="0">{
                 vnetName = strings.Split(p.AgentPoolProfiles[0].VnetSubnetID, "/")[DefaultVnetNameResourceSegmentIndex]
-        }</span> else<span class="cov0" title="0"> {
+        }</span> else<span class="cov8" title="1"> {
                 vnetName = p.K8sOrchestratorName() + "-vnet-" + p.GetClusterID()
         }</span>
-        <span class="cov0" title="0">return vnetName</span>
+        <span class="cov8" title="1">return vnetName</span>
 }
 
 // GetVNetResourceGroupName returns the virtual network resource group name of the cluster
-func (p *Properties) GetVNetResourceGroupName() string <span class="cov0" title="0">{
+func (p *Properties) GetVNetResourceGroupName() string <span class="cov8" title="1">{
         var vnetResourceGroupName string
         if p.AreAgentProfilesCustomVNET() </span><span class="cov0" title="0">{
                 vnetResourceGroupName = strings.Split(p.AgentPoolProfiles[0].VnetSubnetID, "/")[DefaultVnetResourceGroupSegmentIndex]
         }</span>
-        <span class="cov0" title="0">return vnetResourceGroupName</span>
+        <span class="cov8" title="1">return vnetResourceGroupName</span>
 }
 
 // GetRouteTableName returns the route table name of the cluster.
-func (p *Properties) GetRouteTableName() string <span class="cov0" title="0">{
+func (p *Properties) GetRouteTableName() string <span class="cov8" title="1">{
         return p.GetResourcePrefix() + "routetable"
 }</span>
 
 // GetPrimaryAvailabilitySetName returns the name of the primary availability set of the cluster
-func (p *Properties) GetPrimaryAvailabilitySetName() string <span class="cov0" title="0">{
-        if len(p.AgentPoolProfiles) &gt; 0 </span><span class="cov0" title="0">{
+func (p *Properties) GetPrimaryAvailabilitySetName() string <span class="cov8" title="1">{
+        if len(p.AgentPoolProfiles) &gt; 0 </span><span class="cov8" title="1">{
                 if strings.EqualFold(p.AgentPoolProfiles[0].AvailabilityProfile, AvailabilitySet) </span><span class="cov0" title="0">{
                         return p.AgentPoolProfiles[0].Name + "-availabilitySet-" + p.GetClusterID()
                 }</span>
         }
-        <span class="cov0" title="0">return ""</span>
+        <span class="cov8" title="1">return ""</span>
 }
 
 func (p *Properties) GetComponentKubernetesConfiguration(component CustomConfigurationComponent) *ComponentConfiguration <span class="cov0" title="0">{
@@ -3401,22 +3401,22 @@ func (p *Properties) GetKubeProxyFeatureGatesWindowsArguments() string <span cla
 }
 
 // IsVHDDistro returns true if the distro uses VHD SKUs
-func (a *AgentPoolProfile) IsVHDDistro() bool <span class="cov0" title="0">{
+func (a *AgentPoolProfile) IsVHDDistro() bool <span class="cov8" title="1">{
         return a.Distro.IsVHDDistro()
 }</span>
 
 // Is2204VHDDistro returns true if the distro uses 2204 VHD
-func (a *AgentPoolProfile) Is2204VHDDistro() bool <span class="cov0" title="0">{
+func (a *AgentPoolProfile) Is2204VHDDistro() bool <span class="cov8" title="1">{
         return a.Distro.Is2204VHDDistro()
 }</span>
 
 // IsCustomVNET returns true if the customer brought their own VNET
-func (a *AgentPoolProfile) IsCustomVNET() bool <span class="cov0" title="0">{
+func (a *AgentPoolProfile) IsCustomVNET() bool <span class="cov8" title="1">{
         return len(a.VnetSubnetID) &gt; 0
 }</span>
 
 // IsWindows returns true if the agent pool is windows
-func (a *AgentPoolProfile) IsWindows() bool <span class="cov0" title="0">{
+func (a *AgentPoolProfile) IsWindows() bool <span class="cov8" title="1">{
         return strings.EqualFold(string(a.OSType), string(Windows))
 }</span>
 
@@ -3431,20 +3431,20 @@ func (a *AgentPoolProfile) IsAvailabilitySets() bool <span class="cov0" title="0
 }</span>
 
 // GetKubernetesLabels returns a k8s API-compliant labels string for nodes in this profile
-func (a *AgentPoolProfile) GetKubernetesLabels(rg string, deprecated bool, nvidiaEnabled bool, fipsEnabled bool, osSku string) string <span class="cov0" title="0">{
+func (a *AgentPoolProfile) GetKubernetesLabels(rg string, deprecated bool, nvidiaEnabled bool, fipsEnabled bool, osSku string) string <span class="cov8" title="1">{
         var buf bytes.Buffer
         buf.WriteString(fmt.Sprintf("agentpool=%s", a.Name))
         buf.WriteString(fmt.Sprintf(",kubernetes.azure.com/agentpool=%s", a.Name))
 
         keys := []string{}
-        for key := range a.CustomNodeLabels </span><span class="cov0" title="0">{
+        for key := range a.CustomNodeLabels </span><span class="cov8" title="1">{
                 keys = append(keys, key)
         }</span>
-        <span class="cov0" title="0">sort.Strings(keys)
-        for _, key := range keys </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">sort.Strings(keys)
+        for _, key := range keys </span><span class="cov8" title="1">{
                 buf.WriteString(fmt.Sprintf(",%s=%s", key, a.CustomNodeLabels[key]))
         }</span>
-        <span class="cov0" title="0">return buf.String()</span>
+        <span class="cov8" title="1">return buf.String()</span>
 }
 
 // HasSecrets returns true if the customer specified secrets to install
@@ -3453,13 +3453,13 @@ func (l *LinuxProfile) HasSecrets() bool <span class="cov0" title="0">{
 }</span>
 
 // HasSearchDomain returns true if the customer specified secrets to install
-func (l *LinuxProfile) HasSearchDomain() bool <span class="cov0" title="0">{
+func (l *LinuxProfile) HasSearchDomain() bool <span class="cov8" title="1">{
         if l.CustomSearchDomain != nil </span><span class="cov0" title="0">{
                 if l.CustomSearchDomain.Name != "" &amp;&amp; l.CustomSearchDomain.RealmPassword != "" &amp;&amp; l.CustomSearchDomain.RealmUser != "" </span><span class="cov0" title="0">{
                         return true
                 }</span>
         }
-        <span class="cov0" title="0">return false</span>
+        <span class="cov8" title="1">return false</span>
 }
 
 // IsAzureCNI returns true if Azure CNI network plugin is enabled
@@ -3577,12 +3577,12 @@ func (w *WindowsProfile) GetLogGeneratorIntervalInMinutes() uint32 <span class="
 }
 
 // IsKubernetes returns true if this template is for Kubernetes orchestrator
-func (o *OrchestratorProfile) IsKubernetes() bool <span class="cov0" title="0">{
+func (o *OrchestratorProfile) IsKubernetes() bool <span class="cov8" title="1">{
         return strings.EqualFold(o.OrchestratorType, Kubernetes)
 }</span>
 
 // IsFeatureEnabled returns true if a feature flag is on for the provided feature
-func (f *FeatureFlags) IsFeatureEnabled(feature string) bool <span class="cov0" title="0">{
+func (f *FeatureFlags) IsFeatureEnabled(feature string) bool <span class="cov8" title="1">{
         if f != nil </span><span class="cov0" title="0">{
                 switch feature </span>{
                 case "CSERunInBackground":<span class="cov0" title="0">
@@ -3599,7 +3599,7 @@ func (f *FeatureFlags) IsFeatureEnabled(feature string) bool <span class="cov0" 
                         return false</span>
                 }
         }
-        <span class="cov0" title="0">return false</span>
+        <span class="cov8" title="1">return false</span>
 }
 
 // IsValid returns true if ImageRefernce contains at least Name and ResourceGroup
@@ -3666,7 +3666,7 @@ func (k *KubernetesConfig) IsAddonDisabled(addonName string) bool <span class="c
 
 // NeedsContainerd returns whether or not we need the containerd runtime configuration
 // E.g., kata configuration requires containerd config
-func (k *KubernetesConfig) NeedsContainerd() bool <span class="cov0" title="0">{
+func (k *KubernetesConfig) NeedsContainerd() bool <span class="cov8" title="1">{
         return strings.EqualFold(k.ContainerRuntime, KataContainers) || strings.EqualFold(k.ContainerRuntime, Containerd)
 }</span>
 
@@ -3685,8 +3685,8 @@ func (k *KubernetesConfig) IsAADPodIdentityEnabled() bool <span class="cov0" tit
 }</span>
 
 // GetAzureCNIURLLinux returns the full URL to source Azure CNI binaries from
-func (k *KubernetesConfig) GetAzureCNIURLLinux(cloudSpecConfig *AzureEnvironmentSpecConfig) string <span class="cov0" title="0">{
-        if k.AzureCNIURLLinux != "" </span><span class="cov0" title="0">{
+func (k *KubernetesConfig) GetAzureCNIURLLinux(cloudSpecConfig *AzureEnvironmentSpecConfig) string <span class="cov8" title="1">{
+        if k.AzureCNIURLLinux != "" </span><span class="cov8" title="1">{
                 return k.AzureCNIURLLinux
         }</span>
         <span class="cov0" title="0">return cloudSpecConfig.KubernetesSpecConfig.VnetCNILinuxPluginsDownloadURL</span>
@@ -3701,11 +3701,11 @@ func (k *KubernetesConfig) GetAzureCNIURLARM64Linux(cloudSpecConfig *AzureEnviro
 }
 
 // GetAzureCNIURLWindows returns the full URL to source Azure CNI binaries from
-func (k *KubernetesConfig) GetAzureCNIURLWindows(cloudSpecConfig *AzureEnvironmentSpecConfig) string <span class="cov0" title="0">{
+func (k *KubernetesConfig) GetAzureCNIURLWindows(cloudSpecConfig *AzureEnvironmentSpecConfig) string <span class="cov8" title="1">{
         if k.AzureCNIURLWindows != "" </span><span class="cov0" title="0">{
                 return k.AzureCNIURLWindows
         }</span>
-        <span class="cov0" title="0">return cloudSpecConfig.KubernetesSpecConfig.VnetCNIWindowsPluginsDownloadURL</span>
+        <span class="cov8" title="1">return cloudSpecConfig.KubernetesSpecConfig.VnetCNIWindowsPluginsDownloadURL</span>
 }
 
 // IsUsingNetworkPluginMode returns true of NetworkPluginMode matches mode param
@@ -4904,7 +4904,7 @@ import (
         "github.com/Azure/agentbaker/pkg/agent/datamodel"
 )
 
-func getParameters(config *datamodel.NodeBootstrappingConfiguration, generatorCode string, bakerVersion string) paramsMap <span class="cov0" title="0">{
+func getParameters(config *datamodel.NodeBootstrappingConfiguration, generatorCode string, bakerVersion string) paramsMap <span class="cov8" title="1">{
         cs := config.ContainerService
         profile := config.AgentPoolProfile
         properties := cs.Properties
@@ -4912,39 +4912,39 @@ func getParameters(config *datamodel.NodeBootstrappingConfiguration, generatorCo
         cloudSpecConfig := config.CloudSpecConfig
 
         linuxProfile := properties.LinuxProfile
-        if linuxProfile != nil </span><span class="cov0" title="0">{
+        if linuxProfile != nil </span><span class="cov8" title="1">{
                 addValue(parametersMap, "linuxAdminUsername", linuxProfile.AdminUsername)
         }</span>
         // masterEndpointDNSNamePrefix is the basis for storage account creation across dcos, swarm, and k8s
         // looks like masterEndpointDNSNamePrefix is only used in windows cse kubeconfig cluster/context name and it's not
         // required since linux uses static value for that.
-        <span class="cov0" title="0">if properties.HostedMasterProfile != nil </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if properties.HostedMasterProfile != nil </span><span class="cov8" title="1">{
                 // Agents only, use cluster DNS prefix
                 if properties.HostedMasterProfile.DNSPrefix != "" </span><span class="cov0" title="0">{
                         addValue(parametersMap, "masterEndpointDNSNamePrefix", properties.HostedMasterProfile.DNSPrefix)
-                }</span> else<span class="cov0" title="0"> if properties.HostedMasterProfile.FQDNSubdomain != "" </span><span class="cov0" title="0">{
+                }</span> else<span class="cov8" title="1"> if properties.HostedMasterProfile.FQDNSubdomain != "" </span><span class="cov0" title="0">{
                         addValue(parametersMap, "masterEndpointDNSNamePrefix", properties.HostedMasterProfile.FQDNSubdomain)
-                }</span> else<span class="cov0" title="0"> {
+                }</span> else<span class="cov8" title="1"> {
                         // should not happen but just in case, we fill in value "localcluster" just like linux
                         addValue(parametersMap, "masterEndpointDNSNamePrefix", "localcluster")
                 }</span>
 
         }
-        <span class="cov0" title="0">if properties.HostedMasterProfile != nil </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if properties.HostedMasterProfile != nil </span><span class="cov8" title="1">{
                 addValue(parametersMap, "vnetCidr", DefaultVNETCIDR)
         }</span>
 
         // Kubernetes Parameters
-        <span class="cov0" title="0">if properties.OrchestratorProfile.IsKubernetes() </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if properties.OrchestratorProfile.IsKubernetes() </span><span class="cov8" title="1">{
                 assignKubernetesParameters(properties, parametersMap, cloudSpecConfig, config.K8sComponents, generatorCode, config)
-                if profile != nil </span><span class="cov0" title="0">{
+                if profile != nil </span><span class="cov8" title="1">{
                         assignKubernetesParametersFromAgentProfile(profile, parametersMap, cloudSpecConfig, generatorCode, config)
                 }</span>
         }
 
         // Agent parameters
-        <span class="cov0" title="0">isSetVnetCidrs := false
-        for _, agentProfile := range properties.AgentPoolProfiles </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">isSetVnetCidrs := false
+        for _, agentProfile := range properties.AgentPoolProfiles </span><span class="cov8" title="1">{
                 if !isSetVnetCidrs &amp;&amp; len(agentProfile.VnetCidrs) != 0 </span><span class="cov0" title="0">{
                         // For AKS (properties.HostedMasterProfile != nil), set vnetCidr if a custom vnet is used so the address space can be
                         // added into the ExceptionList of Windows nodes. Otherwise, the default value `10.0.0.0/8` will
@@ -4955,41 +4955,41 @@ func getParameters(config *datamodel.NodeBootstrappingConfiguration, generatorCo
                 }</span>
         }
 
-        <span class="cov0" title="0">if properties.CustomConfiguration != nil &amp;&amp; properties.CustomConfiguration.KubernetesConfigurations != nil </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if properties.CustomConfiguration != nil &amp;&amp; properties.CustomConfiguration.KubernetesConfigurations != nil </span><span class="cov0" title="0">{
                 if configuration, ok := properties.CustomConfiguration.KubernetesConfigurations["kubelet"]; ok &amp;&amp; configuration.DownloadURL != nil </span><span class="cov0" title="0">{
                         addValue(parametersMap, "customKubeBinaryURL", configuration.DownloadURL)
                 }</span>
         }
 
         // Windows parameters
-        <span class="cov0" title="0">if properties.HasWindows() </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if properties.HasWindows() </span><span class="cov0" title="0">{
                 addValue(parametersMap, "windowsDockerVersion", properties.WindowsProfile.GetWindowsDockerVersion())
                 addValue(parametersMap, "defaultContainerdWindowsSandboxIsolation", properties.WindowsProfile.GetDefaultContainerdWindowsSandboxIsolation())
                 addValue(parametersMap, "containerdWindowsRuntimeHandlers", properties.WindowsProfile.GetContainerdWindowsRuntimeHandlers())
         }</span>
 
-        <span class="cov0" title="0">return parametersMap</span>
+        <span class="cov8" title="1">return parametersMap</span>
 }
 
 func assignKubernetesParametersFromAgentProfile(profile *datamodel.AgentPoolProfile, parametersMap paramsMap,
-        cloudSpecConfig *datamodel.AzureEnvironmentSpecConfig, generatorCode string, config *datamodel.NodeBootstrappingConfiguration) <span class="cov0" title="0">{
+        cloudSpecConfig *datamodel.AzureEnvironmentSpecConfig, generatorCode string, config *datamodel.NodeBootstrappingConfiguration) <span class="cov8" title="1">{
         if config.RuncVersion != "" </span><span class="cov0" title="0">{
                 addValue(parametersMap, "runcVersion", config.RuncVersion)
         }</span>
-        <span class="cov0" title="0">addValue(parametersMap, "runcPackageURL", config.RuncPackageURL)
-        if profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntime != "" </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">addValue(parametersMap, "runcPackageURL", config.RuncPackageURL)
+        if profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntime != "" </span><span class="cov8" title="1">{
                 // override containerRuntime parameter value if specified in AgentPoolProfile
                 // this allows for heteregenous clusters
                 addValue(parametersMap, "containerRuntime", profile.KubernetesConfig.ContainerRuntime)
-                if profile.KubernetesConfig.ContainerRuntime == "containerd" </span><span class="cov0" title="0">{
+                if profile.KubernetesConfig.ContainerRuntime == "containerd" </span><span class="cov8" title="1">{
                         addValue(parametersMap, "cliTool", "ctr")
                         if config.ContainerdVersion != "" </span><span class="cov0" title="0">{
                                 addValue(parametersMap, "containerdVersion", config.ContainerdVersion)
                         }</span>
-                        <span class="cov0" title="0">if config.TeleportdPluginURL != "" </span><span class="cov0" title="0">{
+                        <span class="cov8" title="1">if config.TeleportdPluginURL != "" </span><span class="cov0" title="0">{
                                 addValue(parametersMap, "teleportdPluginURL", config.TeleportdPluginURL)
                         }</span>
-                        <span class="cov0" title="0">addValue(parametersMap, "containerdPackageURL", config.ContainerdPackageURL)</span>
+                        <span class="cov8" title="1">addValue(parametersMap, "containerdPackageURL", config.ContainerdPackageURL)</span>
                 } else<span class="cov0" title="0"> {
                         addValue(parametersMap, "cliTool", "docker")
                 }</span>
@@ -5000,29 +5000,29 @@ func assignKubernetesParameters(properties *datamodel.Properties, parametersMap 
         cloudSpecConfig *datamodel.AzureEnvironmentSpecConfig,
         k8sComponents *datamodel.K8sComponents,
         generatorCode string,
-        config *datamodel.NodeBootstrappingConfiguration) <span class="cov0" title="0">{
+        config *datamodel.NodeBootstrappingConfiguration) <span class="cov8" title="1">{
         orchestratorProfile := properties.OrchestratorProfile
 
-        if orchestratorProfile.IsKubernetes() </span><span class="cov0" title="0">{
+        if orchestratorProfile.IsKubernetes() </span><span class="cov8" title="1">{
                 k8sVersion := orchestratorProfile.OrchestratorVersion
                 addValue(parametersMap, "kubernetesVersion", k8sVersion)
 
                 kubernetesConfig := orchestratorProfile.KubernetesConfig
 
-                if kubernetesConfig != nil </span><span class="cov0" title="0">{
-                        if kubernetesConfig.CustomKubeProxyImage != "" </span><span class="cov0" title="0">{
+                if kubernetesConfig != nil </span><span class="cov8" title="1">{
+                        if kubernetesConfig.CustomKubeProxyImage != "" </span><span class="cov8" title="1">{
                                 // kubernetesConfig.CustomKubeProxyImage is ap level property, AKS default CustomKubeProxyImage
                                 // is 'multi-arch', no need to differentiate amd64/arm64 ap
                                 addValue(parametersMap, "kubeProxySpec", kubernetesConfig.CustomKubeProxyImage)
                         }</span>
 
-                        <span class="cov0" title="0">if kubernetesConfig.CustomKubeBinaryURL != "" </span><span class="cov0" title="0">{
+                        <span class="cov8" title="1">if kubernetesConfig.CustomKubeBinaryURL != "" </span><span class="cov8" title="1">{
                                 // kubernetesConfig.CustomKubeBinaryURL is ap level property, CustomKubeBinaryURL is
                                 // set to different for amd64/arm64 ap in RP side.
                                 addValue(parametersMap, "kubeBinaryURL", kubernetesConfig.CustomKubeBinaryURL)
                         }</span>
 
-                        <span class="cov0" title="0">addValue(parametersMap, "kubernetesHyperkubeSpec", k8sComponents.HyperkubeImageURL)
+                        <span class="cov8" title="1">addValue(parametersMap, "kubernetesHyperkubeSpec", k8sComponents.HyperkubeImageURL)
 
                         addValue(parametersMap, "kubeDNSServiceIP", kubernetesConfig.DNSServiceIP)
                         addValue(parametersMap, "cloudproviderConfig", paramsMap{
@@ -5049,11 +5049,11 @@ func assignKubernetesParameters(properties *datamodel.Properties, parametersMap 
                         if config.IsARM64 </span><span class="cov0" title="0">{
                                 addValue(parametersMap, "cniPluginsURL", cloudSpecConfig.KubernetesSpecConfig.CNIARM64PluginsDownloadURL)
                                 addValue(parametersMap, "vnetCniLinuxPluginsURL", kubernetesConfig.GetAzureCNIURLARM64Linux(cloudSpecConfig))
-                        }</span> else<span class="cov0" title="0"> {
+                        }</span> else<span class="cov8" title="1"> {
                                 addValue(parametersMap, "cniPluginsURL", cloudSpecConfig.KubernetesSpecConfig.CNIPluginsDownloadURL)
                                 addValue(parametersMap, "vnetCniLinuxPluginsURL", kubernetesConfig.GetAzureCNIURLLinux(cloudSpecConfig))
                         }</span>
-                        <span class="cov0" title="0">addValue(parametersMap, "vnetCniWindowsPluginsURL", kubernetesConfig.GetAzureCNIURLWindows(cloudSpecConfig))
+                        <span class="cov8" title="1">addValue(parametersMap, "vnetCniWindowsPluginsURL", kubernetesConfig.GetAzureCNIURLWindows(cloudSpecConfig))
 
                         if properties.HasWindows() </span><span class="cov0" title="0">{
                                 addValue(parametersMap, "kubeBinariesSASURL", k8sComponents.WindowsPackageURL)
@@ -5067,9 +5067,9 @@ func assignKubernetesParameters(properties *datamodel.Properties, parametersMap 
                         }</span>
                 }
 
-                <span class="cov0" title="0">servicePrincipalProfile := properties.ServicePrincipalProfile
+                <span class="cov8" title="1">servicePrincipalProfile := properties.ServicePrincipalProfile
 
-                if servicePrincipalProfile != nil </span><span class="cov0" title="0">{
+                if servicePrincipalProfile != nil </span><span class="cov8" title="1">{
                         addValue(parametersMap, "servicePrincipalClientId", servicePrincipalProfile.ClientID)
                         encodedServicePrincipalClientSecret := base64.StdEncoding.EncodeToString([]byte(servicePrincipalProfile.Secret))
                         addValue(parametersMap, "servicePrincipalClientSecret", servicePrincipalProfile.Secret)
@@ -5108,8 +5108,8 @@ func assignKubernetesParameters(properties *datamodel.Properties, parametersMap 
                 }
                 **/
 
-                <span class="cov0" title="0">certificateProfile := properties.CertificateProfile
-                if certificateProfile != nil </span><span class="cov0" title="0">{
+                <span class="cov8" title="1">certificateProfile := properties.CertificateProfile
+                if certificateProfile != nil </span><span class="cov8" title="1">{
                         addSecret(parametersMap, "apiServerCertificate", certificateProfile.APIServerCertificate, true)
                         addSecret(parametersMap, "caCertificate", certificateProfile.CaCertificate, true)
                         addSecret(parametersMap, "clientCertificate", certificateProfile.ClientCertificate, true)
@@ -5191,7 +5191,7 @@ func init() <span class="cov8" title="1">{
 
 type paramsMap map[string]interface{}
 
-func addValue(m paramsMap, k string, v interface{}) <span class="cov0" title="0">{
+func addValue(m paramsMap, k string, v interface{}) <span class="cov8" title="1">{
         m[k] = paramsMap{
                 "value": v,
         }
@@ -5209,20 +5209,20 @@ func addKeyvaultReference(m paramsMap, k string, vaultID, secretName, secretVers
         }
 }</span>
 
-func addSecret(m paramsMap, k string, v interface{}, encode bool) <span class="cov0" title="0">{
+func addSecret(m paramsMap, k string, v interface{}, encode bool) <span class="cov8" title="1">{
         str, ok := v.(string)
         if !ok </span><span class="cov0" title="0">{
                 addValue(m, k, v)
                 return
         }</span>
-        <span class="cov0" title="0">parts := keyvaultSecretPathRe.FindStringSubmatch(str)
-        if parts == nil || len(parts) != 5 </span><span class="cov0" title="0">{
-                if encode </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">parts := keyvaultSecretPathRe.FindStringSubmatch(str)
+        if parts == nil || len(parts) != 5 </span><span class="cov8" title="1">{
+                if encode </span><span class="cov8" title="1">{
                         addValue(m, k, base64.StdEncoding.EncodeToString([]byte(str)))
                 }</span> else<span class="cov0" title="0"> {
                         addValue(m, k, str)
                 }</span>
-                <span class="cov0" title="0">return</span>
+                <span class="cov8" title="1">return</span>
         }
         <span class="cov0" title="0">addKeyvaultReference(m, k, parts[1], parts[2], parts[4])</span>
 }
@@ -5275,7 +5275,7 @@ func makeWindowsExtensionScriptCommands(extension *datamodel.Extension, extensio
         return fmt.Sprintf("New-Item -ItemType Directory -Force -Path \"%s\" ; curl.exe --retry 5 --retry-delay 0 -L \"%s\" -o \"%s\" ; powershell \"%s `\"',parameters('%sParameters'),'`\"\"\n", scriptFileDir, scriptURL, scriptFilePath, scriptFilePath, extensionProfile.Name)</span>
 }
 
-func escapeSingleLine(escapedStr string) string <span class="cov0" title="0">{
+func escapeSingleLine(escapedStr string) string <span class="cov8" title="1">{
         // template.JSEscapeString leaves undesirable chars that don't work with pretty print
         escapedStr = strings.Replace(escapedStr, "\\", "\\\\", -1)
         escapedStr = strings.Replace(escapedStr, "\r\n", "\\n", -1)
@@ -5285,20 +5285,20 @@ func escapeSingleLine(escapedStr string) string <span class="cov0" title="0">{
 }</span>
 
 // getBase64EncodedGzippedCustomScript will return a base64 of the CSE
-func getBase64EncodedGzippedCustomScript(csFilename string, config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
+func getBase64EncodedGzippedCustomScript(csFilename string, config *datamodel.NodeBootstrappingConfiguration) string <span class="cov8" title="1">{
         b, err := templates.Asset(csFilename)
         if err != nil </span><span class="cov0" title="0">{
                 // this should never happen and this is a bug
                 panic(fmt.Sprintf("BUG: %s", err.Error()))</span>
         }
         // translate the parameters
-        <span class="cov0" title="0">templ := template.New("ContainerService template").Option("missingkey=error").Funcs(getContainerServiceFuncMap(config))
+        <span class="cov8" title="1">templ := template.New("ContainerService template").Option("missingkey=error").Funcs(getContainerServiceFuncMap(config))
         _, err = templ.Parse(string(b))
         if err != nil </span><span class="cov0" title="0">{
                 // this should never happen and this is a bug
                 panic(fmt.Sprintf("BUG: %s", err.Error()))</span>
         }
-        <span class="cov0" title="0">var buffer bytes.Buffer
+        <span class="cov8" title="1">var buffer bytes.Buffer
         templ.Execute(&amp;buffer, config.ContainerService)
         csStr := buffer.String()
         csStr = strings.Replace(csStr, "\r\n", "\n", -1)
@@ -5306,7 +5306,7 @@ func getBase64EncodedGzippedCustomScript(csFilename string, config *datamodel.No
 }
 
 // getBase64EncodedGzippedCustomScriptFromStr will return a base64-encoded string of the gzip'd source data
-func getBase64EncodedGzippedCustomScriptFromStr(str string) string <span class="cov0" title="0">{
+func getBase64EncodedGzippedCustomScriptFromStr(str string) string <span class="cov8" title="1">{
         var gzipB bytes.Buffer
         w := gzip.NewWriter(&amp;gzipB)
         w.Write([]byte(str))
@@ -5349,7 +5349,7 @@ func IsSgxEnabledSKU(vmSize string) bool <span class="cov0" title="0">{
 // GetCloudTargetEnv determines and returns whether the region is a sovereign cloud which
 // have their own data compliance regulations (China/Germany/USGov) or standard
 // Azure public cloud
-func GetCloudTargetEnv(location string) string <span class="cov0" title="0">{
+func GetCloudTargetEnv(location string) string <span class="cov8" title="1">{
         loc := strings.ToLower(strings.Join(strings.Fields(location), ""))
         switch </span>{
         case strings.HasPrefix(loc, "china"):<span class="cov0" title="0">
@@ -5358,30 +5358,30 @@ func GetCloudTargetEnv(location string) string <span class="cov0" title="0">{
                 return "AzureGermanCloud"</span>
         case strings.HasPrefix(loc, "usgov") || strings.HasPrefix(loc, "usdod"):<span class="cov0" title="0">
                 return "AzureUSGovernmentCloud"</span>
-        default:<span class="cov0" title="0">
+        default:<span class="cov8" title="1">
                 return "AzurePublicCloud"</span>
         }
 }
 
 // IsKubernetesVersionGe returns true if actualVersion is greater than or equal to version
-func IsKubernetesVersionGe(actualVersion, version string) bool <span class="cov0" title="0">{
+func IsKubernetesVersionGe(actualVersion, version string) bool <span class="cov8" title="1">{
         v1, _ := semver.Make(actualVersion)
         v2, _ := semver.Make(version)
         return v1.GE(v2)
 }</span>
 
-func getCustomDataFromJSON(jsonStr string) string <span class="cov0" title="0">{
+func getCustomDataFromJSON(jsonStr string) string <span class="cov8" title="1">{
         var customDataObj map[string]string
         err := json.Unmarshal([]byte(jsonStr), &amp;customDataObj)
         if err != nil </span><span class="cov0" title="0">{
                 panic(err)</span>
         }
-        <span class="cov0" title="0">return customDataObj["customData"]</span>
+        <span class="cov8" title="1">return customDataObj["customData"]</span>
 }
 
 // GetOrderedKubeletConfigFlagString returns an ordered string of key/val pairs
 // copied from AKS-Engine and filter out flags that already translated to config file
-func GetOrderedKubeletConfigFlagString(k map[string]string, cs *datamodel.ContainerService, profile *datamodel.AgentPoolProfile, kubeletConfigFileToggleEnabled bool) string <span class="cov0" title="0">{
+func GetOrderedKubeletConfigFlagString(k map[string]string, cs *datamodel.ContainerService, profile *datamodel.AgentPoolProfile, kubeletConfigFileToggleEnabled bool) string <span class="cov8" title="1">{
         // NOTE(mainred): kubeConfigFile now relies on CustomKubeletConfig, while custom configuration is not compatible
         // with CustomKubeletConfig. When custom configuration is set we want to override every configuration with the
         // customized one.
@@ -5390,25 +5390,25 @@ func GetOrderedKubeletConfigFlagString(k map[string]string, cs *datamodel.Contai
                 return getOrderedKubeletConfigFlagWithCustomConfigurationString(kubeletCustomConfigurations, k)
         }</span>
 
-        <span class="cov0" title="0">if k == nil </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if k == nil </span><span class="cov0" title="0">{
                 return ""
         }</span>
         // Always force remove of dynamic-config-dir.
-        <span class="cov0" title="0">kubeletConfigFileEnabled := IsKubeletConfigFileEnabled(cs, profile, kubeletConfigFileToggleEnabled)
+        <span class="cov8" title="1">kubeletConfigFileEnabled := IsKubeletConfigFileEnabled(cs, profile, kubeletConfigFileToggleEnabled)
         keys := []string{}
-        for key := range k </span><span class="cov0" title="0">{
-                if !kubeletConfigFileEnabled || !TranslatedKubeletConfigFlags[key] </span><span class="cov0" title="0">{
-                        if !datamodel.CommandLineOmittedKubeletConfigFlags[key] </span><span class="cov0" title="0">{
+        for key := range k </span><span class="cov8" title="1">{
+                if !kubeletConfigFileEnabled || !TranslatedKubeletConfigFlags[key] </span><span class="cov8" title="1">{
+                        if !datamodel.CommandLineOmittedKubeletConfigFlags[key] </span><span class="cov8" title="1">{
                                 keys = append(keys, key)
                         }</span>
                 }
         }
-        <span class="cov0" title="0">sort.Strings(keys)
+        <span class="cov8" title="1">sort.Strings(keys)
         var buf bytes.Buffer
-        for _, key := range keys </span><span class="cov0" title="0">{
+        for _, key := range keys </span><span class="cov8" title="1">{
                 buf.WriteString(fmt.Sprintf("%s=%s ", key, k[key]))
         }</span>
-        <span class="cov0" title="0">return buf.String()</span>
+        <span class="cov8" title="1">return buf.String()</span>
 }
 
 func getOrderedKubeletConfigFlagWithCustomConfigurationString(customConfig, defaultConfig map[string]string) string <span class="cov0" title="0">{
@@ -5435,8 +5435,8 @@ func getOrderedKubeletConfigFlagWithCustomConfigurationString(customConfig, defa
         <span class="cov0" title="0">return buf.String()</span>
 }
 
-func getKubeletCustomConfiguration(properties *datamodel.Properties) map[string]string <span class="cov0" title="0">{
-        if properties.CustomConfiguration == nil || properties.CustomConfiguration.KubernetesConfigurations == nil </span><span class="cov0" title="0">{
+func getKubeletCustomConfiguration(properties *datamodel.Properties) map[string]string <span class="cov8" title="1">{
+        if properties.CustomConfiguration == nil || properties.CustomConfiguration.KubernetesConfigurations == nil </span><span class="cov8" title="1">{
                 return nil
         }</span>
         <span class="cov0" title="0">kubeletConfigurations, ok := properties.CustomConfiguration.KubernetesConfigurations["kubelet"]
@@ -5454,7 +5454,7 @@ func getKubeletCustomConfiguration(properties *datamodel.Properties) map[string]
 }
 
 // IsKubeletConfigFileEnabled get if dynamic kubelet is supported in AKS and toggle is on
-func IsKubeletConfigFileEnabled(cs *datamodel.ContainerService, profile *datamodel.AgentPoolProfile, kubeletConfigFileToggleEnabled bool) bool <span class="cov0" title="0">{
+func IsKubeletConfigFileEnabled(cs *datamodel.ContainerService, profile *datamodel.AgentPoolProfile, kubeletConfigFileToggleEnabled bool) bool <span class="cov8" title="1">{
         // TODO(bowa) remove toggle when backfill
         // If customKubeletConfig or customLinuxOSConfig is used (API20201101 and later), use kubelet config file
         return profile.CustomKubeletConfig != nil || profile.CustomLinuxOSConfig != nil ||
@@ -5463,7 +5463,7 @@ func IsKubeletConfigFileEnabled(cs *datamodel.ContainerService, profile *datamod
 }</span>
 
 // IsKubeletClientTLSBootstrappingEnabled get if kubelet client TLS bootstrapping is enabled
-func IsKubeletClientTLSBootstrappingEnabled(tlsBootstrapToken *string) bool <span class="cov0" title="0">{
+func IsKubeletClientTLSBootstrappingEnabled(tlsBootstrapToken *string) bool <span class="cov8" title="1">{
         return tlsBootstrapToken != nil
 }</span>
 
@@ -5471,8 +5471,8 @@ func IsKubeletClientTLSBootstrappingEnabled(tlsBootstrapToken *string) bool <spa
 // It returns empty string if TLS bootstrap token is not enabled.
 //
 // ref: https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/#kubelet-configuration
-func GetTLSBootstrapTokenForKubeConfig(tlsBootstrapToken *string) string <span class="cov0" title="0">{
-        if tlsBootstrapToken == nil </span><span class="cov0" title="0">{
+func GetTLSBootstrapTokenForKubeConfig(tlsBootstrapToken *string) string <span class="cov8" title="1">{
+        if tlsBootstrapToken == nil </span><span class="cov8" title="1">{
                 // not set
                 return ""
         }</span>
@@ -5481,12 +5481,12 @@ func GetTLSBootstrapTokenForKubeConfig(tlsBootstrapToken *string) string <span c
 }
 
 // GetKubeletConfigFileContent converts kubelet flags we set to a file, and return the json content
-func GetKubeletConfigFileContent(kc map[string]string, customKc *datamodel.CustomKubeletConfig) string <span class="cov0" title="0">{
+func GetKubeletConfigFileContent(kc map[string]string, customKc *datamodel.CustomKubeletConfig) string <span class="cov8" title="1">{
         if kc == nil </span><span class="cov0" title="0">{
                 return ""
         }</span>
         // translate simple values
-        <span class="cov0" title="0">kubeletConfig := &amp;datamodel.AKSKubeletConfiguration{
+        <span class="cov8" title="1">kubeletConfig := &amp;datamodel.AKSKubeletConfiguration{
                 APIVersion:    "kubelet.config.k8s.io/v1beta1",
                 Kind:          "KubeletConfiguration",
                 Address:       kc["--address"],
@@ -5518,17 +5518,17 @@ func GetKubeletConfigFileContent(kc map[string]string, customKc *datamodel.Custo
 
         // Authentication
         kubeletConfig.Authentication = datamodel.KubeletAuthentication{}
-        if ca := kc["--client-ca-file"]; ca != "" </span><span class="cov0" title="0">{
+        if ca := kc["--client-ca-file"]; ca != "" </span><span class="cov8" title="1">{
                 kubeletConfig.Authentication.X509 = datamodel.KubeletX509Authentication{
                         ClientCAFile: ca,
                 }
         }</span>
-        <span class="cov0" title="0">if aw := kc["--authentication-token-webhook"]; aw != "" </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if aw := kc["--authentication-token-webhook"]; aw != "" </span><span class="cov8" title="1">{
                 kubeletConfig.Authentication.Webhook = datamodel.KubeletWebhookAuthentication{
                         Enabled: strToBool(aw),
                 }
         }</span>
-        <span class="cov0" title="0">if aa := kc["--anonymous-auth"]; aa != "" </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if aa := kc["--anonymous-auth"]; aa != "" </span><span class="cov8" title="1">{
                 kubeletConfig.Authentication.Anonymous = datamodel.KubeletAnonymousAuthentication{
                         Enabled: strToBool(aa),
                 }
@@ -5536,13 +5536,13 @@ func GetKubeletConfigFileContent(kc map[string]string, customKc *datamodel.Custo
 
         // EvictionHard
         // default: "memory.available&lt;750Mi,nodefs.available&lt;10%,nodefs.inodesFree&lt;5%"
-        <span class="cov0" title="0">if eh, ok := kc["--eviction-hard"]; ok &amp;&amp; eh != "" </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if eh, ok := kc["--eviction-hard"]; ok &amp;&amp; eh != "" </span><span class="cov8" title="1">{
                 kubeletConfig.EvictionHard = strKeyValToMap(eh, ",", "&lt;")
         }</span>
 
         // feature gates
         // look like "f1=true,f2=true"
-        <span class="cov0" title="0">kubeletConfig.FeatureGates = strKeyValToMapBool(kc["--feature-gates"], ",", "=")
+        <span class="cov8" title="1">kubeletConfig.FeatureGates = strKeyValToMapBool(kc["--feature-gates"], ",", "=")
 
         // system reserve and kube reserve
         // looks like "cpu=100m,memory=1638Mi"
@@ -5590,105 +5590,105 @@ func GetKubeletConfigFileContent(kc map[string]string, customKc *datamodel.Custo
                 }</span>
         }
 
-        <span class="cov0" title="0">configStringByte, _ := json.MarshalIndent(kubeletConfig, "", "    ")
+        <span class="cov8" title="1">configStringByte, _ := json.MarshalIndent(kubeletConfig, "", "    ")
         return string(configStringByte)</span>
 }
 
-func strToBool(str string) bool <span class="cov0" title="0">{
+func strToBool(str string) bool <span class="cov8" title="1">{
         b, _ := strconv.ParseBool(str)
         return b
 }</span>
 
-func strToBoolPtr(str string) *bool <span class="cov0" title="0">{
+func strToBoolPtr(str string) *bool <span class="cov8" title="1">{
         if str == "" </span><span class="cov0" title="0">{
                 return nil
         }</span>
-        <span class="cov0" title="0">b := strToBool(str)
+        <span class="cov8" title="1">b := strToBool(str)
         return &amp;b</span>
 }
 
-func strToInt32(str string) int32 <span class="cov0" title="0">{
+func strToInt32(str string) int32 <span class="cov8" title="1">{
         i, _ := strconv.ParseInt(str, 10, 32)
         return int32(i)
 }</span>
 
-func strToInt32Ptr(str string) *int32 <span class="cov0" title="0">{
+func strToInt32Ptr(str string) *int32 <span class="cov8" title="1">{
         if str == "" </span><span class="cov0" title="0">{
                 return nil
         }</span>
-        <span class="cov0" title="0">i := strToInt32(str)
+        <span class="cov8" title="1">i := strToInt32(str)
         return &amp;i</span>
 }
 
-func strToInt64(str string) int64 <span class="cov0" title="0">{
+func strToInt64(str string) int64 <span class="cov8" title="1">{
         i, _ := strconv.ParseInt(str, 10, 64)
         return i
 }</span>
 
-func strToInt64Ptr(str string) *int64 <span class="cov0" title="0">{
+func strToInt64Ptr(str string) *int64 <span class="cov8" title="1">{
         if str == "" </span><span class="cov0" title="0">{
                 return nil
         }</span>
-        <span class="cov0" title="0">i := strToInt64(str)
+        <span class="cov8" title="1">i := strToInt64(str)
         return &amp;i</span>
 }
 
-func strKeyValToMap(str string, strDelim string, pairDelim string) map[string]string <span class="cov0" title="0">{
+func strKeyValToMap(str string, strDelim string, pairDelim string) map[string]string <span class="cov8" title="1">{
         m := make(map[string]string)
         pairs := strings.Split(str, strDelim)
-        for _, pairRaw := range pairs </span><span class="cov0" title="0">{
+        for _, pairRaw := range pairs </span><span class="cov8" title="1">{
                 pair := strings.Split(pairRaw, pairDelim)
-                if len(pair) == 2 </span><span class="cov0" title="0">{
+                if len(pair) == 2 </span><span class="cov8" title="1">{
                         key := strings.TrimSpace(pair[0])
                         val := strings.TrimSpace(pair[1])
                         m[key] = val
                 }</span>
         }
-        <span class="cov0" title="0">return m</span>
+        <span class="cov8" title="1">return m</span>
 }
 
-func strKeyValToMapBool(str string, strDelim string, pairDelim string) map[string]bool <span class="cov0" title="0">{
+func strKeyValToMapBool(str string, strDelim string, pairDelim string) map[string]bool <span class="cov8" title="1">{
         m := make(map[string]bool)
         pairs := strings.Split(str, strDelim)
-        for _, pairRaw := range pairs </span><span class="cov0" title="0">{
+        for _, pairRaw := range pairs </span><span class="cov8" title="1">{
                 pair := strings.Split(pairRaw, pairDelim)
-                if len(pair) == 2 </span><span class="cov0" title="0">{
+                if len(pair) == 2 </span><span class="cov8" title="1">{
                         key := strings.TrimSpace(pair[0])
                         val := strings.TrimSpace(pair[1])
                         m[key] = strToBool(val)
                 }</span>
         }
-        <span class="cov0" title="0">return m</span>
+        <span class="cov8" title="1">return m</span>
 }
 
-func removeFeatureGateString(featureGates string, key string) string <span class="cov0" title="0">{
+func removeFeatureGateString(featureGates string, key string) string <span class="cov8" title="1">{
         fgMap := strKeyValToMapBool(featureGates, ",", "=")
         delete(fgMap, key)
         keys := make([]string, 0, len(fgMap))
-        for k := range fgMap </span><span class="cov0" title="0">{
+        for k := range fgMap </span><span class="cov8" title="1">{
                 keys = append(keys, k)
         }</span>
-        <span class="cov0" title="0">sort.Strings(keys)
+        <span class="cov8" title="1">sort.Strings(keys)
         pairs := make([]string, 0, len(keys))
-        for _, k := range keys </span><span class="cov0" title="0">{
+        for _, k := range keys </span><span class="cov8" title="1">{
                 pairs = append(pairs, fmt.Sprintf("%s=%t", k, fgMap[k]))
         }</span>
-        <span class="cov0" title="0">return strings.Join(pairs, ",")</span>
+        <span class="cov8" title="1">return strings.Join(pairs, ",")</span>
 }
 
-func addFeatureGateString(featureGates string, key string, value bool) string <span class="cov0" title="0">{
+func addFeatureGateString(featureGates string, key string, value bool) string <span class="cov8" title="1">{
         fgMap := strKeyValToMapBool(featureGates, ",", "=")
         fgMap[key] = value
         keys := make([]string, 0, len(fgMap))
-        for k := range fgMap </span><span class="cov0" title="0">{
+        for k := range fgMap </span><span class="cov8" title="1">{
                 keys = append(keys, k)
         }</span>
-        <span class="cov0" title="0">sort.Strings(keys)
+        <span class="cov8" title="1">sort.Strings(keys)
         pairs := make([]string, 0, len(keys))
-        for _, k := range keys </span><span class="cov0" title="0">{
+        for _, k := range keys </span><span class="cov8" title="1">{
                 pairs = append(pairs, fmt.Sprintf("%s=%t", k, fgMap[k]))
         }</span>
-        <span class="cov0" title="0">return strings.Join(pairs, ",")</span>
+        <span class="cov8" title="1">return strings.Join(pairs, ",")</span>
 }
 
 // ParseCSEMessage parses the raw CSE output
@@ -5749,7 +5749,7 @@ import (
 var dockerShimFlags = []string{"--cni-bin-dir", "--cni-cache-dir", "--cni-conf-dir", "--docker-endpoint", "--image-pull-progress-deadline", "--network-plugin", "--network-plugin-mtu"}
 
 // getCustomDataVariables returns cloudinit data used by Linux
-func getCustomDataVariables(config *datamodel.NodeBootstrappingConfiguration) paramsMap <span class="cov0" title="0">{
+func getCustomDataVariables(config *datamodel.NodeBootstrappingConfiguration) paramsMap <span class="cov8" title="1">{
         cs := config.ContainerService
         cloudInitFiles := map[string]interface{}{
                 "cloudInitData": paramsMap{
@@ -5796,7 +5796,7 @@ func getCustomDataVariables(config *datamodel.NodeBootstrappingConfiguration) pa
                 }</span>
         }
 
-        <span class="cov0" title="0">if !cs.Properties.IsVHDDistroForAllNodes() </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if !cs.Properties.IsVHDDistroForAllNodes() </span><span class="cov0" title="0">{
                 cloudInitData["provisionCIS"] = getBase64EncodedGzippedCustomScript(kubernetesCISScript, config)
                 cloudInitData["kmsSystemdService"] = getBase64EncodedGzippedCustomScript(kmsSystemdService, config)
                 cloudInitData["aptPreferences"] = getBase64EncodedGzippedCustomScript(aptPreferences, config)
@@ -5809,7 +5809,7 @@ func getCustomDataVariables(config *datamodel.NodeBootstrappingConfiguration) pa
                 cloudInitData["dockerClearMountPropagationFlags"] = getBase64EncodedGzippedCustomScript(dockerClearMountPropagationFlags, config)
         }</span>
 
-        <span class="cov0" title="0">return cloudInitFiles</span>
+        <span class="cov8" title="1">return cloudInitFiles</span>
 }
 
 // getWindowsCustomDataVariables returns custom data for Windows
@@ -5848,7 +5848,7 @@ func getWindowsCustomDataVariables(config *datamodel.NodeBootstrappingConfigurat
         return customData
 }</span>
 
-func getCSECommandVariables(config *datamodel.NodeBootstrappingConfiguration) paramsMap <span class="cov0" title="0">{
+func getCSECommandVariables(config *datamodel.NodeBootstrappingConfiguration) paramsMap <span class="cov8" title="1">{
         cs := config.ContainerService
         profile := config.AgentPoolProfile
         return map[string]interface{}{
@@ -5880,80 +5880,80 @@ func getCSECommandVariables(config *datamodel.NodeBootstrappingConfiguration) pa
         }
 }</span>
 
-func useManagedIdentity(cs *datamodel.ContainerService) string <span class="cov0" title="0">{
+func useManagedIdentity(cs *datamodel.ContainerService) string <span class="cov8" title="1">{
         useManagedIdentity := cs.Properties.OrchestratorProfile.KubernetesConfig != nil &amp;&amp;
                 cs.Properties.OrchestratorProfile.KubernetesConfig.UseManagedIdentity
         return strconv.FormatBool(useManagedIdentity)
 }</span>
 
-func useInstanceMetadata(cs *datamodel.ContainerService) string <span class="cov0" title="0">{
+func useInstanceMetadata(cs *datamodel.ContainerService) string <span class="cov8" title="1">{
         useInstanceMetadata := cs.Properties.OrchestratorProfile.KubernetesConfig != nil &amp;&amp;
                 cs.Properties.OrchestratorProfile.KubernetesConfig.UseInstanceMetadata != nil &amp;&amp;
                 *cs.Properties.OrchestratorProfile.KubernetesConfig.UseInstanceMetadata
         return strconv.FormatBool(useInstanceMetadata)
 }</span>
 
-func getMaximumLoadBalancerRuleCount(cs *datamodel.ContainerService) int <span class="cov0" title="0">{
-        if cs.Properties.OrchestratorProfile.KubernetesConfig != nil </span><span class="cov0" title="0">{
+func getMaximumLoadBalancerRuleCount(cs *datamodel.ContainerService) int <span class="cov8" title="1">{
+        if cs.Properties.OrchestratorProfile.KubernetesConfig != nil </span><span class="cov8" title="1">{
                 return cs.Properties.OrchestratorProfile.KubernetesConfig.MaximumLoadBalancerRuleCount
         }</span>
         <span class="cov0" title="0">return 0</span>
 }
 
-func isVHD(profile *datamodel.AgentPoolProfile) string <span class="cov0" title="0">{
+func isVHD(profile *datamodel.AgentPoolProfile) string <span class="cov8" title="1">{
         //NOTE: update as new distro is introduced
         return strconv.FormatBool(profile.IsVHDDistro())
 }</span>
 
-func getOutBoundCmd(nbc *datamodel.NodeBootstrappingConfiguration, cloudSpecConfig *datamodel.AzureEnvironmentSpecConfig) string <span class="cov0" title="0">{
+func getOutBoundCmd(nbc *datamodel.NodeBootstrappingConfiguration, cloudSpecConfig *datamodel.AzureEnvironmentSpecConfig) string <span class="cov8" title="1">{
         cs := nbc.ContainerService
         if cs.Properties.FeatureFlags.IsFeatureEnabled("BlockOutboundInternet") </span><span class="cov0" title="0">{
                 return ""
         }</span>
-        <span class="cov0" title="0">registry := ""
+        <span class="cov8" title="1">registry := ""
         if cloudSpecConfig.CloudName == datamodel.AzureChinaCloud </span><span class="cov0" title="0">{
                 registry = `gcr.azk8s.cn`
-        }</span> else<span class="cov0" title="0"> if cs.IsAKSCustomCloud() </span><span class="cov0" title="0">{
+        }</span> else<span class="cov8" title="1"> if cs.IsAKSCustomCloud() </span><span class="cov0" title="0">{
                 registry = cs.Properties.CustomCloudEnv.McrURL
-        }</span> else<span class="cov0" title="0"> {
+        }</span> else<span class="cov8" title="1"> {
                 registry = `mcr.microsoft.com`
         }</span>
 
-        <span class="cov0" title="0">if registry == "" </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if registry == "" </span><span class="cov0" title="0">{
                 return ""
         }</span>
 
         // curl on Ubuntu 16.04 (shipped prior to AKS 1.18) doesn't support proxy TLS
         // so we need to use nc for the connectivity check
-        <span class="cov0" title="0">clusterVersion, _ := semver.Make(cs.Properties.OrchestratorProfile.OrchestratorVersion)
+        <span class="cov8" title="1">clusterVersion, _ := semver.Make(cs.Properties.OrchestratorProfile.OrchestratorVersion)
         minVersion, _ := semver.Make("1.18.0")
 
         connectivityCheckCommand := ""
-        if clusterVersion.GTE(minVersion) </span><span class="cov0" title="0">{
+        if clusterVersion.GTE(minVersion) </span><span class="cov8" title="1">{
                 connectivityCheckCommand = `curl -v --insecure --proxy-insecure https://` + registry + `/v2/`
         }</span> else<span class="cov0" title="0"> {
                 connectivityCheckCommand = `nc -vz ` + registry + ` 443`
         }</span>
 
-        <span class="cov0" title="0">return connectivityCheckCommand</span>
+        <span class="cov8" title="1">return connectivityCheckCommand</span>
 }
 
-func getProxyVariables(nbc *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
+func getProxyVariables(nbc *datamodel.NodeBootstrappingConfiguration) string <span class="cov8" title="1">{
         // only use https proxy, if user doesn't specify httpsProxy we autofill it with value from httpProxy
         proxyVars := ""
-        if nbc.HTTPProxyConfig != nil </span><span class="cov0" title="0">{
+        if nbc.HTTPProxyConfig != nil </span><span class="cov8" title="1">{
                 if nbc.HTTPProxyConfig.HTTPProxy != nil </span><span class="cov0" title="0">{
                         // from https://curl.se/docs/manual.html, curl uses http_proxy but uppercase for others?
                         proxyVars = fmt.Sprintf("export http_proxy=\"%s\";", *nbc.HTTPProxyConfig.HTTPProxy)
                 }</span>
-                <span class="cov0" title="0">if nbc.HTTPProxyConfig.HTTPSProxy != nil </span><span class="cov0" title="0">{
+                <span class="cov8" title="1">if nbc.HTTPProxyConfig.HTTPSProxy != nil </span><span class="cov0" title="0">{
                         proxyVars = fmt.Sprintf("export HTTPS_PROXY=\"%s\"; %s", *nbc.HTTPProxyConfig.HTTPSProxy, proxyVars)
                 }</span>
-                <span class="cov0" title="0">if nbc.HTTPProxyConfig.NoProxy != nil </span><span class="cov0" title="0">{
+                <span class="cov8" title="1">if nbc.HTTPProxyConfig.NoProxy != nil </span><span class="cov8" title="1">{
                         proxyVars = fmt.Sprintf("export NO_PROXY=\"%s\"; %s", strings.Join(*nbc.HTTPProxyConfig.NoProxy, ","), proxyVars)
                 }</span>
         }
-        <span class="cov0" title="0">return proxyVars</span>
+        <span class="cov8" title="1">return proxyVars</span>
 }
 </pre>
 		
@@ -6105,17 +6105,17 @@ Requires=bind-mount.service
 After=bind-mount.service
 `)
 
-func linuxCloudInitArtifacts10BindmountConfBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifacts10BindmountConfBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifacts10BindmountConf, nil
 }</span>
 
-func linuxCloudInitArtifacts10BindmountConf() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifacts10BindmountConf() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifacts10BindmountConfBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/10-bindmount.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/10-bindmount.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -6124,17 +6124,17 @@ var _linuxCloudInitArtifacts10Cgroupv2Conf = []byte(`[Service]
 Environment="KUBELET_CGROUP_FLAGS=--cgroup-driver=systemd"
 `)
 
-func linuxCloudInitArtifacts10Cgroupv2ConfBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifacts10Cgroupv2ConfBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifacts10Cgroupv2Conf, nil
 }</span>
 
-func linuxCloudInitArtifacts10Cgroupv2Conf() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifacts10Cgroupv2Conf() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifacts10Cgroupv2ConfBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/10-cgroupv2.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/10-cgroupv2.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -6143,17 +6143,17 @@ var _linuxCloudInitArtifacts10ComponentconfigConf = []byte(`[Service]
 Environment="KUBELET_CONFIG_FILE_FLAGS=--config /etc/default/kubeletconfig.json"
 `)
 
-func linuxCloudInitArtifacts10ComponentconfigConfBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifacts10ComponentconfigConfBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifacts10ComponentconfigConf, nil
 }</span>
 
-func linuxCloudInitArtifacts10ComponentconfigConf() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifacts10ComponentconfigConf() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifacts10ComponentconfigConfBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/10-componentconfig.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/10-componentconfig.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -6162,17 +6162,17 @@ var _linuxCloudInitArtifacts10ContainerdConf = []byte(`[Service]
 Environment="KUBELET_CONTAINERD_FLAGS=--container-runtime=remote --runtime-request-timeout=15m --container-runtime-endpoint=unix:///run/containerd/containerd.sock --runtime-cgroups=/system.slice/containerd.service"
 `)
 
-func linuxCloudInitArtifacts10ContainerdConfBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifacts10ContainerdConfBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifacts10ContainerdConf, nil
 }</span>
 
-func linuxCloudInitArtifacts10ContainerdConf() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifacts10ContainerdConf() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifacts10ContainerdConfBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/10-containerd.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/10-containerd.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -6181,17 +6181,17 @@ var _linuxCloudInitArtifacts10HttpproxyConf = []byte(`[Service]
 EnvironmentFile=/etc/environment
 `)
 
-func linuxCloudInitArtifacts10HttpproxyConfBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifacts10HttpproxyConfBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifacts10HttpproxyConf, nil
 }</span>
 
-func linuxCloudInitArtifacts10HttpproxyConf() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifacts10HttpproxyConf() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifacts10HttpproxyConfBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/10-httpproxy.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/10-httpproxy.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -6200,17 +6200,17 @@ var _linuxCloudInitArtifacts10TlsbootstrapConf = []byte(`[Service]
 Environment="KUBELET_TLS_BOOTSTRAP_FLAGS=--kubeconfig /var/lib/kubelet/kubeconfig --bootstrap-kubeconfig /var/lib/kubelet/bootstrap-kubeconfig"
 `)
 
-func linuxCloudInitArtifacts10TlsbootstrapConfBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifacts10TlsbootstrapConfBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifacts10TlsbootstrapConf, nil
 }</span>
 
-func linuxCloudInitArtifacts10TlsbootstrapConf() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifacts10TlsbootstrapConf() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifacts10TlsbootstrapConfBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/10-tlsbootstrap.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/10-tlsbootstrap.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -6394,17 +6394,17 @@ ExecStart=/bin/bash /opt/azure/containers/bind-mount.sh
 WantedBy=multi-user.target
 `)
 
-func linuxCloudInitArtifactsBindMountServiceBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsBindMountServiceBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsBindMountService, nil
 }</span>
 
-func linuxCloudInitArtifactsBindMountService() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsBindMountService() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsBindMountServiceBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/bind-mount.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/bind-mount.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -6446,17 +6446,17 @@ mkdir -p "${KUBELET_DIR}"
 mount --bind "${KUBELET_MOUNT_POINT}" "${KUBELET_DIR}" 
 chmod a+w "${KUBELET_DIR}"`)
 
-func linuxCloudInitArtifactsBindMountShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsBindMountShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsBindMountSh, nil
 }</span>
 
-func linuxCloudInitArtifactsBindMountSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsBindMountSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsBindMountShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/bind-mount.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/bind-mount.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -6968,17 +6968,17 @@ IS_KATA="{{IsKata}}"
 /usr/bin/nohup /bin/bash -c "/bin/bash /opt/azure/containers/provision_start.sh"
 `)
 
-func linuxCloudInitArtifactsCse_cmdShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_cmdShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsCse_cmdSh, nil
 }</span>
 
-func linuxCloudInitArtifactsCse_cmdSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_cmdSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsCse_cmdShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_cmd.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_cmd.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -7611,17 +7611,17 @@ disableSSH() {
 #EOF
 `)
 
-func linuxCloudInitArtifactsCse_configShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_configShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsCse_configSh, nil
 }</span>
 
-func linuxCloudInitArtifactsCse_configSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_configSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsCse_configShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_config.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_config.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -7960,17 +7960,17 @@ logs_to_events() {
 #HELPERSEOF
 `)
 
-func linuxCloudInitArtifactsCse_helpersShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_helpersShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsCse_helpersSh, nil
 }</span>
 
-func linuxCloudInitArtifactsCse_helpersSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_helpersSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsCse_helpersShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_helpers.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_helpers.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -8417,17 +8417,17 @@ EOF
 #EOF
 `)
 
-func linuxCloudInitArtifactsCse_installShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_installShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsCse_installSh, nil
 }</span>
 
-func linuxCloudInitArtifactsCse_installSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_installSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsCse_installShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_install.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_install.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -8821,17 +8821,17 @@ exit $VALIDATION_ERR
 #EOF
 `)
 
-func linuxCloudInitArtifactsCse_mainShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_mainShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsCse_mainSh, nil
 }</span>
 
-func linuxCloudInitArtifactsCse_mainSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_mainSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsCse_mainShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_main.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_main.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -8904,17 +8904,17 @@ if __name__ == '__main__':
     args = parser.parse_args()
     redact_cloud_config(args.cloud_config_path, args.output_path)`)
 
-func linuxCloudInitArtifactsCse_redact_cloud_configPyBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_redact_cloud_configPyBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsCse_redact_cloud_configPy, nil
 }</span>
 
-func linuxCloudInitArtifactsCse_redact_cloud_configPy() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_redact_cloud_configPy() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsCse_redact_cloud_configPyBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_redact_cloud_config.py", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_redact_cloud_config.py", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -8967,17 +8967,17 @@ else:
     exit(1)
 `)
 
-func linuxCloudInitArtifactsCse_send_logsPyBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_send_logsPyBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsCse_send_logsPy, nil
 }</span>
 
-func linuxCloudInitArtifactsCse_send_logsPy() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_send_logsPy() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsCse_send_logsPyBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_send_logs.py", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_send_logs.py", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -9079,17 +9079,17 @@ fi
 
 exit $EXIT_CODE`)
 
-func linuxCloudInitArtifactsCse_startShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_startShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsCse_startSh, nil
 }</span>
 
-func linuxCloudInitArtifactsCse_startSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCse_startSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsCse_startShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_start.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cse_start.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -9107,17 +9107,17 @@ WantedBy=multi-user.target
 #EOF
 `)
 
-func linuxCloudInitArtifactsDhcpv6ServiceBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsDhcpv6ServiceBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsDhcpv6Service, nil
 }</span>
 
-func linuxCloudInitArtifactsDhcpv6Service() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsDhcpv6Service() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsDhcpv6ServiceBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/dhcpv6.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/dhcpv6.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -9250,17 +9250,17 @@ echo "Configuration complete"
 #EOF
 `)
 
-func linuxCloudInitArtifactsEnableDhcpv6ShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsEnableDhcpv6ShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsEnableDhcpv6Sh, nil
 }</span>
 
-func linuxCloudInitArtifactsEnableDhcpv6Sh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsEnableDhcpv6Sh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsEnableDhcpv6ShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/enable-dhcpv6.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/enable-dhcpv6.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -9276,17 +9276,17 @@ ExecStart=/bin/bash /opt/azure/containers/ensure-no-dup.sh
 #EOF
 `)
 
-func linuxCloudInitArtifactsEnsureNoDupServiceBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsEnsureNoDupServiceBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsEnsureNoDupService, nil
 }</span>
 
-func linuxCloudInitArtifactsEnsureNoDupService() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsEnsureNoDupService() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsEnsureNoDupServiceBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/ensure-no-dup.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/ensure-no-dup.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -9348,17 +9348,17 @@ ebtables -t filter -L AKS-DEDUP-PROMISC 2&gt;/dev/null
 exit 0
 #EOF`)
 
-func linuxCloudInitArtifactsEnsureNoDupShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsEnsureNoDupShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsEnsureNoDupSh, nil
 }</span>
 
-func linuxCloudInitArtifactsEnsureNoDupSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsEnsureNoDupSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsEnsureNoDupShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/ensure-no-dup.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/ensure-no-dup.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -9934,17 +9934,17 @@ ExecStart=/usr/local/bin/kubelet \
 WantedBy=multi-user.target
 `)
 
-func linuxCloudInitArtifactsKubeletServiceBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsKubeletServiceBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsKubeletService, nil
 }</span>
 
-func linuxCloudInitArtifactsKubeletService() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsKubeletService() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsKubeletServiceBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/kubelet.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/kubelet.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -10018,17 +10018,17 @@ var _linuxCloudInitArtifactsManifestJson = []byte(`{
 #EOF
 `)
 
-func linuxCloudInitArtifactsManifestJsonBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsManifestJsonBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsManifestJson, nil
 }</span>
 
-func linuxCloudInitArtifactsManifestJson() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsManifestJson() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsManifestJsonBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/manifest.json", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/manifest.json", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -10101,17 +10101,17 @@ dnf_update() {
 #EOF
 `)
 
-func linuxCloudInitArtifactsMarinerCse_helpers_marinerShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsMarinerCse_helpers_marinerShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsMarinerCse_helpers_marinerSh, nil
 }</span>
 
-func linuxCloudInitArtifactsMarinerCse_helpers_marinerSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsMarinerCse_helpers_marinerSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsMarinerCse_helpers_marinerShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/mariner/cse_helpers_mariner.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/mariner/cse_helpers_mariner.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -10212,17 +10212,17 @@ downloadContainerdFromURL() {
 #EOF
 `)
 
-func linuxCloudInitArtifactsMarinerCse_install_marinerShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsMarinerCse_install_marinerShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsMarinerCse_install_marinerSh, nil
 }</span>
 
-func linuxCloudInitArtifactsMarinerCse_install_marinerSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsMarinerCse_install_marinerSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsMarinerCse_install_marinerShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/mariner/cse_install_mariner.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/mariner/cse_install_mariner.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -10262,17 +10262,17 @@ ExecStart=/bin/bash /opt/azure/containers/mig-partition.sh ${GPU_INSTANCE_PROFIL
 WantedBy=multi-user.target
 `)
 
-func linuxCloudInitArtifactsMigPartitionServiceBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsMigPartitionServiceBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsMigPartitionService, nil
 }</span>
 
-func linuxCloudInitArtifactsMigPartitionService() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsMigPartitionService() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsMigPartitionServiceBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/mig-partition.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/mig-partition.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -10305,17 +10305,17 @@ case ${MIG_PROFILE} in
 esac
 nvidia-smi mig -cci`)
 
-func linuxCloudInitArtifactsMigPartitionShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsMigPartitionShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsMigPartitionSh, nil
 }</span>
 
-func linuxCloudInitArtifactsMigPartitionSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsMigPartitionSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsMigPartitionShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/mig-partition.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/mig-partition.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -10712,17 +10712,17 @@ ExecStart=/bin/bash /opt/azure/containers/reconcilePrivateHosts.sh
 [Install]
 WantedBy=multi-user.target`)
 
-func linuxCloudInitArtifactsReconcilePrivateHostsServiceBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsReconcilePrivateHostsServiceBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsReconcilePrivateHostsService, nil
 }</span>
 
-func linuxCloudInitArtifactsReconcilePrivateHostsService() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsReconcilePrivateHostsService() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsReconcilePrivateHostsServiceBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/reconcile-private-hosts.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/reconcile-private-hosts.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -10775,17 +10775,17 @@ done
 #EOF
 `)
 
-func linuxCloudInitArtifactsReconcilePrivateHostsShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsReconcilePrivateHostsShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsReconcilePrivateHostsSh, nil
 }</span>
 
-func linuxCloudInitArtifactsReconcilePrivateHostsSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsReconcilePrivateHostsSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsReconcilePrivateHostsShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/reconcile-private-hosts.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/reconcile-private-hosts.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -10835,17 +10835,17 @@ wait_for_apt_locks
 echo "${CUSTOM_SEARCH_REALM_PASSWORD}" | realm join -U ${CUSTOM_SEARCH_REALM_USER}@$(echo "${CUSTOM_SEARCH_DOMAIN_NAME}" | tr /a-z/ /A-Z/) $(echo "${CUSTOM_SEARCH_DOMAIN_NAME}" | tr /a-z/ /A-Z/)
 `)
 
-func linuxCloudInitArtifactsSetupCustomSearchDomainsShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsSetupCustomSearchDomainsShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsSetupCustomSearchDomainsSh, nil
 }</span>
 
-func linuxCloudInitArtifactsSetupCustomSearchDomainsSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsSetupCustomSearchDomainsSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsSetupCustomSearchDomainsShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/setup-custom-search-domains.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/setup-custom-search-domains.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -11494,17 +11494,17 @@ installDebPackageFromFile() {
 #EOF
 `)
 
-func linuxCloudInitArtifactsUbuntuCse_helpers_ubuntuShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsUbuntuCse_helpers_ubuntuShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsUbuntuCse_helpers_ubuntuSh, nil
 }</span>
 
-func linuxCloudInitArtifactsUbuntuCse_helpers_ubuntuSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsUbuntuCse_helpers_ubuntuSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsUbuntuCse_helpers_ubuntuShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/ubuntu/cse_helpers_ubuntu.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/ubuntu/cse_helpers_ubuntu.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -11794,17 +11794,17 @@ ensureRunc() {
 #EOF
 `)
 
-func linuxCloudInitArtifactsUbuntuCse_install_ubuntuShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsUbuntuCse_install_ubuntuShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsUbuntuCse_install_ubuntuSh, nil
 }</span>
 
-func linuxCloudInitArtifactsUbuntuCse_install_ubuntuSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsUbuntuCse_install_ubuntuSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsUbuntuCse_install_ubuntuShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/ubuntu/cse_install_ubuntu.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/ubuntu/cse_install_ubuntu.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -12285,17 +12285,17 @@ write_files:
     {{GetVariableProperty "cloudInitData" "customSearchDomainsScript"}}
 `)
 
-func linuxCloudInitNodecustomdataYmlBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitNodecustomdataYmlBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitNodecustomdataYml, nil
 }</span>
 
-func linuxCloudInitNodecustomdataYml() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitNodecustomdataYml() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitNodecustomdataYmlBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/nodecustomdata.yml", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/nodecustomdata.yml", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -13261,14 +13261,14 @@ func windowsWindowscsehelperPs1() (*asset, error) <span class="cov0" title="0">{
 // Asset loads and returns the asset for the given name.
 // It returns an error if the asset could not be found or
 // could not be loaded.
-func Asset(name string) ([]byte, error) <span class="cov0" title="0">{
+func Asset(name string) ([]byte, error) <span class="cov8" title="1">{
         cannonicalName := strings.Replace(name, "\\", "/", -1)
-        if f, ok := _bindata[cannonicalName]; ok </span><span class="cov0" title="0">{
+        if f, ok := _bindata[cannonicalName]; ok </span><span class="cov8" title="1">{
                 a, err := f()
                 if err != nil </span><span class="cov0" title="0">{
                         return nil, fmt.Errorf("Asset %s can't read by error: %v", name, err)
                 }</span>
-                <span class="cov0" title="0">return a.bytes, nil</span>
+                <span class="cov8" title="1">return a.bytes, nil</span>
         }
         <span class="cov0" title="0">return nil, fmt.Errorf("Asset %s not found", name)</span>
 }
