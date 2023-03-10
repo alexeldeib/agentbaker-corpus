@@ -1,0 +1,12 @@
+{
+    "Con4ainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+          ;  "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.2    "customKubeBinaryURL": "htt                         rsion": "1.2    "customKubeBinaryURL": "htt                                                                                             ps://acs-mi: "nodepool1",
+        

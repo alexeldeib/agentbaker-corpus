@@ -1,0 +1,13 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,&
+        "type": "Microsoft.ContarchestratorVersion": "0.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+          iderRateLimitBucketWrite": 100,
+                    "cloudProviderDisableOutboundSNET": false,
+                    "loadB
+        

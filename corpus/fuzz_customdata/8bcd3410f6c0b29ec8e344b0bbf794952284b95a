@@ -1,0 +1,59 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v2",
+                    "cloudProviderBackoff": true,
+                    "cloudProviderBackoffRetries": 6,
+                    "cloudProviderBackoffDuration": 5,
+                    "cloudProviderRateLimit": true,
+                    "cloudProviderRateLimitQPS": H0,
+                    "cloudProviderRateLimitQPSWrite": 10,
+                    "cloudProviderRat.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/ku             "cloudProviderRateLimitQPS": H0,
+                    "cloudProviderRateLimitQPSWrite": 10,
+                    "cloudProviderRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDisableOutboundSNAT": false,
+                    "loadBalancerSku": "Standard",
+                    "azureCNIURLLinux": "https://acs-mirror.azureedge.net/azure-cni/v1.1.8/binaries/azure-vnet-cni-linux-amd64-v1.1.8.tgz",
+                    "maxim
+                "apiServerWhiteListRange": null,
+                "ipMasqAgent": true
+            }
+        }
+    },
+    "CloudSpecConfig": {
+        "cloudName": "AzurePublicCloud",
+        "dockerSpecConfig": {
+            "dockerEngineRepo": "https://aptdocker.azureedge.net/repo",
+            "dockerComposeDownloadURL": "ht",
+    "ContainerdPackageURL": "",
+    "RuncPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["localhost", "127.0.0.1", "168.63.129.16", "169.254.169.254", "10.0.0.0/16", "agentbaker-erver.key"
+    },
+    "KubeproxyConfig": null,
+    "EnableRuncShimV2": false,
+    "GPUInstanceProfile": "",
+    "PrimaryScaleSetName": "",
+    "SIGConfig": {
+        "tenantID": "",
+        "subscriptionID": "",
+        "galleries": null
+    },
+    "IsARM64": false
+}
