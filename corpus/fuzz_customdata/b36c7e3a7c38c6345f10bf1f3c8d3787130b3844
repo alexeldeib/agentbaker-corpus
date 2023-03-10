@@ -1,188 +1,0 @@
-{
-    "ContainerService": {
-        "id": "",
-        "location": "eastus",
-        "name": "",
-        "tags": null,
-        "type": "Microsoft.ContainerService/ManagedClusters",
-        "mÿÿÿó¢£\ttpyó¢£\t‹ÿß\\ó¢£\tppropeis"e:t r{
-            "orchestratorProfile": {
-                "orchestratorType": "Kubernetes",
-       [
-
-
-
-
-[{
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-         "orchestratorVersion": "1.24.0",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                "kubernetesConfig" {:  
-                  "networkPlugin": "kubenet",
-                    "customKubeProxyImageè: "mcr.microsoft.com/oss/kube
-
-
-
-
-
-
-
-
-
-
-rnetes/kube-proxy-1804gen2containerd-2022.01.19"
-        },
-        "preProvisio
-
-
-
-
-
-
-
-nExt
