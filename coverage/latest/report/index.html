@@ -59,7 +59,7 @@
 				
 				<option value="file1">/github/workspace/build-out/src/agentbaker/fuzz/customdata/main.go (100.0%)</option>
 				
-				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (49.3%)</option>
+				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (50.1%)</option>
 				
 				<option value="file3">/github/workspace/build-out/src/agentbaker/pkg/agent/bakerapi.go (0.0%)</option>
 				
@@ -69,17 +69,17 @@
 				
 				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/sig_config.go (10.8%)</option>
 				
-				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (27.8%)</option>
+				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (28.8%)</option>
 				
 				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (5.0%)</option>
 				
 				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (76.9%)</option>
 				
-				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (50.4%)</option>
+				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (52.0%)</option>
 				
-				<option value="file11">/github/workspace/build-out/src/agentbaker/pkg/agent/variables.go (60.0%)</option>
+				<option value="file11">/github/workspace/build-out/src/agentbaker/pkg/agent/variables.go (78.3%)</option>
 				
-				<option value="file12">/github/workspace/build-out/src/agentbaker/pkg/templates/templates_generated.go (28.5%)</option>
+				<option value="file12">/github/workspace/build-out/src/agentbaker/pkg/templates/templates_generated.go (37.2%)</option>
 				
 				</select>
 			</div>
@@ -427,7 +427,7 @@ func validateAndSetLinuxNodeBootstrappingConfiguration(config *datamodel.NodeBoo
                 }
                 <span class="cov8" title="1">if IsKubernetesVersionGe(config.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion, "1.24.0") </span><span class="cov8" title="1">{
                         kubeletFlags["--feature-gates"] = removeFeatureGateString(kubeletFlags["--feature-gates"], "DynamicKubeletConfig")
-                }</span> else<span class="cov0" title="0"> if IsKubernetesVersionGe(config.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion, "1.11.0") </span><span class="cov0" title="0">{
+                }</span> else<span class="cov8" title="1"> if IsKubernetesVersionGe(config.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion, "1.11.0") </span><span class="cov0" title="0">{
                         kubeletFlags["--feature-gates"] = addFeatureGateString(kubeletFlags["--feature-gates"], "DynamicKubeletConfig", false)
                 }</span>
 
@@ -488,7 +488,7 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         return profile.GetKubernetesLabels(normalizeResourceGroupNameForLabel(config.ResourceGroupName),
                                 false, config.EnableNvidia, config.FIPSEnabled, config.OSSKU)
                 }</span>,
-                "GetAgentKubernetesLabelsDeprecated": func(profile *datamodel.AgentPoolProfile) string <span class="cov0" title="0">{
+                "GetAgentKubernetesLabelsDeprecated": func(profile *datamodel.AgentPoolProfile) string <span class="cov8" title="1">{
                         return profile.GetKubernetesLabels(normalizeResourceGroupNameForLabel(config.ResourceGroupName),
                                 true, config.EnableNvidia, config.FIPSEnabled, config.OSSKU)
                 }</span>,
@@ -802,7 +802,7 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                 "HasDCSeriesSKU": func() bool <span class="cov0" title="0">{
                         return cs.Properties.HasDCSeriesSKU()
                 }</span>,
-                "GetHyperkubeImageReference": func() string <span class="cov0" title="0">{
+                "GetHyperkubeImageReference": func() string <span class="cov8" title="1">{
                         return config.K8sComponents.HyperkubeImageURL
                 }</span>,
                 "GetTargetEnvironment": func() string <span class="cov8" title="1">{
@@ -2616,7 +2616,7 @@ func (d Distro) IsVHDDistro() bool <span class="cov8" title="1">{
                         return true
                 }</span>
         }
-        <span class="cov0" title="0">return false</span>
+        <span class="cov8" title="1">return false</span>
 }
 
 func (d Distro) Is2204VHDDistro() bool <span class="cov8" title="1">{
@@ -3263,7 +3263,7 @@ func (p *Properties) K8sOrchestratorName() string <span class="cov8" title="1">{
 func (p *Properties) IsVHDDistroForAllNodes() bool <span class="cov8" title="1">{
         if len(p.AgentPoolProfiles) &gt; 0 </span><span class="cov8" title="1">{
                 for _, ap := range p.AgentPoolProfiles </span><span class="cov8" title="1">{
-                        if !ap.IsVHDDistro() </span><span class="cov0" title="0">{
+                        if !ap.IsVHDDistro() </span><span class="cov8" title="1">{
                                 return false
                         }</span>
                 }
@@ -3689,7 +3689,7 @@ func (k *KubernetesConfig) GetAzureCNIURLLinux(cloudSpecConfig *AzureEnvironment
         if k.AzureCNIURLLinux != "" </span><span class="cov8" title="1">{
                 return k.AzureCNIURLLinux
         }</span>
-        <span class="cov0" title="0">return cloudSpecConfig.KubernetesSpecConfig.VnetCNILinuxPluginsDownloadURL</span>
+        <span class="cov8" title="1">return cloudSpecConfig.KubernetesSpecConfig.VnetCNILinuxPluginsDownloadURL</span>
 }
 
 // GetAzureCNIURLARM64Linux returns the full URL to source Azure CNI binaries for ARM64 Linux from
@@ -5390,7 +5390,7 @@ func GetOrderedKubeletConfigFlagString(k map[string]string, cs *datamodel.Contai
                 return getOrderedKubeletConfigFlagWithCustomConfigurationString(kubeletCustomConfigurations, k)
         }</span>
 
-        <span class="cov8" title="1">if k == nil </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if k == nil </span><span class="cov8" title="1">{
                 return ""
         }</span>
         // Always force remove of dynamic-config-dir.
@@ -5482,7 +5482,7 @@ func GetTLSBootstrapTokenForKubeConfig(tlsBootstrapToken *string) string <span c
 
 // GetKubeletConfigFileContent converts kubelet flags we set to a file, and return the json content
 func GetKubeletConfigFileContent(kc map[string]string, customKc *datamodel.CustomKubeletConfig) string <span class="cov8" title="1">{
-        if kc == nil </span><span class="cov0" title="0">{
+        if kc == nil </span><span class="cov8" title="1">{
                 return ""
         }</span>
         // translate simple values
@@ -5613,7 +5613,7 @@ func strToInt32(str string) int32 <span class="cov8" title="1">{
 }</span>
 
 func strToInt32Ptr(str string) *int32 <span class="cov8" title="1">{
-        if str == "" </span><span class="cov0" title="0">{
+        if str == "" </span><span class="cov8" title="1">{
                 return nil
         }</span>
         <span class="cov8" title="1">i := strToInt32(str)
@@ -5626,7 +5626,7 @@ func strToInt64(str string) int64 <span class="cov8" title="1">{
 }</span>
 
 func strToInt64Ptr(str string) *int64 <span class="cov8" title="1">{
-        if str == "" </span><span class="cov0" title="0">{
+        if str == "" </span><span class="cov8" title="1">{
                 return nil
         }</span>
         <span class="cov8" title="1">i := strToInt64(str)
@@ -5796,7 +5796,7 @@ func getCustomDataVariables(config *datamodel.NodeBootstrappingConfiguration) pa
                 }</span>
         }
 
-        <span class="cov8" title="1">if !cs.Properties.IsVHDDistroForAllNodes() </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if !cs.Properties.IsVHDDistroForAllNodes() </span><span class="cov8" title="1">{
                 cloudInitData["provisionCIS"] = getBase64EncodedGzippedCustomScript(kubernetesCISScript, config)
                 cloudInitData["kmsSystemdService"] = getBase64EncodedGzippedCustomScript(kmsSystemdService, config)
                 cloudInitData["aptPreferences"] = getBase64EncodedGzippedCustomScript(aptPreferences, config)
@@ -5931,7 +5931,7 @@ func getOutBoundCmd(nbc *datamodel.NodeBootstrappingConfiguration, cloudSpecConf
         connectivityCheckCommand := ""
         if clusterVersion.GTE(minVersion) </span><span class="cov8" title="1">{
                 connectivityCheckCommand = `curl -v --insecure --proxy-insecure https://` + registry + `/v2/`
-        }</span> else<span class="cov0" title="0"> {
+        }</span> else<span class="cov8" title="1"> {
                 connectivityCheckCommand = `nc -vz ` + registry + ` 443`
         }</span>
 
@@ -6368,17 +6368,17 @@ func linuxCloudInitArtifactsAksRsyslog() (*asset, error) <span class="cov0" titl
 
 var _linuxCloudInitArtifactsAptPreferences = []byte(``)
 
-func linuxCloudInitArtifactsAptPreferencesBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsAptPreferencesBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsAptPreferences, nil
 }</span>
 
-func linuxCloudInitArtifactsAptPreferences() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsAptPreferences() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsAptPreferencesBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/apt-preferences", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/apt-preferences", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -6672,17 +6672,17 @@ applyCIS
 #EOF
 `)
 
-func linuxCloudInitArtifactsCisShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCisShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsCisSh, nil
 }</span>
 
-func linuxCloudInitArtifactsCisSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsCisSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsCisShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cis.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/cis.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -6698,17 +6698,17 @@ ExecStart=/usr/local/bin/health-monitor.sh container-runtime containerd
 #EOF
 `)
 
-func linuxCloudInitArtifactsContainerdMonitorServiceBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsContainerdMonitorServiceBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsContainerdMonitorService, nil
 }</span>
 
-func linuxCloudInitArtifactsContainerdMonitorService() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsContainerdMonitorService() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsContainerdMonitorServiceBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/containerd-monitor.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/containerd-monitor.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -6723,17 +6723,17 @@ WantedBy=multi-user.target
 #EOF
 `)
 
-func linuxCloudInitArtifactsContainerdMonitorTimerBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsContainerdMonitorTimerBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsContainerdMonitorTimer, nil
 }</span>
 
-func linuxCloudInitArtifactsContainerdMonitorTimer() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsContainerdMonitorTimer() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsContainerdMonitorTimerBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/containerd-monitor.timer", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/containerd-monitor.timer", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -9161,17 +9161,17 @@ ExecStart=/usr/local/bin/health-monitor.sh container-runtime docker
 #EOF
 `)
 
-func linuxCloudInitArtifactsDockerMonitorServiceBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsDockerMonitorServiceBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsDockerMonitorService, nil
 }</span>
 
-func linuxCloudInitArtifactsDockerMonitorService() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsDockerMonitorService() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsDockerMonitorServiceBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/docker-monitor.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/docker-monitor.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -9186,17 +9186,17 @@ WantedBy=multi-user.target
 #EOF
 `)
 
-func linuxCloudInitArtifactsDockerMonitorTimerBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsDockerMonitorTimerBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsDockerMonitorTimer, nil
 }</span>
 
-func linuxCloudInitArtifactsDockerMonitorTimer() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsDockerMonitorTimer() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsDockerMonitorTimerBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/docker-monitor.timer", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/docker-monitor.timer", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -9206,17 +9206,17 @@ MountFlags=shared
 #EOF
 `)
 
-func linuxCloudInitArtifactsDocker_clear_mount_propagation_flagsConfBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsDocker_clear_mount_propagation_flagsConfBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsDocker_clear_mount_propagation_flagsConf, nil
 }</span>
 
-func linuxCloudInitArtifactsDocker_clear_mount_propagation_flagsConf() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsDocker_clear_mount_propagation_flagsConf() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsDocker_clear_mount_propagation_flagsConfBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/docker_clear_mount_propagation_flags.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/docker_clear_mount_propagation_flags.conf", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -9494,17 +9494,17 @@ else
 fi
 `)
 
-func linuxCloudInitArtifactsHealthMonitorShBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsHealthMonitorShBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsHealthMonitorSh, nil
 }</span>
 
-func linuxCloudInitArtifactsHealthMonitorSh() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsHealthMonitorSh() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsHealthMonitorShBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/health-monitor.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/health-monitor.sh", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -9837,17 +9837,17 @@ ExecStart=/usr/bin/docker run \
 WantedBy=multi-user.target
 `)
 
-func linuxCloudInitArtifactsKmsServiceBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsKmsServiceBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsKmsService, nil
 }</span>
 
-func linuxCloudInitArtifactsKmsService() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsKmsService() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsKmsServiceBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/kms.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/kms.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
@@ -9861,17 +9861,17 @@ RestartSec=10
 RemainAfterExit=yes
 ExecStart=/usr/local/bin/health-monitor.sh kubelet`)
 
-func linuxCloudInitArtifactsKubeletMonitorServiceBytes() ([]byte, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsKubeletMonitorServiceBytes() ([]byte, error) <span class="cov8" title="1">{
         return _linuxCloudInitArtifactsKubeletMonitorService, nil
 }</span>
 
-func linuxCloudInitArtifactsKubeletMonitorService() (*asset, error) <span class="cov0" title="0">{
+func linuxCloudInitArtifactsKubeletMonitorService() (*asset, error) <span class="cov8" title="1">{
         bytes, err := linuxCloudInitArtifactsKubeletMonitorServiceBytes()
         if err != nil </span><span class="cov0" title="0">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">info := bindataFileInfo{name: "linux/cloud-init/artifacts/kubelet-monitor.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+        <span class="cov8" title="1">info := bindataFileInfo{name: "linux/cloud-init/artifacts/kubelet-monitor.service", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
         a := &amp;asset{bytes: bytes, info: info}
         return a, nil</span>
 }
