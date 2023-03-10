@@ -59,7 +59,7 @@
 				
 				<option value="file1">/github/workspace/build-out/src/agentbaker/fuzz/customdata/main.go (100.0%)</option>
 				
-				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (51.2%)</option>
+				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (51.8%)</option>
 				
 				<option value="file3">/github/workspace/build-out/src/agentbaker/pkg/agent/bakerapi.go (0.0%)</option>
 				
@@ -69,7 +69,7 @@
 				
 				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/sig_config.go (10.8%)</option>
 				
-				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (30.4%)</option>
+				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (31.1%)</option>
 				
 				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (5.0%)</option>
 				
@@ -349,7 +349,7 @@ func getBakerFuncMap(config *datamodel.NodeBootstrappingConfiguration, params pa
                         }</span>
                         <span class="cov8" title="1">return v["value"].(paramsMap)[p]</span>
                 }
-                <span class="cov0" title="0">return ""</span>
+                <span class="cov8" title="1">return ""</span>
         }
 
         <span class="cov8" title="1">funcMap["GetVariable"] = func(s string) interface{} </span><span class="cov8" title="1">{
@@ -977,7 +977,7 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         if config.HTTPProxyConfig != nil &amp;&amp; config.HTTPProxyConfig.NoProxy != nil </span><span class="cov8" title="1">{
                                 return strings.Join(*config.HTTPProxyConfig.NoProxy, ",")
                         }</span>
-                        <span class="cov0" title="0">return ""</span>
+                        <span class="cov8" title="1">return ""</span>
                 },
                 "ShouldConfigureHTTPProxyCA": func() bool <span class="cov8" title="1">{
                         return config.HTTPProxyConfig != nil &amp;&amp; config.HTTPProxyConfig.TrustedCA != nil
@@ -3211,7 +3211,7 @@ func (p *Properties) AreAgentProfilesCustomVNET() bool <span class="cov8" title=
                 }
                 <span class="cov0" title="0">return true</span>
         }
-        <span class="cov0" title="0">return false</span>
+        <span class="cov8" title="1">return false</span>
 }
 
 // GetCustomEnvironmentJSON return the JSON format string for custom environment
@@ -3256,7 +3256,7 @@ func (p *Properties) K8sOrchestratorName() string <span class="cov8" title="1">{
                 }</span>
                 <span class="cov8" title="1">return DefaultOrchestratorName</span>
         }
-        <span class="cov0" title="0">return ""</span>
+        <span class="cov8" title="1">return ""</span>
 }
 
 // IsVHDDistroForAllNodes returns true if all of the agent pools plus masters are running the VHD image
