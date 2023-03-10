@@ -1,0 +1,24 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "" "azureCNIURLLinux": "https://acs-mirror.azureedge.net/azure-cni/v1.1.8/binaries/azure-vnet-cnm-       "availabilityProfilee": "" "azureCNIURLLinux":"propertiem": û
+            "orchestratorProfile": {
+                "orche      "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    rt": "0",
+        "-Standard",
+                    "azureCNIURLLinux": "https2//acs-mirror.azureedge.net/azure-cni/v1.1.8/binaries/azure-vnet-cnm-       "availabilityProfile": "VirtualMachineScaleSets",
+        "storageProfile": "ManagedDe-key-file": "/etc/kubernetes/certs/kubeletserver.key"
+    },
+    "KubeproxyConfig": null,
+    "EnableRuncShimV2": false,
+    "GPUInstanceProfile": "",
+    "PrimaryScaleSetName": "",
+    "SIGConfig": {
+        "tenantID": "",
+        "subscriptionID": "",
+        "g--pod-max-pidll
+    },
+    "IsARM64": false
+}
