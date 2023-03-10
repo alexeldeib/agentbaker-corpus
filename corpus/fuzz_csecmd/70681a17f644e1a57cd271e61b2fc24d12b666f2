@@ -1,0 +1,32 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "0.24.0",
+                "kubernetesConfig": {
+                    "n~tworkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.aries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+          ties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "0.24.0",
+                "kubernetesConfig": {
+                    "n~tworkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.aries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v2",
+                    "cloudProvidcrkaeBoff": true,
+                   ame": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/MateLimitBuc           "cloudProviderBackoffMode": "v2",
+                    "cloudProvidcrkaeBoff": true,
+                   ame": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/MateLimitBuc          "          kuberne    t
