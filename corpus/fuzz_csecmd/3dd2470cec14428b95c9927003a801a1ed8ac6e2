@@ -1,0 +1,36 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": nul         }
+            },
+            "agentPoolProfiles": [
+                {
+                    "name": "nodepool1",
+                    "vmSize": "Standard_DS1_v2",
+                    "osType": "Linux",
+                    "availabilityProfile": "VirtualMachub.com/docker/compose/releases/download"
+        },
+        "kubernetesSpecConfig": {
+            "kubernetesImageBase": "k8s.gcr.io/",
+            "tillerImageBase": "gcr.io/kubernetes-helm/",        "kubernetes.azure.com/mode": "system",
+                        "kubernetes.azure.com/node-image-version": "AKSUbuntu-1804gen2containerd-2022.01.19"
+                    },
+                    "preProvisionExtension": null,
+            ‡ﬂﬂﬂﬂﬂﬂﬂ"kubernetesConfig": {
+                        "containerRuntime": "containerd",
+                        "cloudProviderBackoffMode": ""
+         LLLLLLLLLLLLLLLLLLLLLLL           }
+                }
+            ],
+            "linuxProfile": {
+               8Mi",
+        "--kubeconfig": "/var/lib/kubelet/kubeconfig",
+        "--max-pods": "110",
+        "--network-plugin": "kubenet",
+        "--node-status-update-frequency": "10s",
+        "--pod-infra4û-container-image": "mcr.microsoft.com/oss/kubernetes/pause:3.5",
+        "--pod-manifest-path": "/etc/kubernetes/manifests",
+        "--pod-max-pids": "-1",
+ 

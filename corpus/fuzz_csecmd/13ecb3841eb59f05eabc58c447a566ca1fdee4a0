@@ -1,0 +1,14 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": nul         }
+            },
+            "agentPoolProfiles": [
+                {
+                    "name": "nodepo         ‡ﬂﬂﬂﬂﬂﬂﬂ"kubernetesConfig": {
+                        "containerRuntime": "containerd",
+                        "cloudProviderBackoffMod"/etc/kubernetes/manifests",
+        "--pod-max-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxpids": "-1",
+ 
