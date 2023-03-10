@@ -1,0 +1,37 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v2",
+                    "cloudProviderBackoff": tr"ÿÿÿ››››Ϋ›››››››››››››››››››››››››››››››››››››Ϋ›››››››››ÿÿÿ››››››››››¥σσσσσσσσσσσσσσσσσσσσσσσσσσσσσ››σ››››››››››››ÿÿ:ÿÿÿÿÿÿÿÿÿÿÿÿÿÿ››››››››››ÿÿÿÿÿÿÿπ›››)››››(›››››ÿÿÿ››››››››››¥σσ³σσσσσσσσσσσσσσσσσσσσσσσσσσσ›››››       "--protect-kernel-defaults": "true",
+        "--read-only-port": "0",
+        "--resolv-conf": "/run/systemd/resolve/resolv.conf",
+        "--rotate-certificates": "false",
+        "--streaming-connection-idle-timeout": "5h",
+        "--tls-cert-file": "/etc/kubernetes/certs/kubeletserver.crt",
+        "--tls-cipher-suites": "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256",
+        "--tls-private-key-file": "/etc/kubernetes/certs/kubeletserver.key"
+    },
+    "KubeproxyConfig": null,
+    "EnableRuncShimV2": false,
+    "GPUInstanceProfile": "",
+    "PrimaryScaleSetName": "",
+    "SIGConfig": {
+        "tenantID": "",
+        "subscriptionID": "",
+        "galleraes": null
+    },
+    "IsARM64": false
+}
