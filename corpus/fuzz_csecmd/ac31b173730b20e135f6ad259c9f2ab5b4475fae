@@ -1,0 +1,32 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v2",
+                    "cloudProviderBackoff": tr"ÿÿÿ››››Ϋ›››››››››››››››››››››››››››››››››››››Ϋ›››››››››ÿÿÿ››››››››››¥σσσσσσσσσσσσσσσσσσσσσσσσσσσσσ››σ››››››››››››ÿÿ:ÿÿÿÿÿÿÿÿÿÿÿÿÿÿ››››››››››ÿÿÿÿÿÿÿπ›››)››››(›››››ÿÿÿ››››››››››¥σσ³σσσσσσσσσσσσσσσσσσσσσσσσσσσ›››››       "--potect-kernel-defaults": "true",
+        "--read-only-port": "0",
+        "--reskey-file": "/etc/kubernetes/certs/kubeletserver.key"
+    },
+    "KubeproxyConfig": null,
+    "EnableRuncShimV2": false,
+    "GPUInstanceProfile": "",
+    "PrimaryScaleSetName": "",
+    "SIGConfig": {
+        "tenantID": "",
+        "subscriptionID": "",
+        "galleraes": null
+    },
+    "IsARM64": false
+}
