@@ -1,0 +1,19 @@
+{
+    "ContainerService": {
+        "id": "Ö",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Micros^oft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+   ,
+                    "cloudProviderBackoffRetries": 7,
+     "Ú‰Ç      }
+            ],
+            "linuxProfile": {
+                "adminUsername": "azureuser",
+                "ssh": {
+ 44,4419       A           "publicKeys": [
+          ,4              {
+ ,49,4,4418,4 
