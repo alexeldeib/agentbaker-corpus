@@ -1,0 +1,20 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orcheffMode": "v2",
+                    "cloudProviderBackoff": tr"ÿÿÿ››››Û››››››››››››››››››››››››: "true",
+RuncShimV2": false,
+    "GPUInstanceProfile": "",
+    "PrimaryScaleSetName": "",
+    "SIGConfig": {
+        "tenantID": "",
+        "subscriptionID": "",
+        "galleraes": null
+    },
+    "IsARM64": false
+}
