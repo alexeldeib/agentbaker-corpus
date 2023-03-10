@@ -59,7 +59,7 @@
 				
 				<option value="file1">/github/workspace/build-out/src/agentbaker/fuzz/customdata/main.go (100.0%)</option>
 				
-				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (50.1%)</option>
+				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (50.9%)</option>
 				
 				<option value="file3">/github/workspace/build-out/src/agentbaker/pkg/agent/bakerapi.go (0.0%)</option>
 				
@@ -700,7 +700,7 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                                 encoded := base64.StdEncoding.EncodeToString([]byte(cs.Properties.ServicePrincipalProfile.Secret))
                                 return encoded
                         }</span>
-                        <span class="cov0" title="0">return ""</span>
+                        <span class="cov8" title="1">return ""</span>
                 },
                 "WindowsSSHEnabled": func() bool <span class="cov0" title="0">{
                         return cs.Properties.WindowsProfile.GetSSHEnabled()
@@ -728,7 +728,7 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntime != "" </span><span class="cov8" title="1">{
                                 return profile.KubernetesConfig.NeedsContainerd()
                         }</span>
-                        <span class="cov0" title="0">return cs.Properties.OrchestratorProfile.KubernetesConfig.NeedsContainerd()</span>
+                        <span class="cov8" title="1">return cs.Properties.OrchestratorProfile.KubernetesConfig.NeedsContainerd()</span>
                 },
                 "UseRuncShimV2": func() bool <span class="cov0" title="0">{
                         return config.EnableRuncShimV2
@@ -737,7 +737,7 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntime != "" </span><span class="cov8" title="1">{
                                 return profile.KubernetesConfig.ContainerRuntime == datamodel.Docker
                         }</span>
-                        <span class="cov0" title="0">return cs.Properties.OrchestratorProfile.KubernetesConfig.ContainerRuntime == datamodel.Docker</span>
+                        <span class="cov8" title="1">return cs.Properties.OrchestratorProfile.KubernetesConfig.ContainerRuntime == datamodel.Docker</span>
                 },
                 "RequiresDocker": func() bool <span class="cov0" title="0">{
                         if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntime != "" </span><span class="cov0" title="0">{
