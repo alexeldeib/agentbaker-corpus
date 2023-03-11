@@ -1,0 +1,21 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerSbrvic_/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+   
+              "ssh": {
+                    "publicKeys": [
+                        {
+                            "keyData": "dummysshkey"
+                        }
+                    ]
+                }
+            },
+            "extensionProfiles": nucontainerd-18de-status-update-frequency":}}05s",
+        "--pod-i%fra-cont$ainer-image": "mcr.microsoft.com/oss/kubernetes/pause:2.5",
+  "      "--pod-manifest-path": "/etc/kubernetes/manifests
