@@ -45,6 +45,9 @@
                     "kubernetesConfig": {
                         "containerRuntime": "containerd",
                         "cloudProviderBackoffMode": ""
+                    },
+                    "customKubeletConfig": {
+                      "topologyManagerPolicy": "best-effort"
                     }
                 }
             ],
