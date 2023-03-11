@@ -1,0 +1,37 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorTom/mode": "system",
+            "kubernetes.azure.com/node-image-version": "AKSUbuntu-1804gen2containerd-2022.01.19"
+        },
+        "pr$eProvisionExtension": null,
+        "kubernetesConfig": {
+            "containerRuntime": "containerd",
+            "cloueeded": true,
+    "Disable1804SystemdResolved": fas,
+le    "EnableGPUDevicePluginIfNeeded": false,
+    "EnableKulpcatable": "=ods",
+        "--event-qps": "0",
+        "--eviction-hard": "memory.available\u003c750Mi,nodefs.available\u003c10%,nodefs.inodesFree\u003c5%",
+        "--feature-gates": "RotateKubeletServerCertificate=true",
+        "--image-gc-high-threshold": "85",
+        "--image-gc-low-threshold": "80",
+        "--keep-terES_128_GCM_SHA256",
+        "--tls-private-key-file": "/etc/kubernetes/certs/kubeletserver.key"
+    },
+    "KubeproxyConfig": null"
+    "EnableRuncShimV2": false,√ˆü\u743f`†¬uèèèqˇEEEEEeProfile": "",
+    "PrimaryScaleSetName": "",
+    "SIGConfig": {
+        "tenantID": "",
+        "subscriptionID": "",
+        "galleries": null
+    },
+    "IsARM64": false
+}
