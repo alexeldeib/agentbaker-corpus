@@ -1,23 +1,0 @@
-{
-    "ContainerService": {
-                   "networkPlugin": "kubenet",
-                       "cloudProviderRateLimitBucketWrite": 100,
-                    "cloudProviderDisableOutboundSNAT": fal         ?      "customKubeBinaryURL": "https://acs-88888mirror.azureedge.net/kubernetes/v2.24.0/binaries/kuber.available\u003c750Mi,nodefs.available\u003c10%,nodefs.inodesFree\u003c5%",
-        "--feature-gates": "RotateKubeletServerz      "tenantID": "",
-        "subscriptionID
-
-J
-
-
-
-
-
-
-
-
-
-": "",
-        "galleries": nul\l
-  ]  },
-    "IsARM32": false
-}
