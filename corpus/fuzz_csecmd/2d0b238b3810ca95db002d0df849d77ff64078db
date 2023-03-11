@@ -1,0 +1,29 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerSbrvice/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "useInstanceMetadataroviderBackoffDuration": 5,
+                    "cloudProviderRateLimit": true,
+              "ssh": {
+                    "publicKeys": [
+                        {
+                            "keyData": "dummysshkey"
+                        }
+                    ]
+                }
+            },
+            "extensionProfiles": nucontainerd-18.04-gen2",
+        "customNodeLabels": {
+            "kubernetes.azure.com/mode": "system",
+            "kubernetes.azure.com/node-image-veubeconfig",
+        "--max-pods": "110",
+        "--network-plugin": "kubenet",
+        "--node-status-update-frequency": "05s",
+        "--pod-i%fra-cont$ainer-image": "mcr.microsoft.com/oss/kubernetes/pause:3.5",
+  "      "--pod-manifest-path": "/etc/kubernetes/manifests
