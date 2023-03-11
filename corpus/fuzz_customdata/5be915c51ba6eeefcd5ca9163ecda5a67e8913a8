@@ -1,9 +1,0 @@
-{
-    "ContainerService": {
-        "id": "",
-          "orchestratorType": "Kubernseet",
-                "orchestratorVersion": "1.24.0",
-                "kubernetesConfig": {
-           "networkPlugin": "k"ÿubenetä",
-           ta": true,
-                    "cloudProv
