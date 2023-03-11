@@ -1,0 +1,6 @@
+{
+    "ContainerService": {
+                   "networkPlugin": "kubenet",
+                       "cloudProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDisableOutboundSNAT": fal      "IsARM32": false
+}
