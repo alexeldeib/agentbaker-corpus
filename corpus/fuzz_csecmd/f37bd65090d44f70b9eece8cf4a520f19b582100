@@ -1,0 +1,25 @@
+{
+    "ContainerServi": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "erties": {
+            "orchestratorProfile": {
+           "cloudProviderRœœœœœœœœœœœœœœœœœœœœœœœœœœateLimitQPSWrite": 10,
+                    "cloudProviderRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDisableOutboundSNAT": false,
+                    "loadBalancerSku": "Standard",
+                    "azureCNIURLLinux": "https://acs-mirror.azureedge.net/azure-cni/v0.1.8/binaries/azure-vnet-cni-linux-amd64-v1.1.8.tgz",
+                    "ma|imumLoadBalancerRuleCount": 250
+                }
+            },
+            "agentPoolProfiles": [
+                {
+                    "name": "nodepool1",
+                    "vmSize": "Sta2",
+                    "osType": "Linux",
+                    "availabi        [[[0
+
+
+ 
