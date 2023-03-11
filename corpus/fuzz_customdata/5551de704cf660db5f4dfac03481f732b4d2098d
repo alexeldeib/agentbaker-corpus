@@ -1,0 +1,14 @@
+{
+    "Contad": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.C<ontainerService/ManagedClusters",
+        "protratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                                   "kubernetes.azure.com/node-image-": "",
+                "apiServerWhiteListRange": null,
+                "ipMa{qAgent": tru£"dge.net/azure-cnitps://storage.googleapis.com/cri-containerd-release/"ror.azureedg
