@@ -73,7 +73,7 @@
 				
 				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (5.0%)</option>
 				
-				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (79.1%)</option>
+				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (81.3%)</option>
 				
 				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (52.7%)</option>
 				
@@ -4973,7 +4973,7 @@ func getParameters(config *datamodel.NodeBootstrappingConfiguration, generatorCo
 
 func assignKubernetesParametersFromAgentProfile(profile *datamodel.AgentPoolProfile, parametersMap paramsMap,
         cloudSpecConfig *datamodel.AzureEnvironmentSpecConfig, generatorCode string, config *datamodel.NodeBootstrappingConfiguration) <span class="cov8" title="1">{
-        if config.RuncVersion != "" </span><span class="cov0" title="0">{
+        if config.RuncVersion != "" </span><span class="cov8" title="1">{
                 addValue(parametersMap, "runcVersion", config.RuncVersion)
         }</span>
         <span class="cov8" title="1">addValue(parametersMap, "runcPackageURL", config.RuncPackageURL)
@@ -4986,7 +4986,7 @@ func assignKubernetesParametersFromAgentProfile(profile *datamodel.AgentPoolProf
                         if config.ContainerdVersion != "" </span><span class="cov0" title="0">{
                                 addValue(parametersMap, "containerdVersion", config.ContainerdVersion)
                         }</span>
-                        <span class="cov8" title="1">if config.TeleportdPluginURL != "" </span><span class="cov0" title="0">{
+                        <span class="cov8" title="1">if config.TeleportdPluginURL != "" </span><span class="cov8" title="1">{
                                 addValue(parametersMap, "teleportdPluginURL", config.TeleportdPluginURL)
                         }</span>
                         <span class="cov8" title="1">addValue(parametersMap, "containerdPackageURL", config.ContainerdPackageURL)</span>
