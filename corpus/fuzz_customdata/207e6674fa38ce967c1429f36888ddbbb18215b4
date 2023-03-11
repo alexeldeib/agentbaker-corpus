@@ -1,7 +1,0 @@
-{
-    "ContainerService": {
-        "id": "",
-          "orchestratorType": "Kurernseet",
-                "orchestratorVersion": "1.24.0",             "ubernetesConfig": {
-           "networkPlugin": "k"ÿubenetä",
-                    "cloudProv
