@@ -1,14 +1,0 @@
-{
-    "ContainerService": {
-                   "networkPlugin": "kubenet",
-                       "cloudProviderRateLimitBucketWrite": 100,
-                    "cloudProviderDisableOutboundSNAT": fal         ?      "customKubeBinaryURL": "https://acs-88888mirror.azureedge.net/kube
-
-
-
-
-": "",
-      --cgroups-per-qosl\l
-  ]  },
-    "IsARM32": false
-}
