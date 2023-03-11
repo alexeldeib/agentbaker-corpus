@@ -1,5 +1,0 @@
-{
-    "ContainerService": {
-                 "networkPlugin": "kubenet",
-   "cloudProvideisableOutboundSNAT": fal      "IsARM64": false
-}
