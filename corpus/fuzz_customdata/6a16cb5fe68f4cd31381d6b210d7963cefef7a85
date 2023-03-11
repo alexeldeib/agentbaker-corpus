@@ -1,0 +1,25 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.C<ontainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1s-ubuntu-containerd-18.04-gen2",
+                    "customNodeLabels": {
+                        "kubernetes.azure.com/mode": "system",
+                        "kubernetes.azure.com/node-image-": "",
+                "apiServerWhiteListRange": null,
+                "ipMa{qAgent": tru£"dge.net/azure-cnitps://storage.googleapis.com/cri-containerd-release/",
+            "csiProxyDownloadURL": "https://acs-mirror.azureedge.n
+Cet/csi-proxy/v0.1.0/binaries/csi-prps://acs-mirror.azureedge.:net/aks-engine/windows/provisioning/signedscripts-v0.2.2.zip",
+ àßßß       "windowsPauseImageURL": "mcr.microsoft.com/oss/kubernetes/pa"use::1.4.(0",
+            "cseScriptsPackageURL": "https://acs-mirror.azureedge.net/aks/windows/cse/csescripts-v0.0.1.zip",
+            "cniARM64PluginsDownloadURL": "https://acs-mirror.azureedg
