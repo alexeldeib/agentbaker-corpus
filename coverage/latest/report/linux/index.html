@@ -59,7 +59,7 @@
 				
 				<option value="file1">/github/workspace/build-out/src/agentbaker/fuzz/customdata/main.go (100.0%)</option>
 				
-				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (51.8%)</option>
+				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (52.0%)</option>
 				
 				<option value="file3">/github/workspace/build-out/src/agentbaker/pkg/agent/bakerapi.go (0.0%)</option>
 				
@@ -427,7 +427,7 @@ func validateAndSetLinuxNodeBootstrappingConfiguration(config *datamodel.NodeBoo
                 }
                 <span class="cov8" title="1">if IsKubernetesVersionGe(config.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion, "1.24.0") </span><span class="cov8" title="1">{
                         kubeletFlags["--feature-gates"] = removeFeatureGateString(kubeletFlags["--feature-gates"], "DynamicKubeletConfig")
-                }</span> else<span class="cov8" title="1"> if IsKubernetesVersionGe(config.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion, "1.11.0") </span><span class="cov0" title="0">{
+                }</span> else<span class="cov8" title="1"> if IsKubernetesVersionGe(config.ContainerService.Properties.OrchestratorProfile.OrchestratorVersion, "1.11.0") </span><span class="cov8" title="1">{
                         kubeletFlags["--feature-gates"] = addFeatureGateString(kubeletFlags["--feature-gates"], "DynamicKubeletConfig", false)
                 }</span>
 
