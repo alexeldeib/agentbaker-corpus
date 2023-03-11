@@ -73,7 +73,7 @@
 				
 				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (5.0%)</option>
 				
-				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (78.0%)</option>
+				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (79.1%)</option>
 				
 				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (52.3%)</option>
 				
@@ -4920,7 +4920,7 @@ func getParameters(config *datamodel.NodeBootstrappingConfiguration, generatorCo
         // required since linux uses static value for that.
         <span class="cov8" title="1">if properties.HostedMasterProfile != nil </span><span class="cov8" title="1">{
                 // Agents only, use cluster DNS prefix
-                if properties.HostedMasterProfile.DNSPrefix != "" </span><span class="cov0" title="0">{
+                if properties.HostedMasterProfile.DNSPrefix != "" </span><span class="cov8" title="1">{
                         addValue(parametersMap, "masterEndpointDNSNamePrefix", properties.HostedMasterProfile.DNSPrefix)
                 }</span> else<span class="cov8" title="1"> if properties.HostedMasterProfile.FQDNSubdomain != "" </span><span class="cov0" title="0">{
                         addValue(parametersMap, "masterEndpointDNSNamePrefix", properties.HostedMasterProfile.FQDNSubdomain)
