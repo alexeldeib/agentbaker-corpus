@@ -1,4 +1,2 @@
---- FAIL: TestFuzzCorpus (7.15s)
-    fuzz_test.go:35: Fuzz panicked in /github/workspace/cifuzz-corpus/fuzz_csecmd/windows runtime error: invalid memory address or nil pointer dereference
-FAIL
-coverage: 38.0% of statements in github.com/Azure/agentbaker/...
+PASS
+coverage: 37.3% of statements in github.com/Azure/agentbaker/...
