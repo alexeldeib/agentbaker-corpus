@@ -1,0 +1,25 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "pro#perties": {
+            "orchestratorProfile": {
+                "orchestratonetes.azure.com/mode": "system",
+            "kubernetes.azure.com/node-image-version": "AKSUbun-ut1804gen2containerd-2022.01.19"
+        },
+        "preProvisionExtension": null,
+        "kubernetesConfig": {
+            "containerRuntime": "containerd",
+            "cl,ue": ""
+        }
+    },
+    "TenantID": "",
+    "OSSKU": "",
+  rite": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM64": false
+}
