@@ -59,7 +59,7 @@
 				
 				<option value="file1">/github/workspace/build-out/src/agentbaker/fuzz/customdata/main.go (100.0%)</option>
 				
-				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (52.0%)</option>
+				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (53.4%)</option>
 				
 				<option value="file3">/github/workspace/build-out/src/agentbaker/pkg/agent/bakerapi.go (0.0%)</option>
 				
@@ -69,11 +69,11 @@
 				
 				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/sig_config.go (10.8%)</option>
 				
-				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (31.4%)</option>
+				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (32.8%)</option>
 				
 				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (5.0%)</option>
 				
-				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (81.3%)</option>
+				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (93.4%)</option>
 				
 				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (52.7%)</option>
 				
@@ -230,7 +230,7 @@ func (t *TemplateGenerator) getWindowsNodeCustomDataJSONObject(config *datamodel
 
 // GetNodeBootstrappingCmd get node bootstrapping cmd
 func (t *TemplateGenerator) GetNodeBootstrappingCmd(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov8" title="1">{
-        if config.AgentPoolProfile.IsWindows() </span><span class="cov0" title="0">{
+        if config.AgentPoolProfile.IsWindows() </span><span class="cov8" title="1">{
                 return t.getWindowsNodeCSECommand(config)
         }</span>
         <span class="cov8" title="1">return t.getLinuxNodeCSECommand(config)</span>
@@ -260,7 +260,7 @@ func (t *TemplateGenerator) getLinuxNodeCSECommand(config *datamodel.NodeBootstr
 }
 
 // getWindowsNodeCSECommand returns Windows node custom script extension execution command
-func (t *TemplateGenerator) getWindowsNodeCSECommand(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
+func (t *TemplateGenerator) getWindowsNodeCSECommand(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov8" title="1">{
         // TODO(ace): linux cleans the input here for CSE now.
         // should we do the same for windows?
         // get parameters
@@ -3159,7 +3159,7 @@ func (p *Properties) IsIPMasqAgentDisabled() bool <span class="cov0" title="0">{
 // HasWindows returns true if the cluster contains windows
 func (p *Properties) HasWindows() bool <span class="cov8" title="1">{
         for _, agentPoolProfile := range p.AgentPoolProfiles </span><span class="cov8" title="1">{
-                if strings.EqualFold(string(agentPoolProfile.OSType), string(Windows)) </span><span class="cov0" title="0">{
+                if strings.EqualFold(string(agentPoolProfile.OSType), string(Windows)) </span><span class="cov8" title="1">{
                         return true
                 }</span>
         }
@@ -3518,7 +3518,7 @@ func (w *WindowsProfile) GetWindowsSku() string <span class="cov0" title="0">{
 }
 
 // GetWindowsDockerVersion gets the docker version specified or returns default value
-func (w *WindowsProfile) GetWindowsDockerVersion() string <span class="cov0" title="0">{
+func (w *WindowsProfile) GetWindowsDockerVersion() string <span class="cov8" title="1">{
         if w.WindowsDockerVersion != "" </span><span class="cov0" title="0">{
                 return w.WindowsDockerVersion
         }</span>
@@ -3693,11 +3693,11 @@ func (k *KubernetesConfig) GetAzureCNIURLLinux(cloudSpecConfig *AzureEnvironment
 }
 
 // GetAzureCNIURLARM64Linux returns the full URL to source Azure CNI binaries for ARM64 Linux from
-func (k *KubernetesConfig) GetAzureCNIURLARM64Linux(cloudSpecConfig *AzureEnvironmentSpecConfig) string <span class="cov0" title="0">{
+func (k *KubernetesConfig) GetAzureCNIURLARM64Linux(cloudSpecConfig *AzureEnvironmentSpecConfig) string <span class="cov8" title="1">{
         if k.AzureCNIURLARM64Linux != "" </span><span class="cov0" title="0">{
                 return k.AzureCNIURLARM64Linux
         }</span>
-        <span class="cov0" title="0">return cloudSpecConfig.KubernetesSpecConfig.VnetCNIARM64LinuxPluginsDownloadURL</span>
+        <span class="cov8" title="1">return cloudSpecConfig.KubernetesSpecConfig.VnetCNIARM64LinuxPluginsDownloadURL</span>
 }
 
 // GetAzureCNIURLWindows returns the full URL to source Azure CNI binaries from
@@ -4962,7 +4962,7 @@ func getParameters(config *datamodel.NodeBootstrappingConfiguration, generatorCo
         }
 
         // Windows parameters
-        <span class="cov8" title="1">if properties.HasWindows() </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if properties.HasWindows() </span><span class="cov8" title="1">{
                 addValue(parametersMap, "windowsDockerVersion", properties.WindowsProfile.GetWindowsDockerVersion())
                 addValue(parametersMap, "defaultContainerdWindowsSandboxIsolation", properties.WindowsProfile.GetDefaultContainerdWindowsSandboxIsolation())
                 addValue(parametersMap, "containerdWindowsRuntimeHandlers", properties.WindowsProfile.GetContainerdWindowsRuntimeHandlers())
@@ -5046,7 +5046,7 @@ func assignKubernetesParameters(properties *datamodel.Properties, parametersMap 
                         addValue(parametersMap, "networkMode", kubernetesConfig.NetworkMode)
                         addValue(parametersMap, "containerRuntime", kubernetesConfig.ContainerRuntime)
                         addValue(parametersMap, "containerdDownloadURLBase", cloudSpecConfig.KubernetesSpecConfig.ContainerdDownloadURLBase)
-                        if config.IsARM64 </span><span class="cov0" title="0">{
+                        if config.IsARM64 </span><span class="cov8" title="1">{
                                 addValue(parametersMap, "cniPluginsURL", cloudSpecConfig.KubernetesSpecConfig.CNIARM64PluginsDownloadURL)
                                 addValue(parametersMap, "vnetCniLinuxPluginsURL", kubernetesConfig.GetAzureCNIURLARM64Linux(cloudSpecConfig))
                         }</span> else<span class="cov8" title="1"> {
@@ -5055,7 +5055,7 @@ func assignKubernetesParameters(properties *datamodel.Properties, parametersMap 
                         }</span>
                         <span class="cov8" title="1">addValue(parametersMap, "vnetCniWindowsPluginsURL", kubernetesConfig.GetAzureCNIURLWindows(cloudSpecConfig))
 
-                        if properties.HasWindows() </span><span class="cov0" title="0">{
+                        if properties.HasWindows() </span><span class="cov8" title="1">{
                                 addValue(parametersMap, "kubeBinariesSASURL", k8sComponents.WindowsPackageURL)
 
                                 addValue(parametersMap, "windowsContainerdURL", kubernetesConfig.WindowsContainerdURL)
