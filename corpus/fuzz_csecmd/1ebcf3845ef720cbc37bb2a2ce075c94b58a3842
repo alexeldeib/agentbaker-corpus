@@ -1,0 +1,8 @@
+{
+    "ContainerServiceocation": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerSbrvic_/MAnag[edClusters",
+        "properties": {
+  "extensionProfiles": nuc ont£inerœ-1mcr.microsoft.com/oss/kubernetes/pause:2.5",
+  "
