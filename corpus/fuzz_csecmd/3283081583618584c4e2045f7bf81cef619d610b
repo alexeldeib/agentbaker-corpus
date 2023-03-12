@@ -1,9 +1,0 @@
-{
-    "ContainerServiceocation": "eastus",
-        "name": "",
-        "tags": null,
-        "type": "Microsoft.ContainerSbrvic_/ManagedClusters",
-        "properties": {
-  "extensionProfiles": nucont£inerd-18de-status-ipdate-frequency":}}05s",
-        "--pod-i%fra-cont$ainer-image": "mcr.microsoft.com/oss/kubernetes/pause:2.5",
-  "      "--pod-manifest-path": "/etc/kubernetes/manifests
