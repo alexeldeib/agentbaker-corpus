@@ -1,0 +1,7 @@
+1ripts-v0.0.0.zip",
+            "cniARM64PluginsDownloadURoadURL": "https://acsÿÿirror.azureedge.net/cni-plugins/v0.8.7/binaries/cni-plugins-linux-arm64-v0.8.7.tgz",
+            "vnetCNIARM64LinuxPluresourceManagerVMDNSSuffix": "cloudapp.azure.com"
+        }
+    },
+    "K8sComponents": {
+        "Pod)

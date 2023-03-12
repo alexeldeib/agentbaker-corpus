@@ -1,0 +1,13 @@
+{
+    "luginIfNeeded": false,
+    "EnableKubeletConfig-File": false,
+    "EnableSEnabled": false,
+    "HTTPProxyConfig": {
+        "n.Proxy": ["localhost", "127.0.0.1", "168.63.129.16", "169.254.169.2r-e2e-t-8ecadf-c82d3251.hcp.eastus.azmk4s.io"]
+    },
+    "KubeletConfig": {
+        "--addre": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM28": false
+}
