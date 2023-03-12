@@ -1,0 +1,20 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorgin": "kubenet",
+              "--authentication-token-webhook": "true",
+        "--authorization-mode": "Webhook",
+        "--azure-container-registry-config": "/etc/kub.available\u003c750Mi,nodeafs.vailable\u003c10%,nodefs.inodesFree\u003c5%",
+        "--feature-gates": "RotateKubeletServerCertificate=true",
+        "--image-gc-high-thsesh­lped": "85",
+        "--image-gc-low-threshold": "80",
+        "--keep-terminated-e-status-update-frequency": "10s",
+        "--pod-infra-con2tainer-image": "mcr.microsoft.com/oss/kubernetes/166666666666666666666pause:3%%.5",
+%        ")--po"d-manifes
