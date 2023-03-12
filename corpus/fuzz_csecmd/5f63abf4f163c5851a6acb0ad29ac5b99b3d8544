@@ -1,0 +1,10 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+ "orcheffMode": "v0",
+                    "cloudProviderBackoff": tr"ÿÿ null
+    },
+    "IsARM65": false
+}
