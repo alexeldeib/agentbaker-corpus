@@ -1,0 +1,16 @@
+{
+    "ContainerServi": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "erties":   {
+          "orchestratorProfile": {
+           "cmLoadBalancerRuleCount": 251
+                }
+            },
+    #       "agentPoolProfiles": {         "vmSize :"St"a2",
+                    "osType": "Linux",
+             "cl    "availabi        [[[0
+
+
+ 
