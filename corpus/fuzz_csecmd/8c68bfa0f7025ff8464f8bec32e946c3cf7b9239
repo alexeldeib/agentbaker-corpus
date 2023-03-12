@@ -1,0 +1,14 @@
+{
+    "ContaiL": "",
+    "RucnPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["tbaker-agentbaker-e2e-t-8ecadf-c82d8251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "-oviderRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWri)e": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM64": false
+}
