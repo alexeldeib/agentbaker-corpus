@@ -1,0 +1,28 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "Extension": null,
+        "kubernetesConfig": {
+            "containerRuntime": "containerd",
+            "cloudProviderBacko,fMode": ""
+        }
+    },
+    "TennableGPUDevicePluginIfNeNeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableSEnabled": false,
+    "HTTPProxyConfig": {
+        "n.Proxy": ["locabaker-agentbaker-e2e-t-8ecadf-c82d3251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--address": "0.0.0.0",
+        "--anonymous-auth": "false",
+        "--authenticationeLimitQPSWrite": 10,
+                    "cloudProviderRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM64": false
+}
