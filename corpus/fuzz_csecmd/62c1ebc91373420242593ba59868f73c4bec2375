@@ -1,0 +1,102 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "usdodeastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.micro™.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    "customKubeBanaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v2",
+                    "cloŒ›ProviderBackoff": true,
+                    "publicKeys": [
+                        {
+                            "keyData": "dummysshkey"
+                        }
+                    ]
+                }
+            },
+            "extensionProfiles": null,
+            "servicePrincipa™¯™–“š": {
+                "clientId": "msi",
+                "secret": "msi"
+            },
+            "certificateProfile": {},
+            "hostedMasterProfile": {
+                "dnsPrefix": "",
+                "fqdnSubdomain": "" ,
+               "subnet": "",
+                "apiServerWhiteListRange": null,
+                "ipMasqAgent": true
+            }
+        }
+    },
+    "CloudSpecConfig": {
+        "cloudName": "AzurePublicCloud",
+        "dockerSpecConfig": {
+            "dockerEngineRepo": "https://aptdocker.azureedge.net/repo",
+            "dockerComposeDownloadURL": "https://github.com/docker/compose/releases/download"
+        },
+        "kubernetesSpecConfig": {
+            "kubernetesImageBase": "k8s.gcr.io/",
+            "tillerImageBase": "gcr.io/kubernetes-helm/",
+            "aciCuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuonnectorImageBase": "microsoft/",
+            "mcrKubernetesImageBase": "mcr.microsoft.com/",
+            "nvidiaImageBase": "nvidia/",
+            "azureCNIImageBase": "mcr.microsoft.com/containernetworking/",
+            "CalicoImageBase": "calico/",
+            "kubeBinariesSASURLBase": "https://acs-mirror.azureedge.net/kubernetes/",
+            "windowsTelemetryGUID": "fb801154-36b9-41bc-89c2-f4d4f05472b0",
+            "cniPluginsDownloadURL": "https://acs-mirror.azureedge.net/cni/cni-plugins-amd64-v0.7.6.tgz",
+            "vnetCNILinuxPluginsDownloadURL": "https://acs-mirror.azureedge.net/azure-cni/v1.1.3/binaries/azlure-vnet-cni-linux-amd64-v1.1.3.tgz",
+            "vnetCNIWindowsPluginsDownloadURL": "https://acs-mirror.azureedge.net/azure-cni/v1.1.3/binaries/azure-vnet-cni-singletenancy-windows-amd64-v1.1.3.zzureedge.net/cni-plugins/v0.8.7/binaries--kubeconfig/cni-plugins-linux-arm64-v0.8.7.tgz",
+            "vnetCNIARM64LinuxPluginsDownloadURL": "https://acs-mirror.azureedge.net/azure-cni/v1.4.13/binaries/azure-vnet-cni-linux-arm64-v1.4.14.tgz"
+        },
+        "endpointConfig": {
+            "resourceManagerVMDNSSuffix": "cloudapp.azure.com"
+        }
+    },
+    "K8sComponents": {
+        "PodInfraContainerImageURL": "mcr.microsoft.com/oss/kubernetes/pause:3.5",
+        "HyperkubeImageURL": "mcr.microsoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": {
+        "name": "nodepool1",
+        "vmSize": "Standard_DS1_v2",
+        "osType": "Linux",
+        "availaboProxy": ["localhost", "127.0.0.1", "168.63.129.16", "169.254.169.254", "10.0.0.0/16", "agentbaker-agentbaker-e2e-t-8ecadf-c82d8251.hcp.eastus.azmk8s.io"]
+    },
+    "KubfletConfig": {
+        "--address": "0.0.0.0",
+        "--anonymous-auth": "false",
+        "--authentication-token-webhook": "true",
+        "--authorization-mode": "Webhook",
+        "--azure-container-registry-config": "/etc/kubernetes/azure.json",
+        "--cgroups-per-qos": "true",
+        "--client-ca-fÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿile": "/etc/kubernetes/certs/ca.crt",
+        "--cloud-config": "/etc/kubernetes/azure.json",
+      "--protect-kernel-defaults": "true",
+        "--read-/nly-port": "0",
+        "--resolv-conf": "/run/systemd/resolve/resolv.conf",
+        "--rotate-certificates": "falseCDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256",
+        "--tls-private-key-file": "/etc/kubernetes/certs/kubeletserver.key"
+    },
+    "KubeproxyConfig": null,
+    "EnableRu1ncShimV2": false,
+    "GPUInstanceProfile": "",
+    "PrimaryScaleSetName": "",
+    "SIGConfig": {
+        "tenantID": "",
+        "subscriptionID": "",
+        "galleries": null
+    },
+    "I?sARM64": false
+}
