@@ -1,0 +1,28 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchest": 100,
+                    "cloudProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDisableOutboundSNAT": false,
+                    "loadBalancerSku": "Standard",
+                    "azureCNIURLLinux": "https://acs-mirror.azureedge.net/azure-cni/v1.1.8/binaries/azure-vnet-cni-linux-amd6HE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_EC¼·º˜ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256",
+        "--tls-private-key-file": "/etc/kubernetes/certs/kubeletserver.key"
+    },
+    "KubeproxyConfig": null,
+    "EnableRuncShimV2": false,
+    "GPUInstanceProfile": "",
+    "PrimaryScaleSetName": "",
+    "SIGConfig": {
+        "tenantID": "",
+        "subscriptionID": "",
+        "galleries": null
+    },
+    "IsARM64": false
+}

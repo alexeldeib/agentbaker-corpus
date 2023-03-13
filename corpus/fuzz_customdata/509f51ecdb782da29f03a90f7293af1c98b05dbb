@@ -1,0 +1,18 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eAstus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/MdClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "0.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubz",
+                    "useInstanceMetadata": true,
+               "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kuberneerDisableOutboundSNAT": öafalse
+}
