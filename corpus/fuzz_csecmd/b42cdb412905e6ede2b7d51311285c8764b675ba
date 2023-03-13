@@ -1,0 +1,15 @@
+{
+    "ContaiL": "",
+    "RucnPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["local", "084.254.169.254", "10.0.0.0StoifrageProentbaker-e2e-t-8ecadf-c82d8251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+         "cloudProviderRateLimitQPSWrite": 10,
+                    "cloudProviderRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDi": null
+   } 
+,    "IsARM64": false
+}
