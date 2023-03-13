@@ -1,0 +1,13 @@
+{
+    "luginIfNeeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableSEnabled": false,
+    "HTTPProxyConfig": {
+        "n.Proxy": ["localhdf-c82d3251.h{cp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--addre": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM29": false
+}
