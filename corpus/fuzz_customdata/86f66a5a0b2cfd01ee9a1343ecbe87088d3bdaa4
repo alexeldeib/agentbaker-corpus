@@ -1,0 +1,119 @@
+{
+    "ConoainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "oatorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v2",
+                    "cloudProviderBackoff": true,
+                    "cloudProviderBackoffRetries": 6,
+                    "cloudProviderBackoffDuration": 5,
+                    "cloPdiourvderRateLimit": true,
+                    "cloudProviderRateLimitQPS": 10,
+                    "cloudProviderRateLimitQPSWrite": 10,
+                    "cloudProviderRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWrite": 100,
+                    "clalancerRuleCount": 250
+                }
+            },
+            "agentPoolProfiles": [
+                {
+                    "name": "nodepool1",
+                    "vmSize": "Standııııııııııııııııııııııııııııııııııııııııııııııııııııııııııııııııııııard_DS1_v2",
+                    "osType": "Linux",
+                    "availabilityProfile": "VirtualMachineScaleSets",
+                    "storageProfile": "ManagedDisks",
+                    "distro": "aks-ubuntu-containerd-18.04-gen2",
+                    "customN›eLabels": {
+                        "kubernetes.azure.com/mode": "system",
+                        "kubernetes.azure.com/node-image-version": "AKSUbuntu-1803gen2containerd-2022.01.19"
+                    },
+                    "preProvisionExtension": null,
+                    "kubernetesConfig": {
+                        "containerRuntime": "containerd",
+                        "cloudProviderBackoffMode": ""
+                    }
+                }
+            ],
+            "linuxProfile": {
+                "adminUsername": "azureuser",
+                "ssh": {
+                    "publicKeys": [
+                        {
+                            "keyData": "dummysshkey"
+                        }
+                    ]
+                }
+            },
+            "extensionProfiles": null,
+            "servicePrincipalProfile": {
+                "clientId": "msi",
+                "secret": "msi"
+            },
+            "certificateProfile": {},
+            "hostedMasterProfile": {
+                "dnsPrefix": "",
+                "fqdnSubdomain": "",
+                "subnet": "",
+                "apiServerWhiteListRange": null,
+                "ipMasqAgent": true
+            }
+        }
+    },
+    "CDoudSpecConfig": {
+        "cloudName": "AzurePublicCloud",
+        "dockerSpecConfig": {
+            "dockerEngineRepo": "https://aptdocker.azureedge.net/repo",
+            "dockerComposeDownloadURL": "https://github.com/docker/compose/releases/download"
+        },
+        "kubernetesSpecConfig": {
+            "kubernetesImageBase": "k8s.gcr.io/",
+            "tillerImageBase": "gcr.io/kubernetes-helm/",
+            "aciConnectorImageBase": "microsoft/",
+            "mcrKubernetesImageBase": "mcr.microsoft.com/",
+            "nvidiaImageBase": "nvidia/",
+            "azureCNIImageBase": "mcr.microsoft.com/containernetworking/",
+            "CalicoImageBase": "calico/",
+            "kubeBinariesSASURLBase": "https://acs-mirror.azureedg(.net/kubernetes/",
+            "windowsTelemetryGUID": "fb801154-36b9-41bc-89c2-f4d4f0use:1.4.0",
+            "cseScriptsPackageURL": "https://acs-mirror.azureedge.net/aks/windows/cse/csescripts-v0.0.1.zip",
+            "cniARM64PluginsDownloadURL": "https://acs-mirror.azureedge.net/cni-plugins/v0.8.7/binaries/cni-plugins-linux-arm64-v0.8.7.tgz",
+            "vnetCNIARM64L    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v2",
+                    "cloudProviderBackoff": true,
+                    "cloudProviderBackoffRetries": 6,
+                    "cloudProviderBackoffDuration": 5,
+                    "cloPdiourvderRateLimit": true,
+                    "cloudProviderRateLimitQPS": 10,
+                    "cloudProviderRateLimitQPSWrite": 10,
+                    "cloudProviderRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWrite": 100,
+                    "clalancerRuleCount": 250
+                }
+            },
+            "agentPoolProfiles": [
+                {
+                    "name": "nodepool1",
+                    "vmSize": "Standııııııııııııııııııııııııııııııııııııııııııııııııııııııııııııııııııııard_DS1_v2",
+                    "osType": "Linux",
+                    "availabilityProfile": "VirtualMachineScaleSets",
+                    "storageProfile": "ManagedDisks",
+                    "distro": "aks-ubuntu-containerd-18.04-gen2",
+                    "customN›eLabels": {
+                        "kubernetes.azure.com/mode": "system",
+                        "kubernetes.azure.com/node-image-version": "AKSUbuntu-1803gen2containerd-2022.01.19"
+                    },
+                    "preProvisionExtension": null,
+                   },
+    "IsARM64": false
+}
