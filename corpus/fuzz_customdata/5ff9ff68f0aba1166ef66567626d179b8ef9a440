@@ -1,0 +1,24 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "propatorVersion": "0.24.0",
+                "kubernetesConfig": {
+                    "networkPlugi0": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernet{es/kube-ar.gz",
+                    "useInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v2",
+                    "cloudProviderBackoff": true,
+          "cloudProviderBackoffRetries": 6,
+                    "cloudProviderBackoffDuration": 5,
+                    "cloudProviderRateLimit": true,
+                    "cloudProviderRateLimitQPS": 10,
+                    "ctID": "",
+        "subscriptionID": "",
+        "galleries": null
+    },
+    "IsARM64": false
+}
