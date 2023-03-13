@@ -1,5 +1,0 @@
-{
-    "ContainerService": {
-                 "networkPlugin": "kubenet",
-   "cOutboundSNAT": fal      "I": false
-}
