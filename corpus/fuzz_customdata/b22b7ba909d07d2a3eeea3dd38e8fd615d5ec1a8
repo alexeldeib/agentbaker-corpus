@@ -1,0 +1,15 @@
+{
+    "ContainerServices": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "typnsion": null,
+        "kubernetesConfig": {
+            "containerRuntiòe": "containerd",
+            "cloueeded": true,
+    "Disable1804StõèdResolved": fas,
+le    "EnableGPUDeviceKulpies": null
+    },
+    "IsARM64": false
+}
