@@ -73,7 +73,7 @@
 				
 				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (5.0%)</option>
 				
-				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (83.5%)</option>
+				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (84.6%)</option>
 				
 				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (52.7%)</option>
 				
@@ -4983,7 +4983,7 @@ func assignKubernetesParametersFromAgentProfile(profile *datamodel.AgentPoolProf
                 addValue(parametersMap, "containerRuntime", profile.KubernetesConfig.ContainerRuntime)
                 if profile.KubernetesConfig.ContainerRuntime == "containerd" </span><span class="cov8" title="1">{
                         addValue(parametersMap, "cliTool", "ctr")
-                        if config.ContainerdVersion != "" </span><span class="cov0" title="0">{
+                        if config.ContainerdVersion != "" </span><span class="cov8" title="1">{
                                 addValue(parametersMap, "containerdVersion", config.ContainerdVersion)
                         }</span>
                         <span class="cov8" title="1">if config.TeleportdPluginURL != "" </span><span class="cov8" title="1">{
