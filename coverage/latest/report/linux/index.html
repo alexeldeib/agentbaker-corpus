@@ -73,9 +73,9 @@
 				
 				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (5.0%)</option>
 				
-				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (84.6%)</option>
+				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (85.7%)</option>
 				
-				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (52.7%)</option>
+				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (53.1%)</option>
 				
 				<option value="file11">/github/workspace/build-out/src/agentbaker/pkg/agent/variables.go (78.3%)</option>
 				
@@ -4804,7 +4804,7 @@ func getParameters(config *datamodel.NodeBootstrappingConfiguration, generatorCo
                 // Agents only, use cluster DNS prefix
                 if properties.HostedMasterProfile.DNSPrefix != "" </span><span class="cov8" title="1">{
                         addValue(parametersMap, "masterEndpointDNSNamePrefix", properties.HostedMasterProfile.DNSPrefix)
-                }</span> else<span class="cov8" title="1"> if properties.HostedMasterProfile.FQDNSubdomain != "" </span><span class="cov0" title="0">{
+                }</span> else<span class="cov8" title="1"> if properties.HostedMasterProfile.FQDNSubdomain != "" </span><span class="cov8" title="1">{
                         addValue(parametersMap, "masterEndpointDNSNamePrefix", properties.HostedMasterProfile.FQDNSubdomain)
                 }</span> else<span class="cov8" title="1"> {
                         // should not happen but just in case, we fill in value "localcluster" just like linux
@@ -5234,7 +5234,7 @@ func IsSgxEnabledSKU(vmSize string) bool <span class="cov0" title="0">{
 func GetCloudTargetEnv(location string) string <span class="cov8" title="1">{
         loc := strings.ToLower(strings.Join(strings.Fields(location), ""))
         switch </span>{
-        case strings.HasPrefix(loc, "china"):<span class="cov0" title="0">
+        case strings.HasPrefix(loc, "china"):<span class="cov8" title="1">
                 return "AzureChinaCloud"</span>
         case loc == "germanynortheast" || loc == "germanycentral":<span class="cov0" title="0">
                 return "AzureGermanCloud"</span>
