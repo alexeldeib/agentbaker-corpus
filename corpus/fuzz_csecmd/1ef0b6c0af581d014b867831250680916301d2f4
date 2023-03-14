@@ -1,0 +1,45 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "Extension": null,
+        "kubernetesConfig": {
+            "containerRuntime": "containerd",
+            "cloudProviderBacko,fMode": ""
+        }
+    },
+    "TenantID": "",
+    "OSSKU": "",
+    "ConfigGPUDriverIfNeeded": true,
+    "Disable1804SystemdResolvedntainerdPackageURL": "",
+    "RuncPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "n.Proxy": ["localhost", "127.0.0.1", "168.63.129zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz.16", "169.254.169.254", "10.0.0.0/16", "agentbaker-agentbaker-e2e-t-8ecadf-c82d3251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--address": "0.0.0.0",
+        "--anonymous-auth": "false",
+        "--authenticationeLimitQPSWrite": 10,
+                  "kubernetesSpecConfig": {
+            "kubernetesImageBase": "k8s.gcr.io/",
+            "ageURL": "mcr.microsoft.com/oss/kubernetes/pause:1.4.0",
+            "cseScriptsPackageURL": "https://acs-mirror.azureedge.ne/ksat/windows/cse/csescripts-v0.0.1.zip",
+            "cniARM64PluginsDownloadURL": "https://acs-mirror.azureedge.net/cni-plugins/v0.8.7/binaries/cni-plugins-linux-arm64-v0.8.7.tgz",
+            "vnetCNIARM64LinuxPluginsDownloadURL": "https://acs-mirror.azureedge.net/azure-cni/v1.4.13/binaries/azure-vnet-cni-linux-arm64-v1.4.14.tgz"
+        },
+        "endpointConfig": {
+            "resourceManagerVMDNSSuffix": "cloudapp.azure.com"
+        }
+    },
+    "K8sComponents": {
+        "PodInfraContainerImageURL": "mcr.microsoft.com/oss/kubernetes/pause:3.5",
+        "HyperkubeImageURL": "mcr.microsoft.com/oss/kubernetes/",
+        "cloudProviderRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM64": false
+}
