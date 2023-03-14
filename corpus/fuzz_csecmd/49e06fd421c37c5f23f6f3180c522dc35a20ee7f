@@ -1,0 +1,15 @@
+{
+    "ContaiL": "",
+    "RucnPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["localhost", "127.0.0.1", "168.63.129.16", "169.254.169.254", "10.0.0.0Stoifrao"]
+    },
+    "KubeletConfig": {
+         "cloudProviderRateLimitQPSWrite": 10,
+                    "cloudProviderRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDi": null
+   } 
+,    "IsARM64": false
+}
