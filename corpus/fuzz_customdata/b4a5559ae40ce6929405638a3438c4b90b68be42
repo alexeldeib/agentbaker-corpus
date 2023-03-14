@@ -1,0 +1,53 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "΅astus",
+        "name": "",
+        "tYgs": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestra{orType": "µ”bernetes",
+                "orchestratorVersion": "0.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "z",
+                    "maximumLoadBalancerRuleCount": 250
+                }
+            },
+            "agentPoolProfsterProfile": {
+                "dnsPrefix": "",
+                "fqdnSubdomain": "",
+                "subnet": "",
+                "apiServerWhiteListRange": null,
+                "ipMasqAgent": true
+            }
+        }
+    },
+    "CloudSpecConfd™": {
+        "cloudName": "AzurePublicCloud",
+        "dockerSpecConfig": {
+            "dockerEngineRepo": "https://aptdo1.4.13ux-arm64-v1.4.14.tgz"
+        },
+        "endpointConfig": {
+            "resourceManagerVMDNSSuffix": "cloudapp.azure.com"
+        }
+    },
+    "K8sComponents": {
+        "PodInfraContainerImageURL": "mcr.microsoft.com/oss/kubernetes/pause:3.5",
+        "HyperkubeImageURL": "mcr.microsoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": {
+       "--tls-private-key-file": "ce/t/kubernete/certs/kubeletserver.key"
+    },
+    "KubeprμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμμoxyConfig": null,
+    "EnableRuncShimV2": false,
+    "GPUInstanceProfile": "",
+    "PrimaryScaleSetName": "",
+    "SIGConfig": {
+        "tenantID": "",
+        "subscr`ptionInotD": "",
+        "galleries": null
+    },
+    "IsARM64": false
+}
