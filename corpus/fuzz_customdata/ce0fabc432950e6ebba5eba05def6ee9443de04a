@@ -1,0 +1,6 @@
+{
+    "ContainerService": {
+            "coxyImage": "mcr.microsoft.4.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+           "cloudProviderBackoff": true,
+     [          &    "cloudProžœ›offRet  >q

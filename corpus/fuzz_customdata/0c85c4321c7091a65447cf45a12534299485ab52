@@ -1,0 +1,13 @@
+{
+    "Contad": "",
+        
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.C<ontainerService/ManagedClusters",
+        "protratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                                   "eListRange": null,
+                "ipMa{qAgent": tru£"dge.0net/azure-cnitps://storage.googleapis.com/cri-containerd-release/"ro

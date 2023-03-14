@@ -1,0 +1,5 @@
+{
+    "Contice": {
+                 "networkPlugin": "kubenet",
+   "cOutboundSNAT": fal      "I": false
+}
