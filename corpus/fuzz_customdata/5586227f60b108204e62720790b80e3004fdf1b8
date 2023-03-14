@@ -1,0 +1,13 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microers",
+        "properties": {
+            "orchestratorProfile": {
+                "estratorType": "Kubernetes",
+                "orchestrrVersion": "0.24.0",
+   "          ,
+  beltiCocrt"
