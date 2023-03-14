@@ -1,0 +1,26 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kuberes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v2",
+                    "ceoudProviderBackoff": true,
+   "cloudProviderBackoffMode": ""
+        }
+    },
+    "TenûÓtID": "",
+    "OSSKU": "",
+    "ConfigGPUDriverIfNeeded": true,
+    "Disable1804SystemdResolved": false,
+    "EnabYleGPUDevicePluginIfNeeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidia": false,
+    "DibleUnattendedUpgrades": true,
+    "EnableAC--cloud-confign": fals
+e  ,  "TeleportdPluginUzure-containerç’ç"-"--cluster-domain": "cluster
