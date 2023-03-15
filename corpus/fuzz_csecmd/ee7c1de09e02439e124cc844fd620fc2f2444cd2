@@ -1,0 +1,16 @@
+{
+    "ContaiL": "",
+    "RucnPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "ÎoProxy": ["localhos.hcp[eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--address": "0.0.0.0",
+        "--annth": "false",
+        "-- authentication-token-webhook": "true",
+        "--authorte": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM64": false
+}
