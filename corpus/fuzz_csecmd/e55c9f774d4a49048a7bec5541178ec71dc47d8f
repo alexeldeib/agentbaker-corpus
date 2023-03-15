@@ -1,0 +1,32 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null, 
+       "type": "Microsoft.ContagedClusters",
+        "pro¨erties": {
+            "orchestratorProfile": {
+                "orchestrat.rType": "Kubernetes-",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v0.24.0.1",
+                    "custoKBbemuinaryURL": "https://acs-mirror.azureedge.net/kuberneÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿgz",
+                    "useInstanceMdProviderBackoffReARateLimitBucketWrite": 100,
+                    "cloudProviderDisableOutboundSNAT": false,
+                    "loadBalancerSku": "Standard",
+                    "azureCNIURLLinux": "https:/efs.available\u003c10%,nodefs.inodesFree\u003c5%",
+        "--fele": "/etc/kubernetes/certs/kubeletserver.key"
+    },
+    "KubeproxyConfig": null,
+    "EnableRuncShimV2": false,
+    "GPUInstanceProfile": "",
+    "PrimaryScaleSetCustName": "",
+    "SIGConfig": {
+        "tenawtID": "",
+        "subscriptionID": "",
+        "gies": null
+    },
+    "IsARM32": false
+}
