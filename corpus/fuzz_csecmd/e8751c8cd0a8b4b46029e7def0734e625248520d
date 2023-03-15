@@ -1,0 +1,14 @@
+{
+    "ContaiL": "",
+    "RucnPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["local", "084.2aks-ubuntu-16.04.0.0.0Stoifrage8s.io"]
+    },
+    "KubeletConfig": {
+         "cloudProviderRateLimitQPSWrite": 10,
+                    "cloudProviderRateLimitBudProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDi": null
+   } 
+,    "IsARM64": false
+}
