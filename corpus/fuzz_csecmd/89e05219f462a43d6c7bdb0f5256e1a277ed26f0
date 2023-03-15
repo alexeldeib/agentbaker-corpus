@@ -1,0 +1,53 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microçêôç.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v4",
+                    "cloudProviderBackoff": true,
+                    "publicKeys": [
+                        {
+                            "keyData": "dummysshkey"
+                        }
+                    ]
+                }
+            },
+          "2gˇ\u4416\u2A20ˇˇˇˇˇ  "extensionProfiles": null,
+            "servicePrincipalProfile": {
+                "clientId": "msi",
+                "secret": "msi"
+            },
+            "certificatePro†ile": {},
+            "hostedMasterProfile": {
+                "dnsPrefix": "",
+                "fqdnSubdomain": "",
+                "subnet": "",
+                "apiServerWhiteListRange": null,
+                "ipMasqAgent": true
+            }
+        }
+    },
+    "CloudSpecConfig": {
+        "cloudName": "AzurePublicCloud",
+        "dockerSpecConfig": {
+            "dockerEngineRepo": "https://aptdocker.azureedge.net/repo",
+            "dockerComposeDownloadURL": "https://github.com/docker/compose/releases/download"
+        },
+        "kubernetesSpecConfig": {
+            "kubernetesImageBase": "k8s.gcr.io/",
+            "tillerImageBase": "gcr.io/kubernete[0E-5]/",
+            "aciConnectorImaˇ416\u2A208[^\u2209\geBase": "microsoft/",
+            "mcrKubernetesImageBase": "mcr.microsoft.com/",
+            "nvidiaImageBase": "nvidia/",
+     u4164\u2A208—˜\       "azu2u1A2ureCNIImageBase": "mcr.m0icrosoft.co7m/cont
