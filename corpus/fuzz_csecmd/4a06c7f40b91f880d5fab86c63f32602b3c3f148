@@ -1,0 +1,24 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null, 
+       "type": "Microsoft.ContagedClusters",
+        "pro¨erties": {
+            "orchestratorP   boundSNAT": false,
+                    "loadBalancerSku": "Standard",
+                    "azureCNIURLLinux": "https:/efs.available\u003c10%,nodefs.inodesFree\u003c5%",
+        "--fele": "/etc/kubernetes/certs/kubeletserver.key"
+    },
+    "yConfig": null,
+    "EnableRuncShimV2": false,
+    "GPUInstanceProfile": "",
+    "PrimaryScaleSetCustName": "",
+    "SIGConfig": {
+        "tenawtID": "",
+        "subscriptionID": "",
+        "gies": null
+    },
+    "IsARM32": false
+}
