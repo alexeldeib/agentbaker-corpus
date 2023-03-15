@@ -1,0 +1,21 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/Manageinerd-2022.01.19"
+        },
+        "preProvisionExtension": null,
+        "kubernetesConfig": {
+            "containertime": "containerd",
+            "cl,ue": ""
+        }
+    },
+    "TetID": "",
+    "OSSKU": "",
+  rite": 100,
+                    "clAudProviderDi": null
+    },
+    "IsARM64": false
+}
