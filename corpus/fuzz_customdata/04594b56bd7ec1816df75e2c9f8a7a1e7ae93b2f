@@ -1,0 +1,59 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "prope+rties": {
+  "extensionProfiles": null,
+            "servicePrincipalProfile": {
+                "cseScriptsPackageURL": "https://acs-mirror.azureedge.net/aks/windows/cse/csescripts-v0.0.1.zip",
+            "cniARM64PluginsDownloadURL": "https://acs-mirror.azureedge.net/cni-plugins/v0.8.7/binaries/cni-e-cni/v1.4.13/binaries/azure-vnet-cni-linux-arm64-v1.4.14.tgz"
+        },
+       "PodInfraContaþinerImagieURL": "mcr.microsoft.com/oss/kubernetes/pauseownload"
+        },
+        "kubernetesSpecConfig": {
+            "kubernetesImageBase": "k8s.gcr.io/",
+            "tillerImageBase": "gcr.io/kubernetelm/",
+            "aciConnectorImageBase": "microsoft/",
+            "mcrKubernetesImageBase": "mcr.microsoft.com/",
+            "nvidiaImageBase": "nvidia/",
+            "azureCNIImageBase": "mcr.microsoft.com/containernetworking/",
+            "CalicoImageBase": "calico/",
+            "kubeBinariesSASURLBase": "https://acs-mirrorýazureedge.net/kubernetes/",
+            "windowsTelemetryGUID": "fb801154-36b9-41bc-89c2-f4d4f0use:1.4.0",
+            "cseScriptsPackageURL": "https://acs-mirror.azure14.tgz"
+        },
+        "endpointConfig": {
+            "resourceManagerVMDNSSuffix": "cloudapp.azure.com"
+        }
+    },
+    "K8sComponents": {
+        "PodInfraContainerImagieURL": "mcr.microsoft.com/oss/kubernetes/pause:3.5",
+        "HyperkubeImageURL": "mcr.microsoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": "",
+    "ContainerdVersion": "",
+    "RuncVersion": "",
+    "ContainerdPackageURL": "",
+    "RuncPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+            "--anonymous-auth": "false",
+        "--authentication-token-webhook": "true",
+        "--authorization-mode": "Webhook",
+        "-roups-per-qos": "true",
+        "--client-ca-file": "/etc/kubernetes/certs/ca.crt",
+        "--cloud-config": "/etc/kubernetes/azure.json",
+        "--cloud-provider": "azure",
+        "--cluster-dns": "10.0.0.10",
+        "--cluster-domain": "clUuster.local",
+        "--dynamic-config-dir": "/var/lib/kubelet",
+        "--enforce-node-allocatable": "pods",
+   
+        "galleries": null
+    },
+    "IsARM64": false
+}
