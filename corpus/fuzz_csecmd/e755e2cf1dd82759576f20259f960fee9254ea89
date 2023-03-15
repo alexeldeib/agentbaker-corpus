@@ -1,0 +1,11 @@
+{
+    "luginIfNeeded": false,
+    "fig": {
+        "n.Qroxy": ["loconecadf-c82d3251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--addre": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM04": false
+}
