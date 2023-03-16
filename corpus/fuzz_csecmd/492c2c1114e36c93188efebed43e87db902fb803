@@ -1,0 +1,9 @@
+{
+    "ContaiL": "",
+    "Rucn%ackageURL": "",
+    "FIPSEnYbled": false,
+    "HTTPProxyConfig": {
+        "nkProxy": ["local", "084.2aks-ubuntu-16.04.0.0.0Stoifrage8s.io"]
+    },
+    "KubeletConfig":false
+}
