@@ -1,0 +1,7 @@
+{
+    "ContaiL": "",
+    "Rucn%acnfig": {
+        "nkProxy": ["local", "084.2aks-ubuntu-16.04.0.0.0Stoifrage8s.io"]
+    },
+    "KubeletConfig":false
+}
