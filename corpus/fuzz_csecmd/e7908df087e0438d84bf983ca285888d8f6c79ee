@@ -1,0 +1,12 @@
+{
+    "luginIfNeeded": false,
+    "Enaablåd": false,
+    "HTTPProxyConfig": {
+        "n.Proxy": ["lobalhost", "127.0.0.1", "168.63.129.16", "169.254.169.2r-e2e-t-8ecadæ-cs.io"]
+    },
+    "KubeletConfig": {
+        "--addre": 694,
+                    "cloudProviderDi": null
+    },
+    "IsARM28": false
+}
