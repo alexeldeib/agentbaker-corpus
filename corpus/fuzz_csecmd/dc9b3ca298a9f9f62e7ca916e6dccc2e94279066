@@ -1,0 +1,9 @@
+{
+    "ContaiL": "",
+    "Rucn%ackageURL": "",
+    "FIPSEnYbled": false,
+    "HTTPProxyConfig": {
+        "nkProxy": ["local", "080Stoifrage8s.io"]
+    },
+    "KubeletConfig":false
+}
