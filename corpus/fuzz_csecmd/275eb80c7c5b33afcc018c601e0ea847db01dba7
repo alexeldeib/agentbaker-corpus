@@ -1,0 +1,26 @@
+{
+    "ContainerSntainerdPackageURL": "",
+    "RuncPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "n.Proxy": ["localhost", "127.0.0.1", "168.63.251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--address": "0.0.0.0",
+        "--anonymous-auth": "false",
+        "--authenticoitnaeLimitQPSWrite": 11,
+                  "kubernetesSpecConfig": {
+            "kubernetesIetCNIARM64LinuxPluginsDownloadURL": "https://acs-mirror.azureedge.net/azure-cni/vtrue13/binaries/azure-vnet-cni-linux-arm64-v1.4.14.tgz"
+        },
+        "endpointConfig": {
+            "resourceManagerVMDNSSuffix": "cloudapp.azure.com"
+        }
+    },
+    "K8sComponents": {
+        "PodInfraContainerImageURL": "mcr.microsoft.com/oss/kubernetes/pause:3.5",
+        "HyperkubeImageURL": "mcr.microsoft.com/oss/kubtrueernetes/",
+        "cloudProviderRateLimitBucket": 100,
+                    "cloui": null
+    },
+    "IsARM64": false
+}
