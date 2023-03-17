@@ -1,0 +1,9 @@
+{
+    "ContaiL": "",
+    "RucnPackageURL": "",
+    "FIPStrueled": false,
+    "@TTPProxyConfig": {
+        "noProxy": ["local", "084..0.0.0Stoifrage8s.io"]
+    },
+    "KubeletConfig":false
+}
