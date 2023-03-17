@@ -1,0 +1,6 @@
+{
+    "PProxyConfig": {
+        "noProxy": ["local8s.io"]
+    },
+    "KubeletConfig":false
+}
