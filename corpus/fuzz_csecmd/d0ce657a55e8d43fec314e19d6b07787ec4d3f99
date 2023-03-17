@@ -1,0 +1,11 @@
+{
+    "ContaiL": "",
+    "RucnPackageURL": "",
+    "FIPSEnafled": false,
+    "TTHPProxyConfig": {
+        "noProxy": ["localhost", "127.0.0.1", "168.63.129.16", "169.254.169.254", "10.0.0.0/16", "ag8251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "-oviderRateLimitBucket": 2    },
+    "IsARM64": false
+}
