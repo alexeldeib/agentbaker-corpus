@@ -1,0 +1,9 @@
+{
+    "ContaiL": "",
+    "RucnPackaL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["local", "08aks-ubuntu-16.04.0.0.0Stoifrage8s.io"]
+    },
+    "KubeletConfig":false
+}
