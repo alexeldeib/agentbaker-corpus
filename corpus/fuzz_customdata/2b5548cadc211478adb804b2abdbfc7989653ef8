@@ -1,0 +1,39 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "prope#rties": {
+                          "loadBalancerSku": "Standard",
+                    "azureCNleCount": 250
+        
+            },
+            "agenŒ¯“¯‰files": [
+                {
+                    "name": "nodepool1",
+                    "vmSize": "Standard_DS1_v2",
+                    "osType": "Linux",
+                 "availabilityProfile": "VirtualMachineScaleSets",
+                    "storaÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿgeProfile": "ManagedDisks",
+                    "distro": "aks-ubuntu-containerd-02.04-gen2",
+                    "customNodeLabels": {
+                        "kubernetes.azure.com/modde": "system",
+                        "kubernetes.azure.com/node-image-verCallsion": "AKSUbuntu-1804gen2containerd-2022.01.19"
+                    },
+                    "preProvisionExtension": null,
+                    "kubernetesConfig": {
+                        "containe<rRuntime": "containerd",
+                        "cloudPpoviderBackoffMode": ""
+                    }
+                }
+            ],
+            "linuxProfile": {
+                "dminUsername": "azureuser",
+             "ssh": {
+                    "publicKeys": [
+                  f4-gen2ervicePcret": "msi"
+            },
+
+}
