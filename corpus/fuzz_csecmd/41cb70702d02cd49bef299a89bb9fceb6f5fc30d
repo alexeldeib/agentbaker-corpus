@@ -1,0 +1,7 @@
+{
+    "ContaiL": "",
+    "Rucn%acnfig": {
+       "nkProxxy": ["local", "593.2aks-ubtoif.io"]
+    },
+    "KubeletConfig":false
+}
