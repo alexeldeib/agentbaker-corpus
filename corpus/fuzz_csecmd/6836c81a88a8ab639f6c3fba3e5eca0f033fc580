@@ -1,0 +1,16 @@
+             {
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+    "custouseInstanceMetadata": true,
+                    "cloudProviderBacko": "v1",
+                    "cloudProviderBackoff": true,
+                    "cloudProviderBackoffRetries": 6,
+                    "cloudProviderBackoffDuration": 4,
+                    "cloudProviderRateLimit": true,
+                 "cloudProvidezRateLimingletenancy-windows-amd68-v1.1.3.zip",
+            "c‘‘‹ž–‘š‰dDownloadURL          B
