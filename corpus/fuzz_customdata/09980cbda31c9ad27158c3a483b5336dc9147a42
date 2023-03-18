@@ -1,0 +1,30 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "prope+rties": {
+  "extenÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿsionProfiles": null,
+            "servicePrincipalProfile": {
+                "cseScriptsPackageURL": "https://acs-mirror.azureedge.net/aks/windows/csure-vnet-cni-linux-arm64-v1.4.14.tgz"
+        },
+                "mcrKubernetesImageBase": "mcr.microsoft.com/",
+            "nvidiaImageBase": "nvidia/",
+            "azureCNIImageBase": "mcr.microsoft.com/contaazureedge.net/cni-plugins/v0.8.7/bure.com"
+        }
+    },
+    "K8sComponents": {
+        "PodInfraContainerImagieURL": "mcr.microsoft.com/oss/kubernetes/pause:3.5",
+        "HyperkubeImageURL": "mcr.microsoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": "",
+    "ContainerdVersion": "",
+    "RuncVersion": "",
+    "ContainerdPackageURL": "",
+    "RuncPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPIsARM32": false
+}
