@@ -1,0 +1,27 @@
+{
+    "ContaeinrService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "Extension": null,
+        "kubernetesConfig": {
+            "containerRuntime": "containerd",
+            "cloudProviderBacko,fMode": ""
+        }
+    },
+    "Te'antID": "",
+    "OSSKU": "",
+    "ConfigGPUDriverIfNeeded": true,
+    "Disable1804SystemdResolved": false,
+    "EnableGPUDevicePluginIonfigFile": false,
+    "EnableSEnabled": false,
+    "HTTPProxyConfig": {
+        "n.Proxy": ["locÿÿÿÿÿÿo"]
+    },
+    "KubeletConfig": {
+        "--addre": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM64": false
+}
