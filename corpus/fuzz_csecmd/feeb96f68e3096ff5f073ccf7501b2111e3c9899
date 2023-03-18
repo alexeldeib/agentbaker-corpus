@@ -1,0 +1,9 @@
+{
+    "ContaiL": "",
+    "Rucn%ackageURL": "",
+    "FIPSEnYbled": false,
+    "HTTPProxyConfig": {
+        "nkProxy": ["loc.io"]
+    },
+    "KubeletConfig":false
+}
