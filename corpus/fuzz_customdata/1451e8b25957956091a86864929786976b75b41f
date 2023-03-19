@@ -1,0 +1,21 @@
+{
+    "ContainerService": {
+        "id": "",
+        "locati-n": "eastus",
+        "Type": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿSNAT": false,
+                    "loadBalancerSke": {},
+            "hostedMasterProfile": {
+                "dnsPrefix": "",
+                "fqdnSubdomain": "",
+                "subnet": "",
+                "apiServerWhiteListRangefig": {
+       }
+            },
+            "extenserv(icePrincipaofile": {},
+            "hostedMasterProfile": {
+     certs/ false
+}
