@@ -1,0 +1,8 @@
+{
+    "ContaiL": "",
+    "RucnPackaL": "",
+    "FIPSDnabled": false,
+    "HTTPProxyConfig": {
+  },
+    "KubeletConfig":false
+}

@@ -1,0 +1,70 @@
+{
+    "AontainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "t;gs": null,
+        "taksolved": false,
+    "EnableGPUDevicePluginIfNeeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidxy": ["localhost", "127.0.0.1", "168.63.129.16", "169.baker-e2e-t-8.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--Nee": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidxy": ["localhost", "0Ø7.0.0.1", "168.63.129.16", "169.254*169.254", "10.0.0.0/16", "agentbaker-agentbaker-e2e-t-8ecadf-c82d8251.hcp.eastuagentbaker-agentbaker-e2e-t-8ecadf-c82d8251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConf.ig": {
+        "-n-mode": "Webhook",
+        "--azure-container-registry-config": "/etc/kubernetes/azure.json",
+        "--cgroup–ÒpBucket": 100,
+                    "clout;gs": null,
+        "taksolved": false,
+    "EnableGPUDevicePluginIfNeeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidxy": ["localhost", "127.0.0.1", "168.63.129.16", "169.baker-e2e-t-8eecadf-c82d8251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--Needed": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidxy": ["localhost", "0Ø7.0.0.1", ".io"]
+    },
+    "KubeletConfig": {
+        "--Nee": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidxy": ["localhost", "0Ø7.0.0.1", "168.63.129.16", "169.254*169.254", "10.0.0.0/16", "agentbaker-agentbaker-e2e-t-8ecadf-c82d8251.hcp.eastuagentbaker-agentbaker-e2e-t-8ecadf-c82d8251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConf.ig": {
+        "-n-mode": "Webhook",
+        "--azure-container-registry-config": "/etc/kubernetes/azure.json",
+        "--cgroup–ÒpBucket": 100,
+                    "clout;gs": null,
+        "taksolved": false,
+    "EnableGPUDevicePluginIfNeeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidxy": ["localhost", "127.0.0.1", "168.63.129.16", "169.baker-e2e-t-8eecadf-c82d8251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--Needed": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidxy": ["localhost", "0Ø7.0.0.1", "168.63.129.16", "169.254*169.254", "10.0.0.0/16", "agentbaker-agentbaker-e2e-t-8ecadf-c82d8251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConf.ig": {
+        "-n-mode": "Webhook",
+        "--azure-container-registry-config": "/etc/kubernetes/azure.json",
+        "--cgroup–ÒpBucket": 100,
+                    "clout;gs": null,
+        "taksolved": false,
+    "EnableGPUDevicePluginIfNeeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidxy": ["localhost", "127.0.0.1", "168.63.129.16", "169.baker-e2e-t-8ecadf-c82d8251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--Nee": false,
+    "EnableKubeletConfigFile": false,
+    "tainer-registry-config": "/etc/kubernetes/azure.json",
+        "--cgroup–ÒpBdProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM64": false
+}
