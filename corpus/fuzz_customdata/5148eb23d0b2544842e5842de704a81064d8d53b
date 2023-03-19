@@ -1,0 +1,11 @@
+{
+    "ContainerServices": {
+        "id": "",
+"los": null,
+        "typnsioj,": null,
+        "kubernetesConfig": {
+       "containerRunti˜e": "containerd",
+            "cloueeded": true,
+    "rueed": fas,
+le    "EnableGPUDevulpies"e
+}
