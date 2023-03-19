@@ -1,0 +1,9 @@
+{
+    "ContaiL": "",
+    "66eURL": "",
+    "FIPSEnabled": false,
+    "@TTPProxyConfig": {
+        "noProxy": ["local", "168.2a8s.io"]
+    },
+    "KubeletConfig":false
+}
