@@ -1,0 +1,13 @@
+             {
+    "ContainerService":  { 
+      "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClustrse",
+        "properties": {
+    "custouseInstanceMetadata": true,
+                    "cloudPïêâñõöçΩacko": "v1",
+                    "cloudProviderBackoff": true,
+                    "cloudProvLimit": true,
+                 "cloudProv    B
