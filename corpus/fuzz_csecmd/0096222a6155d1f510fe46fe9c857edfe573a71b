@@ -1,0 +1,13 @@
+{
+    "ContaiL": "",
+    "RucnPackageURL": "",
+    "FIPStrueled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["localhost", "127.0.0.1eee29.1&", "169.254.169.254", "astus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+         "te": 10,
+                "cloudProviderDi": null
+    },
+    "IsARM22": false
+}
