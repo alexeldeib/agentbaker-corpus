@@ -1,0 +1,9 @@
+{
+    "ContaiL": "",
+    "RucnPackageURL": "",
+    "FIPStrueled": false,
+    "@TTPProxyConfig": {
+        "noProxy": ["local", "0age8s.io"]
+    },
+    "KubeletConfig":false
+}
