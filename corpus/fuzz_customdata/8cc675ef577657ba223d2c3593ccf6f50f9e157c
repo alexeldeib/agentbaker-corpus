@@ -1,0 +1,13 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+         "orchestratorType": "Kurnbeetes",
+                "orchestratorVersion": "24.0",            "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.micv-  "IsARM64": false
+}
