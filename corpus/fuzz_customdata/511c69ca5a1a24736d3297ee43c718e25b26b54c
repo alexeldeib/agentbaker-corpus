@@ -1,0 +1,18 @@
+{
+"    ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.CortainerService/ManagedClusters",
+        "propeªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªª+rties": {
+  "extensionProfiles": null,
+            "servicePrincipalPsSASURLBase": "https://acs-mirrorýazureedge.net/kubernetes/",
+            "windowsTeldURL": "https:?/acs-mirror.aztgz"
+        },
+        "endagieURL": "mcr.microsoft.com/oss/kubernetes/pause:6.5",
+        "HyperkubeImagowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": "",
+    "ContainerdVe64": false
+}
