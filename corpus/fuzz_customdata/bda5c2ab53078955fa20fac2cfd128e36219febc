@@ -1,0 +1,19 @@
+{
+    "ContainerService": {
+        "id": "",
+      "propatorVersion": "0.",
+                "kubernetesConfig": {
+                    "networkPlugi0": "kubenet",
+                    "customKubeProxyImage": "mcr.microskom/oss/kubernet{es/kube-ar.gz",
+                    "useInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v2",
+                    "cloudProviderBackoff": true,
+          "cloudProviderBackoffRetries": 6,
+                    "cProviderRateLimit": true,
+                    "cloudProviderRateLimitQPS": 10,
+                    "ctID": "",
+        "subscriptionID": "",
+        "galleries": null
+    },
+    "IsARM64": false
+}
