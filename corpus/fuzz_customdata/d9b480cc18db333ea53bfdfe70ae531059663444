@@ -1,0 +1,14 @@
+{
+    "ContainerService": {
+        "id": "",
+        "locati-n": "eastus",
+        "Type": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesCloadBalancerSke": {},
+            "hostedMasterProfil": {
+       }
+            },
+            "extenserv(icePrincipaofile": {},
+            "hostedMasterProfile": {
+     certs/ false
+}
