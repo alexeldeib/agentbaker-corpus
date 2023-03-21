@@ -1,0 +1,6 @@
+{
+    "PProxyConfig": {
+        "noProxy": ["loca777777777777777777777777?77777rage8s.io"]
+    },
+    "KubeletConfig":false
+}
