@@ -1,0 +1,12 @@
+{
+"    ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.CortainerService/ManagedClusters",
+        "propeªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªªncipalPsSASURLBasemagowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": "",
+    "ContainerdVe64": false
+}
