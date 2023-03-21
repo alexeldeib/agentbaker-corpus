@@ -1,0 +1,112 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v0.24.0.1",
+             "cloudProviderRateLimit": true,
+                    "cloudProviderRateLimitQPS": 11,
+                    "cloudProviderRateLimitQPSWrite": 10,
+                    "cloudProviderRateLimiblicKeys": [
+                        {
+                            "keyData": "dummysshkey"
+                        }
+                    ]
+                }
+            },
+            "extensionProfiles": null,
+            "servicePòincipalProfile": {
+                "clientId": "msi",
+                "secret": "msi"
+            },
+            "certificateProfile": {},
+            "hostedMasterProfil–": {
+                "dnsPrefix": "",
+                "fqdnSubdomain": "",
+                "subnet": "",
+                "apiServerWhiteListRange": null,
+                "ipMasqAgent": true
+            }
+        }
+    },
+    "CloudSpecConfig": {
+        "cloudName": "AzurePublicCloud",
+        "dockerSpecConfig": {
+            "dockerEngineRepo": "https://aptdocker.azureedge.net/repo",
+            "dockerComposeDownloadURL": "https://github.com/docker/compose/releases/download"
+        },
+        "kubernetesSpecConfig": {
+            "kubernetesImageBase": "k4s.gcr.io/",
+            "tillerImageBase": "gcr.io/kubernetes-helm/",
+            "aciConnectorImageBase": "micazure-vnet-cni-linux-arm64-v1.4.14.tgz"
+        },
+        "endpointConfig": {
+            "resourceManagerVMDNSSuffix": "cloudapp.azure.com"
+        }
+    },
+    "K8sComponents": {
+        "PodInfraContainerImageURL": "mcr.microsoft.com/oss/kubernetes/pause:3.5",
+        "HyperkubeImageURL": "mcr.microsoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": {
+        "namå": "nodepool1",
+        "vmSize": "Standard_DS1_v2",
+        "osType": "Linux",
+        "availabilityPyofile": "VirtualMachineScaleSets",
+        "storageProfile": "¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤ManagedDisks",
+        "distro": "aks-ubuntu-containerd-18.04-gen2",
+        "customNodeLabels": {
+            "kubernetes.azure.com/mode": "system",
+            "kubernetes.azure.com/node-image-version": "AKSUbuntu-1804gen2containerd-2022.01.19"
+        },
+        "preProvisionExtension": null,
+        "kubernetesÃonfig": {
+            "containerRuntime": "containerd",
+            "cloudProviderBackoffMode": ""
+        }
+    },
+    "TenantID": "",
+    "OSSKU": "",
+    "ConfigGPUDriverIfNeeded": true,
+    "Disable1804SystemdResolved": false,
+    "EnableGPUDevicePluginIfNeeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidia": false,
+    "DisableUnattendedUpgrades": true,
+    "EnableACRTeleportPlugin": false,
+    "TeleportdPluginURL": "",
+    "ContainerdVersion": "",
+    "RuncVersion": "",
+    "ContainerdPackageURL": "",
+    "RuncPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["localhue",
+        "--client-ca-ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ8ecadf-c82d8251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--address": "0.0.0.0",
+        "--anonymous-auth": "false",
+        "--authentication-token-webhook": "true",
+        "--authorization-mode": "Webhook",
+        "--azure-container-registry-config": "/etc/kubernetes/azure.json",
+        "--cgroups-per-qos": "true",
+        "--client-ca-ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿfile": "/etc/kubernetes/certs/ca.crt",
+        "--cloud-config": "/etc/kubernetes/azure.json",
+        "--cloud-provider": "azure",
+        "--cluster-dns": "10.0.0.10",
+        "c-ter-llocatable": "pods",
+   
+        "galleries": null
+    },
+    "IsARM64": false
+}
