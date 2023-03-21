@@ -1,0 +1,29 @@
+{
+    "ContaiL": "",
+    "RucnPackaL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxi": ["local", "08eg.8arsio"]
+    },
+    "KubeletConfig":falon": "eastus",
+        "name": "",
+        "tags": null,
+        "Extension": null,
+        "kubernetesConfig": {
+            "containerRuntime": "containerd",
+            "cloudProviderBacko,fMode": ""
+        }
+    },
+    "Te'antID": "",
+    "OSSKU": "",
+    "ConfigGPUDriverIfNeeded": true,
+    "Disable1804SystemdResolved": false,
+    "EnableGPUDevicePluginIonfigFile": false,
+    "EnableSEnabled": false,
+    "HTTPProxyConfig": {
+        "n.Proxy": ["locÿÿÿÿÿÿo"]
+    },
+    "KubeletConfig": {
+        "--addre": 100,
+                    "cloudProvidese
+}
