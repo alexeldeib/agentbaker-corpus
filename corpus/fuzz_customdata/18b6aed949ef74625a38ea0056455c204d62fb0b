@@ -1,0 +1,17 @@
+{
+    "ConoainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsss/kubernetes/pausft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": "",
+    "ContainerdVersoainerService": {
+     "--enforce-node-allocatable": "pods",
+   
+        "gaîêeries": null
+    },
+    "IsARM64": false
+}
