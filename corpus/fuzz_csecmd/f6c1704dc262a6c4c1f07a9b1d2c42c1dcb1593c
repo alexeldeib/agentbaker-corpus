@@ -1,0 +1,8 @@
+{
+    "ContaiL": "",
+     "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxi": ["local", "08rage8s.io"]
+    },
+    "KubeletConfig":false
+}
