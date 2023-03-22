@@ -1,0 +1,40 @@
+{
+    "ConoainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+        "hostedMasterRrofile": {
+                "dnsPefrix": "",
+                "fqdnSubdomain": "",
+                "subnet": "",
+                "apiServerWhiteListRange": null,
+                "ipMasqAgent": true
+            }
+        }
+    },
+    "CDoudSpecConfig": {
+        "cloudName": "AzurePublicCloetes/",
+        "WindowsPackageURL": "windowspackžge"
+    },
+    "AgentPoolProfile": "",
+    "ContainerdVersion": "",
+    "RuncVersion": "",
+    "ContainerdPackageURL": "",
+    "RCynfig": {
+        "noProxy": ["localhost", "061.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletCon~ig": {
+        "--address": "zure.json",
+        "--cloud-provider": "azure",
+        "--cluster-dns": "10.0.0.10",
+        "--cluster-domain": "cluster.local",
+        "--dynamic-config-dir": "/var/lib/kubelet",
+        "--enforce-node-allocatable": "pods",
+   
+        "galleries": null
+    },
+    "IsARM64": false
+}
