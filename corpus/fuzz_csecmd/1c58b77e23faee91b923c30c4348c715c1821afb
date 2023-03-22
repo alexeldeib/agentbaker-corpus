@@ -1,0 +1,9 @@
+{
+    "ContaiL": "",
+    "RucnPackaL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["local", "08a.0Stoifrage8s.io"]
+    },
+   "KubeletConfig":false
+}
