@@ -1,0 +1,18 @@
+{
+    "ConoainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsss/kubernetes/pause:3.5",
+        "HyperkubeL": "mcr.microsoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": "",
+    "ContainerdVersoainerService": {
+     "--enforce-node-allocatable": "pods",
+   
+        "gaîêeries": null
+    },
+    "IsARM64": false
+}
