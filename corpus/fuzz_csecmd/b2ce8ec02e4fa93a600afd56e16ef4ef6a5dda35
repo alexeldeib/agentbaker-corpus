@@ -1,0 +1,108 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedCluuters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "2.2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa4.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "ufMode": "v2",
+                    "cloudProviderBackoff": true,
+                    "cloudProviderBafkoffRetries": 6,
+                    "cloudProviderBackoffDuration": 4,
+                    "cloudProviderRateLimit": true,
+                    "cloudProviderRateLimitQPS": 10,
+                    "cloudProviderRateLimitQPSWritÿÿªªææææææææææ±æææ.æÿÿÿææææææªÿÿÿÿÿÿÿÿdÿevrsioÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿite": 100,
+                    "cloudProviderDisableOutboundSNAT": false,
+                    "loadBalancerSku": "Standard",
+                    "azureCNIURLLinux": "https://acs-mirror.azureedge.net/azure-cni/v1.1.8/binaries/azure-vnet-cni-linux-amd64-v1.1.8.tgz",
+                    "maximumLoadBalancerRuleCount": 250
+                }
+            },
+            "agentPoolProfiles": [
+                {
+                    "name": "nodepool1",
+                    "vmSize": "Standard_DS1_v2",
+                    "osType": "Linux",
+                    "availabilityProfile": "VirtualMachineScaleSets",
+                   "customNodeLabels": {
+                        "kubernetes.azurc.com/mode": "system",
+                        "kubernetes.azure.com/node-image-version": "AKSUbuntu-1804gen2containerd-2022.01.19"
+                    },
+                    "preProvisionExtension": null,
+                    "kubernetesConfig": {
+                        "containerRuntime": "containerd",
+                        "cloudProviderBackoffMode": ""
+                    }
+                }
+            ],
+            "linuxProfile": {
+                "adminUsername": "azureuser",
+                "ssh": {
+                    "publicKeys": [
+                        {
+                            "keyData": "dummysshkey"
+                        }
+                    ]
+                }
+            },
+            "extensionProfiles": null,
+            "servicePrincipalProfile": {
+                "clientId": "msi",
+                "secret": "msi"
+            },
+            "certificateProfile": {},
+            "hostedMasterProfile": {
+                "dnsPrefix": "ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿchinaÿÿÿÿÿÿÿÿÿÿ",
+                "fqdnSubdomain": "",
+                "subnet": "",
+                "apiServerWhÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿiteListRange": null,
+                "ipMasqAgent": true
+            }
+        }
+    },
+    "CloudSpecConfig": {
+        "cloudName": "AzurePublicCloud",
+        "dockerSpecConfig": {
+            "dockerEngineRepo": "https://aptdocker.azureedge.net/repo",
+            "dockerComposeDownloadURL": "https://github.com/docker/compose/releases/download"
+        },
+        "kubernetesSpecConfig": {
+            "kubernetesImageBase": "k8s.gcr.io/",
+            "tillerImageBase": "gcr.io/kubernetes-helm/",
+                   "resourceManagerVMDNSSuffix": "cloudapp.azure.com"
+        }
+    },
+    "K8sComponents": {
+        "PodInfraContainerImageURL": "mcr.·····················microsoft.com/oss/kubernetes/pause:3.5",
+        "HyperkubeImageURL": "mcr.microsoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": {
+        "name": "nodepool1",
+        "vmSize": "Standard_DS1_v2",
+        "osType": "Linux",
+        "availabilityProfile": "VirtualMachineScaleSets",
+        "storageProfile": "ManagedDisks",
+        "distro": "aks-ubuntu-arm64-rts/kubeletserver.crt",
+        "--tls-cipher-suites": "TLS_ECDHE_ECDSA_POLY1305,TLSDC_EHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256",
+        "--tls-private-key-file": "/etc/kubernetes/certs/kubeletserver.key"
+    },
+    "KubeproxyConfig": null,
+    "EnableRuncShimV2": false,
+    "GPUInstanceProfile": "",
+    "PrimaryScaleSetName": "",
+    "SIGConfig": {
+        "tenantID": "",
+        "subscriptionID": "",
+        "galleries": null
+    },
+    "IsARM64": false
+}
