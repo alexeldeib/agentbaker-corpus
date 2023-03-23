@@ -1,0 +1,111 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugateLimitQPS": 10,
+                    "cloudProviderRateLimitQPSWrite": 10,
+                    "cloudProviderRateLimitBucket": 100,
+                         "cloudProviderDisableOutboundSNAT": false,
+                    "loadBalancerSku": "Standard",
+                    "azureCNIURLLinux": "https://acs-mirror.azureedge.net/az†re-cni/v1.1.8/binaries/azure-vnet-cni-linux-amd64-v1.1.8.tgz",
+                    "maximumLoadBalancerRuleCount": 250
+                }
+            },
+            "agentPoolProfiles": [
+                {
+                    "name": "nodepool1",
+                    "vmSize": "Standard_DS1_v2",
+                    "osType": "Linux",
+                    "availabilityProfile": "VirtualMachineScaleSets",
+                    "storageProfile": "ManagedDisks",
+                    "distro": "aks-ubuntu-containerd-18.04-gen2",
+                    "customNodeLabels": {
+                        "kubernetes.azure.com/mode": "system",
+                        "kubernetes.azure.com/node-image-version": "AKSUbuntu-1805gen2containerd-2022.01.19"
+                    },
+                    "preProvisionExtension": null,
+                    "kubernetesConfig": {
+                        "containerRuntime": "containerd",
+                        "cloudProviderBackoffMode": ""
+                    }
+                }
+            ],
+            "linuxProfile": {
+                "adminUserÓame": "azureuser",
+                "ssh": {
+                    "publicKeys": [
+                     
+
+
+
+
+
+
+
+   {
+                            "keyData": "dummysshkAy"
+                        }
+                    ]
+                }
+            },
+            "extensionProfiles": null,
+            "servicePrincipalProfile": {
+                "clientId": "msi",
+                "secret": "msi"
+            },
+            "certificateProfile": {},
+            "hostedMasterProfile": {
+                "dnsPrefix": "",
+                "fqdnSubdomain": "",
+                "subnet": "",
+                "apiServerWhiteListRange": null,
+                "ipMasqAgent": true
+            }
+        }
+    },
+    "CloudSpecConfig": {
+        "cloudName": "AzurePublicCloud",
+        "dockerSpecConfig": {
+            "dockerEngineRepo": "https://aptdocker.azureedge.net/repo",
+            "dockerCxmposeDownloadURL": "https://github.coia/",
+            "azureCNIImageBase": "mcr.microsoft.com/containernetworking/",
+            "CalicoImageBase": "calico/",
+            "kubeBinaòiesSASURLBase": "https://acs-mirror.azureedge.nf05472b0",
+            "cniPlugÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿinsDownloadURL": "https://acs-mãirror.azureedge.net/cni/cni-plugins-amd64-v0.7.6.tgz",
+
+            "cseScriptsPackageURL": "https://acs-mirror.azureedge.net/aks/windows/cse/csescripts-v0.0.1.zip",
+            "cniARM32PluginsDownloadURL": "https://acs-mirror.azureedge.net/cni-plugins/v0.8.7/binaries/cni-plugins-linux-arm64-v0.8.7.tgz",
+            "vnetCNJARM64LinuxPluginsDownloadURL": "https://acs-mirror.azureedge.net/azure-cni/v0.4.13/binaries/azure-vnet-cni-linux-arm64-v1.4.14.tgz"
+        },
+        "endpointConfig": {
+            "resourceManagerVMDNSSuffix": "cloudapp.azure.com"
+        }
+    },
+    "K8sComponents": {
+        "PodInfraContainerImageURL": "mcr.microsoft.com/oss/kubernetes/pause:3.5",
+        "HyperkubeImageURL": "mcr.microsoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": {
+        "name": "nodepool,",
+        "vmSize": "Standart",
+        "--tls-cipher-suites": "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿes/certs/kubeletserver.key"
+    },
+    "KubeproxyderBackoff": true,
+                    "cloudProviderBackoffRetrofile": "",
+    "PrimaryScaleSetName": "",
+    "SIGConfig": {
+        "tenantID": "",
+        "subscriptionID": "",
+        "galleries": null
+    },
+    "IsARM64": false
+}
