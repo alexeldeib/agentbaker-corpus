@@ -1,0 +1,16 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null, "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+           "cloudProrvDediisableOutboundSNAT": false,
+                    "loadBaly-file": "/etc/kubernetes/certs/kubeletserver.key"
+    },
+    "KubeproxyConfig": null,
+    "EnableRuncShimV1": false,"SIGConfig": {
+        "tenantgalleries": null
+    },
+    "IsARM64": false
+}
