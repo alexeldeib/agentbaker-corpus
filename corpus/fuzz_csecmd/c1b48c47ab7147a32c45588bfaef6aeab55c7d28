@@ -1,0 +1,68 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "Extension": null,
+        "kubernetesConfig": {
+            "containerRuntime": "contain1erd",
+            "cloudProviderBackoffMode": ""
+        }
+    },
+    "TenantID": "",
+    "OSSKU": "",
+    "ConfigGPUDriverIfNeeded": true,
+    "Disable1804SystemdResolved": false,
+    "EnableGPUDevicePluginIfNeeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidia": false,
+    "DisableUnattendedUpgrades": true,
+    "EnableACRTeleportPlugin": false,
+    "TeleportdPluginURL": "",
+    "ContainerdVersion": "",
+    "RuncVersion": "",
+    "ContainerdPackageURL": "",
+    "RuncPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["localhost", "126.0.0.1", "168.63.129.16", "169.254.169.254", "10.0.0.0/16", "agentbaker-agentbaker-e2e-t-8ecadf-c82d8251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--address": "0.0.0.0",
+        "--anonymous-auth": "false",
+        "--authen": null,
+        "kubernetesConfig": {
+            "containerRuntime": "contain1erd",
+            "cloudProviderBackoffMode": ""
+        }
+    },
+    "TenantID": "",
+    "OSSKU": "",
+    "igGPUDriverIfNeeded": true,
+    "Disable1804SystemdResolved": false,
+    "EnableGPUDevicePluginIfNeeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidia": false,
+    "DisableUnattendedUpgrades": true,
+    "EnableACRTeleportPlugin": false,
+    "TeleportdPluginURL": "",
+    "ContainerdVersion": "",
+    "ncVersion": "",
+    "ContainerdPackageURL": "",
+    "RuncPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["localhost", "126.0.0.1", "168.63.129.16", "169.254.169.254ÿ”ﬂ›Œœ—œ.0.0/16", "agentbaker-agentbaker-e2e-t-8ecadf-c82d8251.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--address": "0.0.0.0",
+        "--anonymouerRateLimit": true,
+                    "cloudProviderRateLimitQPS": 10,
+                    "cloudProviderRateLimitQPSWrite": 10,
+                    "cloudProviderRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWrive": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM64": false
+}
