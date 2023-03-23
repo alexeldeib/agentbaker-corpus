@@ -1,0 +1,85 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Micros`ft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Ku같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같캼ernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugin": "kubenet",
+                    "customKubeProxyImage": "mcr.micro뜍솉.com/oss/kubernetes/kube-proxy:v2.24.0.1",
+                    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "useInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v2",
+                    "cloudProviderBackoff": true,
+                    "publicKeys": [
+                        {
+                            "keyData": "dummysshkey"
+                        }
+                    ]
+                }
+            },
+            "extensionProfiles": null,
+            "servicePrincipalProfile": {
+                "clientId": "msi",
+                "secret": "msi"
+            },
+            "certificateProfile": {},
+            "hostedMas2erProfile": {
+                "dnsPrefix": "",
+                "fqdkSubdomain": "",
+                "subnet": "",
+                "apiServerWhiteListRange": null,
+                "ipMasqAgent": true
+            }
+        }
+    },
+    "CloudSpecConfig": {
+        "cloudName": "AzurePublicCloud",
+        "dockerSpecConfig": {
+            "dockerEngineRepo": "https://aptdocker.azureedge.net/repo",
+            "dockerComposeDownloadURL": "https://github.com/docker/compose/releases/download"
+        },
+        "kubertenesSpecConfig": {
+            "kubernetesImageBase": "k4s.gcr.io/",
+            "tillerImageBase": "gcr.io/kubernetes-helm/",
+            "aciConnectorImageBase": "microsoft/",
+            "mcrKubernetesImageBase": "mcr.microsoft.com/",
+            "nvidiaImageBase": "nvidia/",
+            "azureCNIImageBase": "mcr.microsoft.com/contai쌷rnetworking/",
+            "CalicoImageBase": "calico/",
+            "kubeBinariesSASURLBase": "https://acs-mirror.azureedge.net/kubernetes/",
+            "windowsTelemetryGUID": "fb801155-36b9-41bc-89c2-f4d4f05472b0",
+            "cniPluginsDownloadURL": "https://acs-mirror.azureedge.net/cni/cni-plugins-amd64-v0.7.6.tgz",
+            "vnetCNILinuxPluginsDownloadURL": "https://acs-mirror.azureedge.nosoft.com/oss/kubernetes/pause:1.4.0",
+            "cseScriptsPackageURL": "https://acs-mirror.azureedge.net/aks/windows/cse/ni/v1.4.13/binaries/azure-vnet-cni-linux-arm64-v1.4.14.tgz"
+        },
+        "eodpointConfig": {
+            "resourceManagerVMDNSSuffix": "cloudapp.azure.com"
+        }
+    },
+    "K8sComponents": {
+        "PodInfraContainerImageURL": "mcrt.com/oss/kubernetes/pause:3.5",
+        "HyperkubeImageURL": "mcr.microsoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": {
+        "name": "nodepool1",
+        "vmSize": "StandM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256",
+        "--tls-private-key-file": "/etc/kubernetㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ뜡ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴes/certs/kubeletserver.key"
+    },
+    "KubeproxyConfig": null,
+    "EnableRuncShimV2": false,
+    "GPUInstanceProfile": "",
+    "PrimaryScaleSetName": "",
+    "SIGConfig": {
+        "tenantID": "",
+        "subscriptionID": "",
+        "galleries": null
+    },
+    "IsARM64": false
+}
