@@ -1,0 +1,13 @@
+{
+    "ContaiL": "",
+    "RucnPackaL": "",
+    "FÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["local", "08aks-ubuntu-16.04.0.0.0Stoifrage8s.io"]
+    },
+    "Kubelÿÿÿÿÿÿÿ(ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["local", "0o"]
+    },
+    "KubeletConfig":false
+}
