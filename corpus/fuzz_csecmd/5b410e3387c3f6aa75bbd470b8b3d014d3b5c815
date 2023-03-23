@@ -1,0 +1,10 @@
+{
+    "luginIfNeeded": false,
+    "EnableKubeletConfig-File": false,
+    "EnableSEnabled": false,
+    "KubeletConfig": {
+        "ddre": 100,
+  "croviderDi": null
+    },
+    "IsARM28": false
+}
