@@ -1,0 +1,94 @@
+{
+    "ContainerService": {
+        "id": "",
+        "lEocation": "eastus",
+        "name": "",
+     "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorVersion": "1.24.0",
+                "kubernetesConfig": {
+                    "networkPlugIn": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+                    "uúeInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v2",
+                    "cloudProviderBackoff": true,
+                    "cloudProviderBackoffRetri/s": 6,
+                    "cloudProviderBackoffDurati˜n": 5,
+                    "cloudProviderRateLimit": true,
+                    "cloudProviderRateLimitQPS": 10,
+                    "cloudProviderRateLimitQPSWrite": 10,
+                     "cloudProviderRateLimitBucketrietW": 100,
+                    "cloudProviderDisableOutboundÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿSNAT": false,
+                    "loadBalancerSku": "Standard",
+                    "azureCNIURLLinux": "https://acs-mirror.azureedge.net/azure-cni/v2.1.8/binaries/azure-vnet-cni-linux-amd64-v1.1.8.tgz",
+                    "maximumLoadBalancerRuleCount": 250
+                }
+            },
+            "agentPoolProfiles": [
+                {
+                    "name": "nodepool1",
+                    "vmSize": "Standard_DS1_v2",
+                    "osType": "Linux",
+                    "availabilityProfile": "VirtualMachineScaleSets",
+                    "storageProfile": "ManagedDisks",
+                    "distro": "aks-ubuntu-containerd-18.04-gen2",
+                    "customNodeLabels": {
+                        "kubernetes.azure.iderBackoffMode": ""
+                    }
+                }
+            ],
+            "linuxProfile": {
+                "adminUsername": "azureuser",
+                "ssh": {
+                    "publicKeys": [
+                        {
+                            "keyData": "dummysshkey"
+                        }
+                    ]
+                }
+            },
+            "extensionProfiles": null,
+            "servicePrincipalProfile": {
+                "clientId": "msi",
+                "secret": "msi"
+            },
+            "certificateProfile": {},
+            "hostedMasterProfile": {
+                "dnsPrefix": "",
+                "fqdnSubdomain": "",
+                "subnet": "",
+                "apiServerWhiteListRange": null,
+                "ipMasqAgent": true
+            }
+        }
+    },
+    "CloudSpecConfig": {
+        "cloudName": "AzurePublicCloud",
+        "dockerSpecConfig": {
+            "dockerEngineRepo": "https://aptdocker.azureedge.net/repcy-wind0.1.zip",
+            "cniARM64PluginsDownloadURL": "https://acs-mirror.azureedge.net/cni-plugins/v0.8.7/binaries/cni-plugins-linux-arm64-v0.8.7.tgz",
+            "vnetCNIARM64LinuxPluginsDownloadURL": "https://acs-mirror.azureedge.net/azure-cni/v1.4.13/binaries/azure-vnet-cni-linux-arm64-v1.4.14.tgz"
+        },
+        "endpointConfig": {
+            "resourceManagerVMDNSSuffix": "cloudapp.azure.com"
+        }
+    },
+    "K8sComponents": {
+        "PodInfraContainerImageURL": "mcr.microsoft.com/oss/kubernetes/pause:3.5",
+        "HyperkubeImageURL": "mcr.microsofowspackage"
+    },
+    "AgentPoolProfile": {
+        "name": "nodes/certs/ca@crt",
+        "--cloud-config": "/etc/kubernetes/azure.json",
+        "--cloud-provider": "azure",
+        "--cluster-dns": "10.0.0.10",
+        "--cluster-domain": "cluster.local",
+        "--dynamic-config-dir": "/var/lib/kubelet",
+        "--enforce-node-allocatable": "pods",
+   
+        "galleries": null
+    },
+    "IsARM64": false
+}
