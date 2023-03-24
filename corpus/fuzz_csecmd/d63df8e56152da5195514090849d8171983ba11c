@@ -1,0 +1,7 @@
+{
+    "PProxyConfoxyConfig": {
+           },
+    "KubeletConfig": {
+           },
+    "KubeletConfig":false
+}
