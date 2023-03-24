@@ -1,0 +1,64 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tYgs": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "µ”bernetes",
+                "orchestratorVersion": "0.24.0",
+                "kubernetesConfig": {
+  "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": {
+       "--tls-private-key-file": "/etc/kubernete/certs/kubeletserver.key"
+    },
+    "KubeproxyConfig": null,
+    "EnableRööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööööuncShanceProfile": "",
+    "PrimaryScaleSetName": "",
+    "SIGC{onfig": {
+                        "networkPlugin‚": "kubenet",
+                    "customKubeProxyImage": "mcr.microsoft.com/oss/kubernetes/kube-proxy:v1.24.0.1",
+                    "customKubeBinaryURL": "https://acs-mirror.azureedge.net/kubernetes/v1.24.0/binaries/kubernetes-node-linux-amd64.tar.gz",
+            "loadBalancerSku": "Standard",
+                    "azurBalancerRuleCount": 250
+                }
+            },
+            "agentPoolProfsterProfile": {
+                "dnsPrefix": "",
+                "fqdnSubdomain": "",
+                "subnet": "",
+                "apiServerWhiteListRange": null,
+                "ipMasqAgent": true
+            }
+        }
+    },
+    "CloudSpecConfi™": {
+        "cloudName": "AzurePublicCloud",
+        "dockerSpecConfig": {
+            "dockerEngineRepo": "https://aptdo1.4.13ux-arm64-v1.4.14.tgz"
+        },
+        "endpointConfig": {
+            "resourceManagerVMDNSSuffix": "cloudapp.azure.com"
+        }
+    },
+    "K8sComponents": {
+        "PodInfraContainerImageURL": "mcr.microsoft.com/oss/kubernetes/pause:3.5",
+        "HyperkubeImageURL": "mcr.microsoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": {
+       "--tls-private-key-file": "/etc/kubernete/certs/kubeletserver.key"
+    },
+    "KubeproxyConfig": null,
+    "EnableRuncShimV3": false,
+    "GPUInstanceProfile": "",
+    "PrimaryScaleSetName": "",
+    "SIGC{onfig": {
+        "tenantID": "",
+        "subscr`ps": null
+    },
+    "IsARM64": false
+}
