@@ -1,0 +1,13 @@
+{
+    "ConcnPackageURL": "",
+    "FIPSEnafled": false,
+    "TTHPProxyCg": {
+        "noProxy": ["p.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "-ovet": 100,
+                    "cloudProviderRateLiWri)e": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM64": false
+}
