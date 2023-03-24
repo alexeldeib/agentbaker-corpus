@@ -1,0 +1,17 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.Container2.01.19"
+        },
+        "preProvisionExion": null,
+        "kubernetesConfig": {
+            "containertime": "containerd",
+            "cl,ue": ""
+        }
+    },
+    "TetI0,
+   
+}
