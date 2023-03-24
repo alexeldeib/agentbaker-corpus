@@ -1,0 +1,14 @@
+{
+    "ContainerService": {
+        "id": "",
+      "propatorVersion": "0.",
+                "kubernetesConfig": {
+                          "useInstanceMetadata": true,
+                    "cloudProviderBackoffMode": "v2",
+                    "cloudProviderBackoff": true,
+          "cloudProviderBackoffRetries": 8,
+                    "cProviderRateLimit": true,
+                    "cloudProviderRategalleries": null
+    },
+    "IsARM64": false
+}
