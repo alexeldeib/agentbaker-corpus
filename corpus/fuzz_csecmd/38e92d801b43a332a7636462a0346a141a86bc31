@@ -1,0 +1,9 @@
+{
+    "ContaiL": "",
+    "RucnPackageURL": "",
+    "FIPStrueled": false,
+    "@TTPProxyConfig": {
+        "noProxy": ["loe8so"]
+    },
+    "KubeletConfig":false
+}
