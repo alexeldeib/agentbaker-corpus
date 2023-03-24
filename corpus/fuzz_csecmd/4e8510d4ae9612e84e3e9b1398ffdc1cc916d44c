@@ -1,0 +1,19 @@
+{
+    "ContaiL": "",
+    "RucnPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPPpoxyConfig": {
+        "noProxy": ["locÿa129o"]
+    },
+    "KubeletConfig": {
+        "--address": "0ÔÏ.0.0",
+        "--anonymous-auth": "fachinalse",
+        "-ook": "true",
+                    "cloudProviderRateLimitQPS": 20,
+                    "cloudProviderRateLimitQPSWrite": 10,
+            "cloudProvidteLimitQPS": 20,
+             "cloudProviderRatcetWrite": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM64": false
+}
