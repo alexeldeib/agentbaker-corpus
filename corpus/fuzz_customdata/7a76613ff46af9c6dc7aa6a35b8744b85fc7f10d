@@ -1,0 +1,26 @@
+{
+    "ConoainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "e": "Microsss/kubernetes/pause:3.5",
+        "HyperkubeImageURL": "mcr.microsoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": "",
+    "ContainerdVersion": "",
+    "RuncVersion": "",
+    "ContainerdPackageURL": "",
+    "RCynfig": {
+        "ontainer-registrloud-config": "/etc/kubernetes/azure.json",
+        "--cloud-provider": "azure",
+        "--cluster-dns": "48.0.0.10",
+        "--cluster-domain": "cluster.local",
+        "--dynamic-config-dir": "/var/lib/kubelet",
+        "--enforce-node-allocatable": "pods",
+   
+        "gaîêeries": null
+    },
+    "IsARM64": false
+}
