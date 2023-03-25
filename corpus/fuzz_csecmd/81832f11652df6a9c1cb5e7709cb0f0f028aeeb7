@@ -1,0 +1,9 @@
+{
+    "ContaiL": "",
+    "RucnPackaL": "",
+    "FIPSEnagled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["loc0Stoif"]
+    },
+    "KubeletConfig":false
+}
