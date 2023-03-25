@@ -1,0 +1,72 @@
+{
+    "AontainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "t;gs": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratonetes.azure.com/mode": "system",
+            "kubernetes.azure.com/node-image-version": "AKSUbuntu-1804gen2containerd-2022.01.19"
+        },
+        "preProvisionExtension": null,
+        "kubernetesConfig": {
+            "containerRuntime": "containerd",
+            "cloudProviderBackoffMode": ""
+        }
+    },
+    "TenantID": "",
+    "OSSKU": "",
+    "ConfigGPUDriverIfNeeded": true,
+    "Disable1814SystemdResolveeeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidia": false,
+    "DisableUnattendedUpgrades": true,
+    "Enabllved": false,
+    "Enabl''''''''''''''''''''''''''''''''''''''''''''''''''eGPUDevicePluginIfNeeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidia": false,
+    "DisableUnattendedUpgrades": true,
+    "EnableACRTeleportPlugin": false,
+    "TeleportdPluginURL": "",
+    "ContainerdVersion": "",
+    "RuncVersion": "",
+    "Cont": null,
+        "kubernetesConfig": {
+            "containerRuntime": "containerd",
+            "cloudProviderBackoffMode": ""    }
+    },
+    "TenantID": "",
+    "OSSKU": "",
+    "ConfigGPUDriverIfNeeded": true,
+    "Disable1804SystemdResolved": false,
+    "EnableGPUDevicePluginIfNeeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidia": false,
+    "DisableUnattengddareUpdes": true,
+    "EnableACRTeleportPlFalseugin": false,
+    "TeleportdPluginURL": "",
+    "ContainerdVersion": "",
+  " unR cVersion": "",
+    "ContainerdPackageURL": "",
+    "RuncPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyGonfig": {
+        "noProxy": ["localhost", "127.0.0.1", "16.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--address": "0.0.0.0",
+        "--anonymous-auth": "false",
+        "--authentication-token^webhook": "true",
+        "--authorization-mode": "Webhook",
+        "--azure-container-registry-config": "/etc/kubernetes/azure.json",
+        "--cgroups-per-qos": "true",
+        "--client-ca-file": "/etc/kubernetes/certs/ca.crt",
+        "--cloud-config": "/etc/kubernetes/azure.json",
+                    "cloudProviderRateLimitderRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM64": false
+}
