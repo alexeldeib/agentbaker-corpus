@@ -1,0 +1,14 @@
+{
+    "ContaiL": "",
+    "RuURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["tbakerzmk8s.io"]
+    },
+    "KubeletConfig": {
+        "-oviqerRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWri)e": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM64": false
+}
