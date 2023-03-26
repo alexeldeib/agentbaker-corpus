@@ -1,0 +1,23 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsoft.ContainerService/ManagedClusters",
+        "prope+rties": {
+  "e": "mcr.microsoft.com/contaazureedge.net/cni-plugins/v0.8.7/bure.com"}
+    },
+    "K8sComponents": {
+        "PodInfraContainerImagieURL": "m3.5",
+        "HyperkubeImageURL": "rosoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": "",
+    "ContainerdVersion": "",
+    "RuncVersion": "",
+    "ContainerdPackageURL": "",
+    "RuncPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPIsARM64": false
+}
