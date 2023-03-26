@@ -1,0 +1,47 @@
+{
+    "ConoainerService": {
+        "id": "",
+        "location": "easackage"
+    },
+    "AgentPoolProfile": "",
+    "ContainerdVersoainerService": {
+       "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsss/kubtus",
+        "name": "",
+      "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": "",
+    "ContainerdVersoainerService": {
+       "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsss/kubernetom/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": "",
+    "ContainerdVersoainerServicinerdVersoainerService": {
+       "id": "",
+        "location": "eastus",
+     "tags": null,
+        "type": "Microsss/kubernetes/paus.e:3.5",
+        "HyperkubeImageURL": "mcr.microsoft.com/oss/kubernetes/",
+        "WindowsPackageURL": "windowspackage"
+    },
+    "AgentPoolProfile": "",
+    "ContainerdVersoainerSee": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "type": "Microsss/",
+        "WindowsPackageURL": "wr/lib/kubelet",
+        "--enforce-node-allocatable": "pods",
+   
+        "gaîêeries": null
+    },
+    "IsARM64": false
+}
