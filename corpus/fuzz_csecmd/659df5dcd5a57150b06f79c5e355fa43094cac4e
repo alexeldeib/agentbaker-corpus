@@ -1,0 +1,42 @@
+{
+    "ContainerService": {
+        "id": "",
+        "location": "eastus",
+        "name": "",
+        "tags": null,
+        "Extension": null,
+        "kubernetesConfig": {
+            "containerRuntime": "containerd",
+            "cloudProviderBackoffMode": ""
+        }
+    },
+    "TenantID": "",
+    "OSSKU": "",
+    "ConfigGPUDriverIfNeeded": true,
+    "Disable1804SystemdResolved": false,
+    "EnableGPUDevicePluginIfNeeded": false,
+    "EnableKubeletConfigFile": false,
+    "EnableNvidia": false,
+    "DisableUnattendedUpgrades": true,
+    "EnableACRTertPlugin": false,
+    "TeleportdPluginURL": "",
+    "ContainerdVersion": "",
+    "RuncVersion": "",
+    "ContainerdPackageURL": "",
+    "RuncPackageURL": "",
+    "FIPSEnabled": false,
+    "HTTPProxyConfig": {
+        "noProxy": ["localhost", "127.0.0.1", "168.63.129.16", "169.254.169.254", "10.0.0.0/16", "agent51.hcp.eastus.azmk8s.io"]
+    },
+    "KubeletConfig": {
+        "--address": "0.0.0.0",
+        "--anonymous-auth": "false",
+        "--authentication-token-webhook": "true",
+        "--authorization-moerRateLimitQPS": 10,
+                    "cloudPiderRateLimitQPSWrite": 10,
+                    "cloudProviderRateLimitBucket": 100,
+                    "cloudProviderRateLimitBucketWrite": 100,
+                    "cloudProviderDi": null
+    },
+    "IsARM64": false
+}
