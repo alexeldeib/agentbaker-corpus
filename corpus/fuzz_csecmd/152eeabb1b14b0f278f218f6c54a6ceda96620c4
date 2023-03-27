@@ -1,0 +1,4 @@
+{
+    "KubeletConfig": { "--addre": 10 },
+    "IsARM28": false
+}
