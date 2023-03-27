@@ -1,0 +1,14 @@
+{
+    "ContainerService": {
+        "i": "",
+        "tags": null, "type": "Microsoft.ContainerService/MagedClusters",
+        "properties": {
+           "cloudProrvDediisableOutboundSNAT": false,
+                    "loadBaly-file": "/etc/kubernetes/certs/kubeletserver.key"
+    },
+    "KubeproxyConfig": null,
+    "EnableRuncShimV1": false,"SIGConfig": {
+        "tenantgalleries": null
+    },
+    "IsARM64": false
+}
