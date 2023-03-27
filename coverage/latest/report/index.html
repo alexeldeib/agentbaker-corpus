@@ -75,7 +75,7 @@
 				
 				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (85.7%)</option>
 				
-				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (53.1%)</option>
+				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (58.4%)</option>
 				
 				<option value="file11">/github/workspace/build-out/src/agentbaker/pkg/agent/variables.go (78.3%)</option>
 				
@@ -5571,46 +5571,6 @@ func addFeatureGateString(featureGates string, key string, value bool) string <s
                 pairs = append(pairs, fmt.Sprintf("%s=%t", k, fgMap[k]))
         }</span>
         <span class="cov8" title="1">return strings.Join(pairs, ",")</span>
-}
-
-// ParseCSEMessage parses the raw CSE output
-func ParseCSEMessage(message string) (*datamodel.CSEStatus, *datamodel.CSEStatusParsingError) <span class="cov0" title="0">{
-        start := strings.Index(message, "[stdout]") + len("[stdout]")
-        end := strings.Index(message, "[stderr]")
-        if end &gt; start </span><span class="cov0" title="0">{
-                return parseLinuxCSEMessage(message, start, end)
-        }</span> else<span class="cov0" title="0"> if strings.Contains(message, "Command execution finished") </span><span class="cov0" title="0">{
-                return parseWindowsCSEMessage(message)
-        }</span>
-        <span class="cov0" title="0">return nil, datamodel.NewError(datamodel.InvalidCSEMessage, message)</span>
-}
-
-func parseLinuxCSEMessage(message string, start int, end int) (*datamodel.CSEStatus, *datamodel.CSEStatusParsingError) <span class="cov0" title="0">{
-        // Linux CSE message example: Enable succeeded: \n[stdout]\n{ \"ExitCode\": \"0\", \"Output\": \"Tue Dec 28" } }\n\n[stderr]\nBootup is not yet finished. Please try again later.
-        var cseStatus datamodel.CSEStatus
-        rawInstanceViewInfo := message[start:end]
-        err := json.Unmarshal([]byte(rawInstanceViewInfo), &amp;cseStatus)
-        if err != nil </span><span class="cov0" title="0">{
-                return nil, datamodel.NewError(datamodel.CSEMessageUnmarshalError, message)
-        }</span>
-        <span class="cov0" title="0">if cseStatus.ExitCode == "" </span><span class="cov0" title="0">{
-                return nil, datamodel.NewError(datamodel.CSEMessageExitCodeEmptyError, message)
-        }</span>
-        <span class="cov0" title="0">return &amp;cseStatus, nil</span>
-}
-
-func parseWindowsCSEMessage(message string) (*datamodel.CSEStatus, *datamodel.CSEStatusParsingError) <span class="cov0" title="0">{
-        // Windows CSE message example: Command execution finished, but failed because it returned a non-zero exit code of: '1'.
-        var cseStatus datamodel.CSEStatus
-        re := regexp.MustCompile(`a non-zero exit code of: '(\d+)'`)
-        match := re.FindStringSubmatch(message)
-        if match != nil </span><span class="cov0" title="0">{
-                cseStatus.ExitCode = match[1]
-        }</span> else<span class="cov0" title="0"> {
-                cseStatus.ExitCode = "0"
-        }</span>
-        <span class="cov0" title="0">cseStatus.Output = message
-        return &amp;cseStatus, nil</span>
 }
 </pre>
 		
