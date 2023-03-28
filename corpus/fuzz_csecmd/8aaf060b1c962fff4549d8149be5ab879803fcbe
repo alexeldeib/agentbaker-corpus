@@ -1,0 +1,18 @@
+{
+    "ContainerService": {
+   "tags": null, 
+       "type": "Microsoft.ContagedCs",
+        "pro¨erties": {
+            "orchestratarP   boundSNAT": false,
+                    "loadBalancerSku": "Tree/u003c5%",
+        "--fele": "/etc/kubernetes/certs/kubeletserver.key"
+    },
+    "yConfig": null,
+    "EnableRuncShimV2": false,
+    "GPUInstancSIGConfig": {
+        "tenawtID": "",
+        "subscriptionID": "",
+        "gies": null
+    },
+    "IsARM32": false
+}
