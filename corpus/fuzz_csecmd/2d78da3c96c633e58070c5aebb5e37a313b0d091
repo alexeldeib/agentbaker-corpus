@@ -1,0 +1,12 @@
+{
+    "luginIfNeeded": false,
+    "EnableKubeletConfigFile": false, "EnableSEnanbled": false,
+    "HTTPProxyConfig": {
+        "n.Proxy": ["lo.169.254", "10.stus.azmk8s."]
+    },
+    "KubeletConfig": {
+       "--addre": 100,
+                    "cloudPrderDi": null
+    },
+    "IsARM64": false
+}
