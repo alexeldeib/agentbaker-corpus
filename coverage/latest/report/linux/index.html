@@ -151,7 +151,8 @@ func InitializeTemplateGenerator() *TemplateGenerator <span class="cov0" title="
 }</span>
 
 // GetNodeBootstrappingPayload get node bootstrapping data
-func (t *TemplateGenerator) GetNodeBootstrappingPayload(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
+// This function only can be called after the validation of the input NodeBootstrappingConfiguration.
+func (t *TemplateGenerator) getNodeBootstrappingPayload(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
         var customData string
         if config.AgentPoolProfile.IsWindows() </span><span class="cov0" title="0">{
                 customData = getCustomDataFromJSON(t.getWindowsNodeCustomDataJSONObject(config))
@@ -164,8 +165,6 @@ func (t *TemplateGenerator) GetNodeBootstrappingPayload(config *datamodel.NodeBo
 // GetLinuxNodeCustomDataJSONObject returns Linux customData JSON object in the form
 // { "customData": "&lt;customData string&gt;" }
 func (t *TemplateGenerator) getLinuxNodeCustomDataJSONObject(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
-        // validate and fix input
-        validateAndSetLinuxNodeBootstrappingConfiguration(config)
         // get parameters
         parameters := getParameters(config, "baker", "1.0")
         // get variable cloudInit
@@ -183,9 +182,6 @@ func (t *TemplateGenerator) getLinuxNodeCustomDataJSONObject(config *datamodel.N
 // GetWindowsNodeCustomDataJSONObject returns Windows customData JSON object in the form
 // { "customData": "&lt;customData string&gt;" }
 func (t *TemplateGenerator) getWindowsNodeCustomDataJSONObject(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
-        // validate and fix input
-        validateAndSetWindowsNodeBootstrappingConfiguration(config)
-
         cs := config.ContainerService
         profile := config.AgentPoolProfile
         // get parameters
@@ -210,7 +206,8 @@ func (t *TemplateGenerator) getWindowsNodeCustomDataJSONObject(config *datamodel
 }
 
 // GetNodeBootstrappingCmd get node bootstrapping cmd
-func (t *TemplateGenerator) GetNodeBootstrappingCmd(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
+// This function only can be called after the validation of the input NodeBootstrappingConfiguration.
+func (t *TemplateGenerator) getNodeBootstrappingCmd(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
         if config.AgentPoolProfile.IsWindows() </span><span class="cov0" title="0">{
                 return t.getWindowsNodeCSECommand(config)
         }</span>
@@ -219,8 +216,6 @@ func (t *TemplateGenerator) GetNodeBootstrappingCmd(config *datamodel.NodeBootst
 
 // getLinuxNodeCSECommand returns Linux node custom script extension execution command
 func (t *TemplateGenerator) getLinuxNodeCSECommand(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
-        // validate and fix input
-        validateAndSetLinuxNodeBootstrappingConfiguration(config)
         // get parameters
         parameters := getParameters(config, "", "")
         // get variable
@@ -242,8 +237,6 @@ func (t *TemplateGenerator) getLinuxNodeCSECommand(config *datamodel.NodeBootstr
 
 // getWindowsNodeCSECommand returns Windows node custom script extension execution command
 func (t *TemplateGenerator) getWindowsNodeCSECommand(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
-        // TODO(ace): linux cleans the input here for CSE now.
-        // should we do the same for windows?
         // get parameters
         parameters := getParameters(config, "", "")
         // get variable
@@ -1169,10 +1162,17 @@ type agentBakerImpl struct{}
 
 func (agentBaker *agentBakerImpl) GetNodeBootstrapping(ctx context.Context,
         config *datamodel.NodeBootstrappingConfiguration) (*datamodel.NodeBootstrapping, error) <span class="cov0" title="0">{
-        templateGenerator := InitializeTemplateGenerator()
+        // validate and fix input before passing config to the template generator.
+        if config.AgentPoolProfile.IsWindows() </span><span class="cov0" title="0">{
+                validateAndSetWindowsNodeBootstrappingConfiguration(config)
+        }</span> else<span class="cov0" title="0"> {
+                validateAndSetLinuxNodeBootstrappingConfiguration(config)
+        }</span>
+
+        <span class="cov0" title="0">templateGenerator := InitializeTemplateGenerator()
         nodeBootstrapping := &amp;datamodel.NodeBootstrapping{
-                CustomData: templateGenerator.GetNodeBootstrappingPayload(config),
-                CSE:        templateGenerator.GetNodeBootstrappingCmd(config),
+                CustomData: templateGenerator.getNodeBootstrappingPayload(config),
+                CSE:        templateGenerator.getNodeBootstrappingCmd(config),
         }
 
         distro := config.AgentPoolProfile.Distro
