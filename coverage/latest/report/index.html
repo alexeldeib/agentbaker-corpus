@@ -67,7 +67,7 @@
 				
 				<option value="file5">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/sig_config.go (12.6%)</option>
 				
-				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (31.1%)</option>
+				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (30.1%)</option>
 				
 				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (5.0%)</option>
 				
@@ -2325,6 +2325,7 @@ import (
         "sync"
 
         "github.com/Azure/go-autorest/autorest/to"
+        "github.com/Masterminds/semver/v3"
 )
 
 // TypeMeta describes an individual API model object.
@@ -3324,10 +3325,11 @@ in Windows nodes.
 func (p *Properties) GetKubeProxyFeatureGatesWindowsArguments() string <span class="cov0" title="0">{
         featureGates := map[string]bool{}
 
-        if p.FeatureFlags.IsFeatureEnabled("EnableIPv6DualStack") </span><span class="cov0" title="0">{
+        if p.FeatureFlags.IsFeatureEnabled(EnableIPv6DualStack) &amp;&amp;
+                p.OrchestratorProfile.VersionSupportsFeatureFlag(EnableIPv6DualStack) </span><span class="cov0" title="0">{
                 featureGates["IPv6DualStack"] = true
         }</span>
-        <span class="cov0" title="0">if p.FeatureFlags.IsFeatureEnabled("EnableWinDSR") </span><span class="cov0" title="0">{
+        <span class="cov0" title="0">if p.FeatureFlags.IsFeatureEnabled(EnableWinDSR) </span><span class="cov0" title="0">{
                 // WinOverlay must be set to false.
                 featureGates["WinDSR"] = true
                 featureGates["WinOverlay"] = false
@@ -3421,6 +3423,36 @@ func (o *OrchestratorProfile) IsNoneCNI() bool <span class="cov0" title="0">{
                 return strings.EqualFold(o.KubernetesConfig.NetworkPlugin, NetworkPluginNone)
         }</span>
         <span class="cov0" title="0">return false</span>
+}
+
+func (o *OrchestratorProfile) VersionSupportsFeatureFlag(flag string) bool <span class="cov0" title="0">{
+        switch flag </span>{
+        case EnableIPv6DualStack:<span class="cov0" title="0">
+                // unversioned will retrun true to maintain backwards compatibility
+                // IPv6DualStack flag was removed in 1.25.0 and is enabled by default
+                // since 1.21. It is supported between 1.15-1.24.
+                // https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates-removed/.
+                return o == nil || o.OrchestratorVersion == "" || o.VersionIs("&gt;= 1.15.0 &lt; 1.25.0")</span>
+        default:<span class="cov0" title="0">
+                return false</span>
+        }
+}
+
+// VersionIs takes a constraint expression to validate
+// the OrchestratorVersion meets this constraint. Examples
+// of expressions are `&gt;= 1.24` or `!= 1.25.4`.
+// More info: https://github.com/Masterminds/semver#checking-version-constraints.
+func (o *OrchestratorProfile) VersionIs(expr string) bool <span class="cov0" title="0">{
+        if o == nil || o.OrchestratorVersion == "" </span><span class="cov0" title="0">{
+                return false
+        }</span>
+
+        <span class="cov0" title="0">version := semver.MustParse(o.OrchestratorVersion)
+        constraint, _ := semver.NewConstraint(expr)
+        if constraint == nil </span><span class="cov0" title="0">{
+                return false
+        }</span>
+        <span class="cov0" title="0">return constraint.Check(version)</span>
 }
 
 // IsCSIProxyEnabled returns true if csi proxy service should be enable for Windows nodes.
@@ -3536,15 +3568,15 @@ func (o *OrchestratorProfile) IsKubernetes() bool <span class="cov8" title="1">{
 func (f *FeatureFlags) IsFeatureEnabled(feature string) bool <span class="cov8" title="1">{
         if f != nil </span><span class="cov0" title="0">{
                 switch feature </span>{
-                case "CSERunInBackground":<span class="cov0" title="0">
+                case CSERunInBackground:<span class="cov0" title="0">
                         return f.EnableCSERunInBackground</span>
-                case "BlockOutboundInternet":<span class="cov0" title="0">
+                case BlockOutboundInternet:<span class="cov0" title="0">
                         return f.BlockOutboundInternet</span>
-                case "EnableIPv6DualStack":<span class="cov0" title="0">
+                case EnableIPv6DualStack:<span class="cov0" title="0">
                         return f.EnableIPv6DualStack</span>
-                case "EnableIPv6Only":<span class="cov0" title="0">
+                case EnableIPv6Only:<span class="cov0" title="0">
                         return f.EnableIPv6Only</span>
-                case "EnableWinDSR":<span class="cov0" title="0">
+                case EnableWinDSR:<span class="cov0" title="0">
                         return f.EnableWinDSR</span>
                 default:<span class="cov0" title="0">
                         return false</span>
