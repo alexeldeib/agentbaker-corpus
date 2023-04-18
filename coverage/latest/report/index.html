@@ -57,7 +57,7 @@
 				
 				<option value="file0">/github/workspace/build-out/src/agentbaker/fuzz/api/main.go (80.0%)</option>
 				
-				<option value="file1">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (52.6%)</option>
+				<option value="file1">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (52.9%)</option>
 				
 				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/bakerapi.go (28.0%)</option>
 				
@@ -392,12 +392,23 @@ func normalizeResourceGroupNameForLabel(resourceGroupName string) string <span c
 func validateAndSetLinuxNodeBootstrappingConfiguration(config *datamodel.NodeBootstrappingConfiguration) <span class="cov8" title="1">{
         // If using kubelet config file, disable DynamicKubeletConfig feature gate and remove dynamic-config-dir
         // we should only allow users to configure from API (20201101 and later)
+        dockerShimFlags := []string{
+                "--cni-bin-dir",
+                "--cni-cache-dir",
+                "--cni-conf-dir",
+                "--docker-endpoint",
+                "--image-pull-progress-deadline",
+                "--network-plugin",
+                "--network-plugin-mtu",
+        }
         profile := config.AgentPoolProfile
         if config.KubeletConfig != nil </span><span class="cov8" title="1">{
                 kubeletFlags := config.KubeletConfig
                 delete(kubeletFlags, "--dynamic-config-dir")
                 delete(kubeletFlags, "--non-masquerade-cidr")
-                if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntime != "" &amp;&amp; profile.KubernetesConfig.ContainerRuntime == "containerd" </span><span class="cov8" title="1">{
+                if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp;
+                        profile.KubernetesConfig.ContainerRuntime != "" &amp;&amp;
+                        profile.KubernetesConfig.ContainerRuntime == "containerd" </span><span class="cov8" title="1">{
                         for _, flag := range dockerShimFlags </span><span class="cov8" title="1">{
                                 delete(kubeletFlags, flag)
                         }</span>
@@ -520,7 +531,8 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         <span class="cov8" title="1">return nil</span>
                 },
                 "ShouldConfigTransparentHugePage": func() bool <span class="cov8" title="1">{
-                        return profile.CustomLinuxOSConfig != nil &amp;&amp; (profile.CustomLinuxOSConfig.TransparentHugePageEnabled != "" || profile.CustomLinuxOSConfig.TransparentHugePageDefrag != "")
+                        return profile.CustomLinuxOSConfig != nil &amp;&amp; (profile.CustomLinuxOSConfig.TransparentHugePageEnabled != "" ||
+                                profile.CustomLinuxOSConfig.TransparentHugePageDefrag != "")
                 }</span>,
                 "GetTransparentHugePageEnabled": func() string <span class="cov8" title="1">{
                         if profile.CustomLinuxOSConfig == nil </span><span class="cov8" title="1">{
@@ -724,16 +736,20 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         <span class="cov0" title="0">return cs.Properties.OrchestratorProfile.KubernetesConfig.RequiresDocker()</span>
                 },
                 "HasDataDir": func() bool <span class="cov8" title="1">{
-                        if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntimeConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntimeConfig[datamodel.ContainerDataDirKey] != "" </span><span class="cov0" title="0">{
+                        if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntimeConfig != nil &amp;&amp;
+                                profile.KubernetesConfig.ContainerRuntimeConfig[datamodel.ContainerDataDirKey] != "" </span><span class="cov0" title="0">{
                                 return true
                         }</span>
                         <span class="cov8" title="1">if profile.KubeletDiskType == datamodel.TempDisk </span><span class="cov0" title="0">{
                                 return true
                         }</span>
-                        <span class="cov8" title="1">return cs.Properties.OrchestratorProfile.KubernetesConfig.ContainerRuntimeConfig != nil &amp;&amp; cs.Properties.OrchestratorProfile.KubernetesConfig.ContainerRuntimeConfig[datamodel.ContainerDataDirKey] != ""</span>
+                        <span class="cov8" title="1">return cs.Properties.OrchestratorProfile.KubernetesConfig.ContainerRuntimeConfig != nil &amp;&amp;
+                                cs.Properties.OrchestratorProfile.KubernetesConfig.ContainerRuntimeConfig[datamodel.ContainerDataDirKey] != ""</span>
                 },
                 "GetDataDir": func() string <span class="cov0" title="0">{
-                        if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntimeConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntimeConfig[datamodel.ContainerDataDirKey] != "" </span><span class="cov0" title="0">{
+                        if profile != nil &amp;&amp; profile.KubernetesConfig != nil &amp;&amp;
+                                profile.KubernetesConfig.ContainerRuntimeConfig != nil &amp;&amp;
+                                profile.KubernetesConfig.ContainerRuntimeConfig[datamodel.ContainerDataDirKey] != "" </span><span class="cov0" title="0">{
                                 return profile.KubernetesConfig.ContainerRuntimeConfig[datamodel.ContainerDataDirKey]
                         }</span>
                         <span class="cov0" title="0">if profile.KubeletDiskType == datamodel.TempDisk </span><span class="cov0" title="0">{
@@ -767,7 +783,8 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         parameters := getParameters(config, "baker", "1.0")
                         // get variable cloudInit
                         variables := getCustomDataVariables(config)
-                        containerdConfigTemplate := template.Must(template.New("kubenet").Funcs(getBakerFuncMap(config, parameters, variables)).Parse(containerdConfigTemplateString))
+                        bakerFuncMap := getBakerFuncMap(config, parameters, variables)
+                        containerdConfigTemplate := template.Must(template.New("kubenet").Funcs(bakerFuncMap).Parse(containerdConfigTemplateString))
                         var b bytes.Buffer
                         if err := containerdConfigTemplate.Execute(&amp;b, profile); err != nil </span><span class="cov0" title="0">{
                                 panic(fmt.Errorf("failed to execute sysctl template: %s", err))</span>
@@ -1248,7 +1265,8 @@ func (agentBaker *agentBakerImpl) GetLatestSigImageConfig(
         <span class="cov0" title="0">return sigImageConfig, nil</span>
 }
 
-func (agentBaker *agentBakerImpl) GetDistroSigImageConfig(sigConfig datamodel.SIGConfig, region string) (map[datamodel.Distro]datamodel.SigImageConfig, error) <span class="cov0" title="0">{
+func (agentBaker *agentBakerImpl) GetDistroSigImageConfig(
+        sigConfig datamodel.SIGConfig, region string) (map[datamodel.Distro]datamodel.SigImageConfig, error) <span class="cov0" title="0">{
         allAzureSigConfig, err := datamodel.GetSIGAzureCloudSpecConfig(sigConfig, region)
         if err != nil </span><span class="cov0" title="0">{
                 return nil, fmt.Errorf("failed to get sig image config: %v", err)
@@ -1294,12 +1312,15 @@ import (
 // ValidateDNSPrefix is a helper function to check that a DNS Prefix is valid.
 func ValidateDNSPrefix(dnsName string) error <span class="cov0" title="0">{
         dnsNameRegex := `^([A-Za-z][A-Za-z0-9-]{1,43}[A-Za-z0-9])$`
+
         re, err := regexp.Compile(dnsNameRegex)
         if err != nil </span><span class="cov0" title="0">{
                 return err
         }</span>
         <span class="cov0" title="0">if !re.MatchString(dnsName) </span><span class="cov0" title="0">{
-                return errors.Errorf("DNSPrefix '%s' is invalid. The DNSPrefix must contain between 3 and 45 characters and can contain only letters, numbers, and hyphens.  It must start with a letter and must end with a letter or a number. (length was %d)", dnsName, len(dnsName))
+                return errors.Errorf("DNSPrefix '%s' is invalid. The DNSPrefix must contain between 3 and 45 characters"+
+                        " and can contain only letters, numbers, and hyphens.  It must start with a letter and must end with a"+
+                        " letter or a number. (length was %d)", dnsName, len(dnsName))
         }</span>
         <span class="cov0" title="0">return nil</span>
 }
@@ -2850,7 +2871,7 @@ type KubernetesConfig struct {
         ServiceCIDR                       string            `json:"serviceCidr,omitempty"`
         UseManagedIdentity                bool              `json:"useManagedIdentity,omitempty"`
         UserAssignedID                    string            `json:"userAssignedID,omitempty"`
-        UserAssignedClientID              string            `json:"userAssignedClientID,omitempty"` // Note: cannot be provided in config. Used *only* for transferring this to azure.json.
+        UserAssignedClientID              string            `json:"userAssignedClientID,omitempty"` //nolint: lll // Note: cannot be provided in config. Used *only* for transferring this to azure.json.
         CustomHyperkubeImage              string            `json:"customHyperkubeImage,omitempty"`
         CustomKubeProxyImage              string            `json:"customKubeProxyImage,omitempty"`
         CustomKubeBinaryURL               string            `json:"customKubeBinaryURL,omitempty"`
@@ -4793,7 +4814,9 @@ func IsValidMinVersion(orchType, orchRelease, orchVersion, minVersion string) (b
                 false,
                 false)
         if version == "" </span><span class="cov0" title="0">{
-                return false, errors.Errorf("the following user supplied OrchestratorProfile configuration is not supported: OrchestratorType: %s, OrchestratorRelease: %s, OrchestratorVersion: %s. Please check supported Release or Version for this build of aks-engine",
+                return false, errors.Errorf("the following user supplied OrchestratorProfile configuration is not supported: "+
+                        "OrchestratorType: %s, OrchestratorRelease: %s, OrchestratorVersion: %s. Please check supported Release or Version for this build"+
+                        " of aks-engine",
                         orchType,
                         orchRelease,
                         orchVersion)
@@ -5154,7 +5177,7 @@ var TranslatedKubeletConfigFlags map[string]bool = map[string]bool{
 var keyvaultSecretPathRe *regexp.Regexp
 
 func init() <span class="cov8" title="1">{
-        keyvaultSecretPathRe = regexp.MustCompile(`^(/subscriptions/\S+/resourceGroups/\S+/providers/Microsoft.KeyVault/vaults/\S+)/secrets/([^/\s]+)(/(\S+))?$`)
+        keyvaultSecretPathRe = regexp.MustCompile(`^(/subscriptions/\S+/resourceGroups/\S+/providers/Microsoft.KeyVault/vaults/\S+)/secrets/([^/\s]+)(/(\S+))?$`) //nolint:lll
 }</span>
 
 type paramsMap map[string]interface{}
@@ -5218,10 +5241,12 @@ func makeExtensionScriptCommands(extension *datamodel.Extension, curlCaCertOpt s
         }
 
         <span class="cov0" title="0">extensionsParameterReference := fmt.Sprintf("parameters('%sParameters')", extensionProfile.Name)
-        scriptURL := getExtensionURL(extensionProfile.RootURL, extensionProfile.Name, extensionProfile.Version, extensionProfile.Script, extensionProfile.URLQuery)
+        scriptURL := getExtensionURL(extensionProfile.RootURL, extensionProfile.Name, extensionProfile.Version, extensionProfile.Script,
+                extensionProfile.URLQuery)
         scriptFilePath := fmt.Sprintf("/opt/azure/containers/extensions/%s/%s", extensionProfile.Name, extensionProfile.Script)
-        return fmt.Sprintf("- sudo /usr/bin/curl --retry 5 --retry-delay 10 --retry-max-time 30 -o %s --create-dirs %s \"%s\" \n- sudo /bin/chmod 744 %s \n- sudo %s ',%s,' &gt; /var/log/%s-output.log",
-                scriptFilePath, curlCaCertOpt, scriptURL, scriptFilePath, scriptFilePath, extensionsParameterReference, extensionProfile.Name)</span>
+        return fmt.Sprintf("- sudo /usr/bin/curl --retry 5 --retry-delay 10 --retry-max-time 30 -o %s --create-dirs %s \"%s\" \n- sudo /bin/"+
+                "chmod 744 %s \n- sudo %s ',%s,' &gt; /var/log/%s-output.log", scriptFilePath, curlCaCertOpt, scriptURL, scriptFilePath, scriptFilePath,
+                extensionsParameterReference, extensionProfile.Name)</span>
 }
 
 func makeWindowsExtensionScriptCommands(extension *datamodel.Extension, extensionProfiles []*datamodel.ExtensionProfile) string <span class="cov0" title="0">{
@@ -5237,10 +5262,11 @@ func makeWindowsExtensionScriptCommands(extension *datamodel.Extension, extensio
                 panic(fmt.Sprintf("%s extension referenced was not found in the extension profile", extension.Name))</span>
         }
 
-        <span class="cov0" title="0">scriptURL := getExtensionURL(extensionProfile.RootURL, extensionProfile.Name, extensionProfile.Version, extensionProfile.Script, extensionProfile.URLQuery)
+        <span class="cov0" title="0">scriptURL := getExtensionURL(extensionProfile.RootURL, extensionProfile.Name, extensionProfile.Version, extensionProfile.Script,
+                extensionProfile.URLQuery)
         scriptFileDir := fmt.Sprintf("$env:SystemDrive:/AzureData/extensions/%s", extensionProfile.Name)
         scriptFilePath := fmt.Sprintf("%s/%s", scriptFileDir, extensionProfile.Script)
-        return fmt.Sprintf("New-Item -ItemType Directory -Force -Path \"%s\" ; curl.exe --retry 5 --retry-delay 0 -L \"%s\" -o \"%s\" ; powershell \"%s `\"',parameters('%sParameters'),'`\"\"\n", scriptFileDir, scriptURL, scriptFilePath, scriptFilePath, extensionProfile.Name)</span>
+        return fmt.Sprintf("New-Item -ItemType Directory -Force -Path \"%s\" ; curl.exe --retry 5 --retry-delay 0 -L \"%s\" -o \"%s\" ; powershell \"%s `\"',parameters('%sParameters'),'`\"\"\n", scriptFileDir, scriptURL, scriptFilePath, scriptFilePath, extensionProfile.Name)</span> //nolint:lll
 }
 
 func escapeSingleLine(escapedStr string) string <span class="cov8" title="1">{
@@ -5349,7 +5375,8 @@ func getCustomDataFromJSON(jsonStr string) string <span class="cov8" title="1">{
 
 // GetOrderedKubeletConfigFlagString returns an ordered string of key/val pairs.
 // copied from AKS-Engine and filter out flags that already translated to config file.
-func GetOrderedKubeletConfigFlagString(k map[string]string, cs *datamodel.ContainerService, profile *datamodel.AgentPoolProfile, kubeletConfigFileToggleEnabled bool) string <span class="cov8" title="1">{
+func GetOrderedKubeletConfigFlagString(k map[string]string, cs *datamodel.ContainerService, profile *datamodel.AgentPoolProfile,
+        kubeletConfigFileToggleEnabled bool) string <span class="cov8" title="1">{
         /* NOTE(mainred): kubeConfigFile now relies on CustomKubeletConfig, while custom configuration is not
         compatible with CustomKubeletConfig. When custom configuration is set we want to override every
         configuration with the customized one. */
@@ -5672,8 +5699,6 @@ import (
         "github.com/Azure/agentbaker/pkg/agent/datamodel"
         "github.com/blang/semver"
 )
-
-var dockerShimFlags = []string{"--cni-bin-dir", "--cni-cache-dir", "--cni-conf-dir", "--docker-endpoint", "--image-pull-progress-deadline", "--network-plugin", "--network-plugin-mtu"}
 
 // getCustomDataVariables returns cloudinit data used by Linux.
 func getCustomDataVariables(config *datamodel.NodeBootstrappingConfiguration) paramsMap <span class="cov8" title="1">{
