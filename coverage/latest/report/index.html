@@ -67,13 +67,13 @@
 				
 				<option value="file5">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/sig_config.go (12.6%)</option>
 				
-				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (30.1%)</option>
+				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (29.9%)</option>
 				
 				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (5.0%)</option>
 				
-				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (76.9%)</option>
+				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (76.3%)</option>
 				
-				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (57.5%)</option>
+				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (58.1%)</option>
 				
 				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/variables.go (78.3%)</option>
 				
@@ -301,6 +301,8 @@ func (t *TemplateGenerator) getSingleLine(textFilename string, profile interface
 }
 
 // getTemplateFuncMap returns the general purpose template func map from getContainerServiceFuncMap.
+//
+//nolint:gocognit
 func getBakerFuncMap(config *datamodel.NodeBootstrappingConfiguration, params paramsMap, variables paramsMap) template.FuncMap <span class="cov8" title="1">{
         funcMap := getContainerServiceFuncMap(config)
 
@@ -457,6 +459,7 @@ func validateAndSetWindowsNodeBootstrappingConfiguration(config *datamodel.NodeB
 // getContainerServiceFuncMap returns all functions used in template generation.
 /* These funcs are a thin wrapper for template generation operations,
 all business logic is implemented in the underlying func. */
+//nolint:funlen,gocognit,nolintlint
 func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration) template.FuncMap <span class="cov8" title="1">{
         cs := config.ContainerService
         profile := config.AgentPoolProfile
@@ -1590,7 +1593,7 @@ var (
                         WindowsTelemetryGUID:                 "fb801154-36b9-41bc-89c2-f4d4f05472b0",
                         CNIPluginsDownloadURL:                "https://acs-mirror.azureedge.net/cni/cni-plugins-amd64-v0.7.6.tgz",
                         VnetCNILinuxPluginsDownloadURL:       "https://acs-mirror.azureedge.net/azure-cni/v1.1.3/binaries/azure-vnet-cni-linux-amd64-v1.1.3.tgz",
-                        VnetCNIWindowsPluginsDownloadURL:     "https://acs-mirror.azureedge.net/azure-cni/v1.1.3/binaries/azure-vnet-cni-singletenancy-windows-amd64-v1.1.3.zip",
+                        VnetCNIWindowsPluginsDownloadURL:     "https://acs-mirror.azureedge.net/azure-cni/v1.1.3/binaries/azure-vnet-cni-singletenancy-windows-amd64-v1.1.3.zip", //nolint:lll
                         ContainerdDownloadURLBase:            "https://storage.googleapis.com/cri-containerd-release/",
                         CSIProxyDownloadURL:                  "https://acs-mirror.azureedge.net/csi-proxy/v0.1.0/binaries/csi-proxy.tar.gz",
                         WindowsProvisioningScriptsPackageURL: "https://acs-mirror.azureedge.net/aks-engine/windows/provisioning/signedscripts-v0.2.2.zip",
@@ -3698,6 +3701,25 @@ func (k *KubernetesConfig) IsUsingNetworkPluginMode(mode string) bool <span clas
         return strings.EqualFold(k.NetworkPluginMode, mode)
 }</span>
 
+func setCustomKubletConfigFromSettings(customKc *CustomKubeletConfig, kubeletConfig map[string]string) map[string]string <span class="cov0" title="0">{
+        // Settings from customKubeletConfig, only take if it's set.
+        if customKc != nil </span><span class="cov0" title="0">{
+                if customKc.ImageGcHighThreshold != nil </span><span class="cov0" title="0">{
+                        kubeletConfig["--image-gc-high-threshold"] = fmt.Sprintf("%d", *customKc.ImageGcHighThreshold)
+                }</span>
+                <span class="cov0" title="0">if customKc.ImageGcLowThreshold != nil </span><span class="cov0" title="0">{
+                        kubeletConfig["--image-gc-low-threshold"] = fmt.Sprintf("%d", *customKc.ImageGcLowThreshold)
+                }</span>
+                <span class="cov0" title="0">if customKc.ContainerLogMaxSizeMB != nil </span><span class="cov0" title="0">{
+                        kubeletConfig["--container-log-max-size"] = fmt.Sprintf("%dMi", *customKc.ContainerLogMaxSizeMB)
+                }</span>
+                <span class="cov0" title="0">if customKc.ContainerLogMaxFiles != nil </span><span class="cov0" title="0">{
+                        kubeletConfig["--container-log-max-files"] = fmt.Sprintf("%d", *customKc.ContainerLogMaxFiles)
+                }</span>
+        }
+        <span class="cov0" title="0">return kubeletConfig</span>
+}
+
 /*
 GetOrderedKubeletConfigStringForPowershell returns an ordered string of key/val pairs for Powershell
 script consumption.
@@ -3720,22 +3742,9 @@ func (config *NodeBootstrappingConfiguration) GetOrderedKubeletConfigStringForPo
         }
 
         // Settings from customKubeletConfig, only take if it's set.
-        <span class="cov0" title="0">if customKc != nil </span><span class="cov0" title="0">{
-                if customKc.ImageGcHighThreshold != nil </span><span class="cov0" title="0">{
-                        kubeletConfig["--image-gc-high-threshold"] = fmt.Sprintf("%d", *customKc.ImageGcHighThreshold)
-                }</span>
-                <span class="cov0" title="0">if customKc.ImageGcLowThreshold != nil </span><span class="cov0" title="0">{
-                        kubeletConfig["--image-gc-low-threshold"] = fmt.Sprintf("%d", *customKc.ImageGcLowThreshold)
-                }</span>
-                <span class="cov0" title="0">if customKc.ContainerLogMaxSizeMB != nil </span><span class="cov0" title="0">{
-                        kubeletConfig["--container-log-max-size"] = fmt.Sprintf("%dMi", *customKc.ContainerLogMaxSizeMB)
-                }</span>
-                <span class="cov0" title="0">if customKc.ContainerLogMaxFiles != nil </span><span class="cov0" title="0">{
-                        kubeletConfig["--container-log-max-files"] = fmt.Sprintf("%d", *customKc.ContainerLogMaxFiles)
-                }</span>
-        }
+        <span class="cov0" title="0">kubeletConfig = setCustomKubletConfigFromSettings(customKc, kubeletConfig)
 
-        <span class="cov0" title="0">if len(kubeletConfig) == 0 </span><span class="cov0" title="0">{
+        if len(kubeletConfig) == 0 </span><span class="cov0" title="0">{
                 return ""
         }</span>
 
@@ -4925,6 +4934,7 @@ import (
         "github.com/Azure/agentbaker/pkg/agent/datamodel"
 )
 
+//nolint:gocognit
 func getParameters(config *datamodel.NodeBootstrappingConfiguration, generatorCode string, bakerVersion string) paramsMap <span class="cov8" title="1">{
         cs := config.ContainerService
         profile := config.AgentPoolProfile
@@ -5016,6 +5026,69 @@ func assignKubernetesParametersFromAgentProfile(profile *datamodel.AgentPoolProf
         }
 }
 
+func assignKubernetesParametersfromKubernetesConfig(kubernetesConfig *datamodel.KubernetesConfig, properties *datamodel.Properties,
+        parametersMap paramsMap, cloudSpecConfig *datamodel.AzureEnvironmentSpecConfig, k8sComponents *datamodel.K8sComponents,
+        config *datamodel.NodeBootstrappingConfiguration, k8sVersion string) <span class="cov8" title="1">{
+        if kubernetesConfig == nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">if kubernetesConfig.CustomKubeProxyImage != "" </span><span class="cov8" title="1">{
+                // kubernetesConfig.CustomKubeProxyImage is ap level property, AKS default CustomKubeProxyImage
+                // is 'multi-arch', no need to differentiate amd64/arm64 ap
+                addValue(parametersMap, "kubeProxySpec", kubernetesConfig.CustomKubeProxyImage)
+        }</span>
+
+        <span class="cov8" title="1">if kubernetesConfig.CustomKubeBinaryURL != "" </span><span class="cov8" title="1">{
+                // kubernetesConfig.CustomKubeBinaryURL is ap level property, CustomKubeBinaryURL is
+                // set to different for amd64/arm64 ap in RP side.
+                addValue(parametersMap, "kubeBinaryURL", kubernetesConfig.CustomKubeBinaryURL)
+        }</span>
+
+        <span class="cov8" title="1">addValue(parametersMap, "kubernetesHyperkubeSpec", k8sComponents.HyperkubeImageURL)
+
+        addValue(parametersMap, "kubeDNSServiceIP", kubernetesConfig.DNSServiceIP)
+        addValue(parametersMap, "cloudproviderConfig", paramsMap{
+                "cloudProviderBackoffMode":          kubernetesConfig.CloudProviderBackoffMode,
+                "cloudProviderBackoff":              kubernetesConfig.CloudProviderBackoff,
+                "cloudProviderBackoffRetries":       kubernetesConfig.CloudProviderBackoffRetries,
+                "cloudProviderBackoffJitter":        strconv.FormatFloat(kubernetesConfig.CloudProviderBackoffJitter, 'f', -1, 64),
+                "cloudProviderBackoffDuration":      kubernetesConfig.CloudProviderBackoffDuration,
+                "cloudProviderBackoffExponent":      strconv.FormatFloat(kubernetesConfig.CloudProviderBackoffExponent, 'f', -1, 64),
+                "cloudProviderRateLimit":            kubernetesConfig.CloudProviderRateLimit,
+                "cloudProviderRateLimitQPS":         strconv.FormatFloat(kubernetesConfig.CloudProviderRateLimitQPS, 'f', -1, 64),
+                "cloudProviderRateLimitQPSWrite":    strconv.FormatFloat(kubernetesConfig.CloudProviderRateLimitQPSWrite, 'f', -1, 64),
+                "cloudProviderRateLimitBucket":      kubernetesConfig.CloudProviderRateLimitBucket,
+                "cloudProviderRateLimitBucketWrite": kubernetesConfig.CloudProviderRateLimitBucketWrite,
+                "cloudProviderDisableOutboundSNAT":  kubernetesConfig.CloudProviderDisableOutboundSNAT,
+        })
+        addValue(parametersMap, "kubeClusterCidr", kubernetesConfig.ClusterSubnet)
+        addValue(parametersMap, "dockerBridgeCidr", kubernetesConfig.DockerBridgeSubnet)
+        addValue(parametersMap, "networkPolicy", kubernetesConfig.NetworkPolicy)
+        addValue(parametersMap, "networkPlugin", kubernetesConfig.NetworkPlugin)
+        addValue(parametersMap, "networkMode", kubernetesConfig.NetworkMode)
+        addValue(parametersMap, "containerRuntime", kubernetesConfig.ContainerRuntime)
+        addValue(parametersMap, "containerdDownloadURLBase", cloudSpecConfig.KubernetesSpecConfig.ContainerdDownloadURLBase)
+        if config.IsARM64 </span><span class="cov0" title="0">{
+                addValue(parametersMap, "cniPluginsURL", cloudSpecConfig.KubernetesSpecConfig.CNIARM64PluginsDownloadURL)
+                addValue(parametersMap, "vnetCniLinuxPluginsURL", kubernetesConfig.GetAzureCNIURLARM64Linux(cloudSpecConfig))
+        }</span> else<span class="cov8" title="1"> {
+                addValue(parametersMap, "cniPluginsURL", cloudSpecConfig.KubernetesSpecConfig.CNIPluginsDownloadURL)
+                addValue(parametersMap, "vnetCniLinuxPluginsURL", kubernetesConfig.GetAzureCNIURLLinux(cloudSpecConfig))
+        }</span>
+        <span class="cov8" title="1">addValue(parametersMap, "vnetCniWindowsPluginsURL", kubernetesConfig.GetAzureCNIURLWindows(cloudSpecConfig))
+
+        if properties.HasWindows() </span><span class="cov0" title="0">{
+                addValue(parametersMap, "kubeBinariesSASURL", k8sComponents.WindowsPackageURL)
+
+                addValue(parametersMap, "windowsContainerdURL", kubernetesConfig.WindowsContainerdURL)
+                addValue(parametersMap, "kubeServiceCidr", kubernetesConfig.ServiceCIDR)
+                addValue(parametersMap, "kubeBinariesVersion", k8sVersion)
+                addValue(parametersMap, "windowsTelemetryGUID", cloudSpecConfig.KubernetesSpecConfig.WindowsTelemetryGUID)
+                addValue(parametersMap, "windowsSdnPluginURL", kubernetesConfig.WindowsSdnPluginURL)
+        }</span>
+}
+
 func assignKubernetesParameters(properties *datamodel.Properties, parametersMap paramsMap,
         cloudSpecConfig *datamodel.AzureEnvironmentSpecConfig,
         k8sComponents *datamodel.K8sComponents,
@@ -5028,65 +5101,10 @@ func assignKubernetesParameters(properties *datamodel.Properties, parametersMap 
                 addValue(parametersMap, "kubernetesVersion", k8sVersion)
 
                 kubernetesConfig := orchestratorProfile.KubernetesConfig
+                assignKubernetesParametersfromKubernetesConfig(kubernetesConfig, properties, parametersMap, cloudSpecConfig,
+                        k8sComponents, config, k8sVersion)
 
-                if kubernetesConfig != nil </span><span class="cov8" title="1">{
-                        if kubernetesConfig.CustomKubeProxyImage != "" </span><span class="cov8" title="1">{
-                                // kubernetesConfig.CustomKubeProxyImage is ap level property, AKS default CustomKubeProxyImage
-                                // is 'multi-arch', no need to differentiate amd64/arm64 ap
-                                addValue(parametersMap, "kubeProxySpec", kubernetesConfig.CustomKubeProxyImage)
-                        }</span>
-
-                        <span class="cov8" title="1">if kubernetesConfig.CustomKubeBinaryURL != "" </span><span class="cov8" title="1">{
-                                // kubernetesConfig.CustomKubeBinaryURL is ap level property, CustomKubeBinaryURL is
-                                // set to different for amd64/arm64 ap in RP side.
-                                addValue(parametersMap, "kubeBinaryURL", kubernetesConfig.CustomKubeBinaryURL)
-                        }</span>
-
-                        <span class="cov8" title="1">addValue(parametersMap, "kubernetesHyperkubeSpec", k8sComponents.HyperkubeImageURL)
-
-                        addValue(parametersMap, "kubeDNSServiceIP", kubernetesConfig.DNSServiceIP)
-                        addValue(parametersMap, "cloudproviderConfig", paramsMap{
-                                "cloudProviderBackoffMode":          kubernetesConfig.CloudProviderBackoffMode,
-                                "cloudProviderBackoff":              kubernetesConfig.CloudProviderBackoff,
-                                "cloudProviderBackoffRetries":       kubernetesConfig.CloudProviderBackoffRetries,
-                                "cloudProviderBackoffJitter":        strconv.FormatFloat(kubernetesConfig.CloudProviderBackoffJitter, 'f', -1, 64),
-                                "cloudProviderBackoffDuration":      kubernetesConfig.CloudProviderBackoffDuration,
-                                "cloudProviderBackoffExponent":      strconv.FormatFloat(kubernetesConfig.CloudProviderBackoffExponent, 'f', -1, 64),
-                                "cloudProviderRateLimit":            kubernetesConfig.CloudProviderRateLimit,
-                                "cloudProviderRateLimitQPS":         strconv.FormatFloat(kubernetesConfig.CloudProviderRateLimitQPS, 'f', -1, 64),
-                                "cloudProviderRateLimitQPSWrite":    strconv.FormatFloat(kubernetesConfig.CloudProviderRateLimitQPSWrite, 'f', -1, 64),
-                                "cloudProviderRateLimitBucket":      kubernetesConfig.CloudProviderRateLimitBucket,
-                                "cloudProviderRateLimitBucketWrite": kubernetesConfig.CloudProviderRateLimitBucketWrite,
-                                "cloudProviderDisableOutboundSNAT":  kubernetesConfig.CloudProviderDisableOutboundSNAT,
-                        })
-                        addValue(parametersMap, "kubeClusterCidr", kubernetesConfig.ClusterSubnet)
-                        addValue(parametersMap, "dockerBridgeCidr", kubernetesConfig.DockerBridgeSubnet)
-                        addValue(parametersMap, "networkPolicy", kubernetesConfig.NetworkPolicy)
-                        addValue(parametersMap, "networkPlugin", kubernetesConfig.NetworkPlugin)
-                        addValue(parametersMap, "networkMode", kubernetesConfig.NetworkMode)
-                        addValue(parametersMap, "containerRuntime", kubernetesConfig.ContainerRuntime)
-                        addValue(parametersMap, "containerdDownloadURLBase", cloudSpecConfig.KubernetesSpecConfig.ContainerdDownloadURLBase)
-                        if config.IsARM64 </span><span class="cov0" title="0">{
-                                addValue(parametersMap, "cniPluginsURL", cloudSpecConfig.KubernetesSpecConfig.CNIARM64PluginsDownloadURL)
-                                addValue(parametersMap, "vnetCniLinuxPluginsURL", kubernetesConfig.GetAzureCNIURLARM64Linux(cloudSpecConfig))
-                        }</span> else<span class="cov8" title="1"> {
-                                addValue(parametersMap, "cniPluginsURL", cloudSpecConfig.KubernetesSpecConfig.CNIPluginsDownloadURL)
-                                addValue(parametersMap, "vnetCniLinuxPluginsURL", kubernetesConfig.GetAzureCNIURLLinux(cloudSpecConfig))
-                        }</span>
-                        <span class="cov8" title="1">addValue(parametersMap, "vnetCniWindowsPluginsURL", kubernetesConfig.GetAzureCNIURLWindows(cloudSpecConfig))
-
-                        if properties.HasWindows() </span><span class="cov0" title="0">{
-                                addValue(parametersMap, "kubeBinariesSASURL", k8sComponents.WindowsPackageURL)
-
-                                addValue(parametersMap, "windowsContainerdURL", kubernetesConfig.WindowsContainerdURL)
-                                addValue(parametersMap, "kubeServiceCidr", kubernetesConfig.ServiceCIDR)
-                                addValue(parametersMap, "kubeBinariesVersion", k8sVersion)
-                                addValue(parametersMap, "windowsTelemetryGUID", cloudSpecConfig.KubernetesSpecConfig.WindowsTelemetryGUID)
-                                addValue(parametersMap, "windowsSdnPluginURL", kubernetesConfig.WindowsSdnPluginURL)
-                        }</span>
-                }
-
-                <span class="cov8" title="1">servicePrincipalProfile := properties.ServicePrincipalProfile
+                servicePrincipalProfile := properties.ServicePrincipalProfile
 
                 if servicePrincipalProfile != nil </span><span class="cov8" title="1">{
                         addValue(parametersMap, "servicePrincipalClientId", servicePrincipalProfile.ClientID)
@@ -5506,13 +5524,8 @@ func GetTLSBootstrapTokenForKubeConfig(tlsBootstrapToken *string) string <span c
         <span class="cov0" title="0">return *tlsBootstrapToken</span>
 }
 
-// GetKubeletConfigFileContent converts kubelet flags we set to a file, and return the json content.
-func GetKubeletConfigFileContent(kc map[string]string, customKc *datamodel.CustomKubeletConfig) string <span class="cov8" title="1">{
-        if kc == nil </span><span class="cov8" title="1">{
-                return ""
-        }</span>
-        // translate simple values.
-        <span class="cov8" title="1">kubeletConfig := &amp;datamodel.AKSKubeletConfiguration{
+func getAKSKubeletConfiguration(kc map[string]string) *datamodel.AKSKubeletConfiguration <span class="cov8" title="1">{
+        kubeletConfig := &amp;datamodel.AKSKubeletConfiguration{
                 APIVersion:    "kubelet.config.k8s.io/v1beta1",
                 Kind:          "KubeletConfiguration",
                 Address:       kc["--address"],
@@ -5541,41 +5554,12 @@ func GetKubeletConfigFileContent(kc map[string]string, customKc *datamodel.Custo
                 ResolverConfig:                 kc["--resolv-conf"],
                 ContainerLogMaxSize:            kc["--container-log-max-size"],
         }
+        return kubeletConfig
+}</span>
 
-        // Authentication.
-        kubeletConfig.Authentication = datamodel.KubeletAuthentication{}
-        if ca := kc["--client-ca-file"]; ca != "" </span><span class="cov8" title="1">{
-                kubeletConfig.Authentication.X509 = datamodel.KubeletX509Authentication{
-                        ClientCAFile: ca,
-                }
-        }</span>
-        <span class="cov8" title="1">if aw := kc["--authentication-token-webhook"]; aw != "" </span><span class="cov8" title="1">{
-                kubeletConfig.Authentication.Webhook = datamodel.KubeletWebhookAuthentication{
-                        Enabled: strToBool(aw),
-                }
-        }</span>
-        <span class="cov8" title="1">if aa := kc["--anonymous-auth"]; aa != "" </span><span class="cov8" title="1">{
-                kubeletConfig.Authentication.Anonymous = datamodel.KubeletAnonymousAuthentication{
-                        Enabled: strToBool(aa),
-                }
-        }</span>
-
-        // EvictionHard.
-        // default: "memory.available&lt;750Mi,nodefs.available&lt;10%,nodefs.inodesFree&lt;5%".
-        <span class="cov8" title="1">if eh, ok := kc["--eviction-hard"]; ok &amp;&amp; eh != "" </span><span class="cov8" title="1">{
-                kubeletConfig.EvictionHard = strKeyValToMap(eh, ",", "&lt;")
-        }</span>
-
-        // feature gates.
-        // look like "f1=true,f2=true".
-        <span class="cov8" title="1">kubeletConfig.FeatureGates = strKeyValToMapBool(kc["--feature-gates"], ",", "=")
-
-        // system reserve and kube reserve.
-        // looks like "cpu=100m,memory=1638Mi".
-        kubeletConfig.SystemReserved = strKeyValToMap(kc["--system-reserved"], ",", "=")
-        kubeletConfig.KubeReserved = strKeyValToMap(kc["--kube-reserved"], ",", "=")
-
-        // Settings from customKubeletConfig, only take if it's set.
+//nolint:gocognit
+func setCustomKubeletConfig(customKc *datamodel.CustomKubeletConfig,
+        kubeletConfig *datamodel.AKSKubeletConfiguration) <span class="cov8" title="1">{
         if customKc != nil </span><span class="cov0" title="0">{
                 if customKc.CPUManagerPolicy != "" </span><span class="cov0" title="0">{
                         kubeletConfig.CPUManagerPolicy = customKc.CPUManagerPolicy
@@ -5615,8 +5599,53 @@ func GetKubeletConfigFileContent(kc map[string]string, customKc *datamodel.Custo
                         kubeletConfig.PodPidsLimit = to.Int64Ptr(int64(*customKc.PodMaxPids))
                 }</span>
         }
+}
 
-        <span class="cov8" title="1">configStringByte, _ := json.MarshalIndent(kubeletConfig, "", "    ")
+// GetKubeletConfigFileContent converts kubelet flags we set to a file, and return the json content.
+func GetKubeletConfigFileContent(kc map[string]string, customKc *datamodel.CustomKubeletConfig) string <span class="cov8" title="1">{
+        if kc == nil </span><span class="cov8" title="1">{
+                return ""
+        }</span>
+        // translate simple values.
+        <span class="cov8" title="1">kubeletConfig := getAKSKubeletConfiguration(kc)
+
+        // Authentication.
+        kubeletConfig.Authentication = datamodel.KubeletAuthentication{}
+        if ca := kc["--client-ca-file"]; ca != "" </span><span class="cov8" title="1">{
+                kubeletConfig.Authentication.X509 = datamodel.KubeletX509Authentication{
+                        ClientCAFile: ca,
+                }
+        }</span>
+        <span class="cov8" title="1">if aw := kc["--authentication-token-webhook"]; aw != "" </span><span class="cov8" title="1">{
+                kubeletConfig.Authentication.Webhook = datamodel.KubeletWebhookAuthentication{
+                        Enabled: strToBool(aw),
+                }
+        }</span>
+        <span class="cov8" title="1">if aa := kc["--anonymous-auth"]; aa != "" </span><span class="cov8" title="1">{
+                kubeletConfig.Authentication.Anonymous = datamodel.KubeletAnonymousAuthentication{
+                        Enabled: strToBool(aa),
+                }
+        }</span>
+
+        // EvictionHard.
+        // default: "memory.available&lt;750Mi,nodefs.available&lt;10%,nodefs.inodesFree&lt;5%".
+        <span class="cov8" title="1">if eh, ok := kc["--eviction-hard"]; ok &amp;&amp; eh != "" </span><span class="cov8" title="1">{
+                kubeletConfig.EvictionHard = strKeyValToMap(eh, ",", "&lt;")
+        }</span>
+
+        // feature gates.
+        // look like "f1=true,f2=true".
+        <span class="cov8" title="1">kubeletConfig.FeatureGates = strKeyValToMapBool(kc["--feature-gates"], ",", "=")
+
+        // system reserve and kube reserve.
+        // looks like "cpu=100m,memory=1638Mi".
+        kubeletConfig.SystemReserved = strKeyValToMap(kc["--system-reserved"], ",", "=")
+        kubeletConfig.KubeReserved = strKeyValToMap(kc["--kube-reserved"], ",", "=")
+
+        // Settings from customKubeletConfig, only take if it's set.
+        setCustomKubeletConfig(customKc, kubeletConfig)
+
+        configStringByte, _ := json.MarshalIndent(kubeletConfig, "", "    ")
         return string(configStringByte)</span>
 }
 
