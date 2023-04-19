@@ -69,13 +69,13 @@
 				
 				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (29.9%)</option>
 				
-				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (5.0%)</option>
+				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (4.9%)</option>
 				
 				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (76.3%)</option>
 				
 				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (58.1%)</option>
 				
-				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/variables.go (78.3%)</option>
+				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/variables.go (78.0%)</option>
 				
 				<option value="file11">/github/workspace/build-out/src/agentbaker/pkg/templates/templates_generated.go (37.2%)</option>
 				
@@ -166,7 +166,7 @@ func (t *TemplateGenerator) getNodeBootstrappingPayload(config *datamodel.NodeBo
 // { "customData": "&lt;customData string&gt;" }.
 func (t *TemplateGenerator) getLinuxNodeCustomDataJSONObject(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov8" title="1">{
         // get parameters
-        parameters := getParameters(config, "baker", "1.0")
+        parameters := getParameters(config)
         // get variable cloudInit
         variables := getCustomDataVariables(config)
         str, e := t.getSingleLineForTemplate(kubernetesNodeCustomDataYaml,
@@ -185,7 +185,7 @@ func (t *TemplateGenerator) getWindowsNodeCustomDataJSONObject(config *datamodel
         cs := config.ContainerService
         profile := config.AgentPoolProfile
         // get parameters
-        parameters := getParameters(config, "", "")
+        parameters := getParameters(config)
         // get variable custom data
         variables := getWindowsCustomDataVariables(config)
         str, e := t.getSingleLineForTemplate(kubernetesWindowsAgentCustomDataPS1,
@@ -201,7 +201,7 @@ func (t *TemplateGenerator) getWindowsNodeCustomDataJSONObject(config *datamodel
                 preprovisionCmd = makeAgentExtensionScriptCommands(cs, profile)
         }</span>
 
-        <span class="cov0" title="0">str = strings.Replace(str, "PREPROVISION_EXTENSION", escapeSingleLine(strings.TrimSpace(preprovisionCmd)), -1)
+        <span class="cov0" title="0">str = strings.ReplaceAll(str, "PREPROVISION_EXTENSION", escapeSingleLine(strings.TrimSpace(preprovisionCmd)))
         return fmt.Sprintf("{\"customData\": \"%s\"}", str)</span>
 }
 
@@ -217,7 +217,7 @@ func (t *TemplateGenerator) getNodeBootstrappingCmd(config *datamodel.NodeBootst
 // getLinuxNodeCSECommand returns Linux node custom script extension execution command.
 func (t *TemplateGenerator) getLinuxNodeCSECommand(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov8" title="1">{
         // get parameters
-        parameters := getParameters(config, "", "")
+        parameters := getParameters(config)
         // get variable
         variables := getCSECommandVariables(config)
         // NOTE: that CSE command will be executed by VM/VMSS extension so it doesn't need extra escaping like custom data does
@@ -232,13 +232,13 @@ func (t *TemplateGenerator) getLinuxNodeCSECommand(config *datamodel.NodeBootstr
         }
         // NOTE: we break the one-line CSE command into different lines in a file for better management
         // so we need to combine them into one line here
-        <span class="cov8" title="1">return strings.Replace(str, "\n", " ", -1)</span>
+        <span class="cov8" title="1">return strings.ReplaceAll(str, "\n", " ")</span>
 }
 
 // getWindowsNodeCSECommand returns Windows node custom script extension execution command.
 func (t *TemplateGenerator) getWindowsNodeCSECommand(config *datamodel.NodeBootstrappingConfiguration) string <span class="cov0" title="0">{
         // get parameters
-        parameters := getParameters(config, "", "")
+        parameters := getParameters(config)
         // get variable
         variables := getCSECommandVariables(config)
 
@@ -255,11 +255,11 @@ func (t *TemplateGenerator) getWindowsNodeCSECommand(config *datamodel.NodeBoots
         /* NOTE(qinahao): windows cse cmd uses esapced \" to quote Powershell command in
         [csecmd.p1](https://github.com/Azure/AgentBaker/blob/master/parts/windows/csecmd.ps1). */
         // to not break go template parsing. We switch \" back to " otherwise Azure ARM template will escape \ to be \\\"
-        <span class="cov0" title="0">str = strings.Replace(str, `\"`, `"`, -1)
+        <span class="cov0" title="0">str = strings.ReplaceAll(str, `\"`, `"`)
 
         // NOTE: we break the one-line CSE command into different lines in a file for better management
         // so we need to combine them into one line here
-        return strings.Replace(str, "\n", " ", -1)</span>
+        return strings.ReplaceAll(str, "\n", " ")</span>
 }
 
 // getSingleLineForTemplate returns the file as a single line for embedding in an arm template.
@@ -288,12 +288,12 @@ func (t *TemplateGenerator) getSingleLine(textFilename string, profile interface
         // use go templates to process the text filename
         <span class="cov8" title="1">templ := template.New("customdata template").Option("missingkey=zero").Funcs(funcMap)
         if _, err = templ.New(textFilename).Parse(string(b)); err != nil </span><span class="cov0" title="0">{
-                return "", fmt.Errorf("error parsing file %s: %v", textFilename, err)
+                return "", fmt.Errorf("error parsing file %s: %w", textFilename, err)
         }</span>
 
         <span class="cov8" title="1">var buffer bytes.Buffer
         if err = templ.ExecuteTemplate(&amp;buffer, textFilename, profile); err != nil </span><span class="cov8" title="1">{
-                return "", fmt.Errorf("error executing template for file %s: %v", textFilename, err)
+                return "", fmt.Errorf("error executing template for file %s: %w", textFilename, err)
         }</span>
         <span class="cov8" title="1">expandedTemplate := buffer.String()
 
@@ -459,7 +459,7 @@ func validateAndSetWindowsNodeBootstrappingConfiguration(config *datamodel.NodeB
 // getContainerServiceFuncMap returns all functions used in template generation.
 /* These funcs are a thin wrapper for template generation operations,
 all business logic is implemented in the underlying func. */
-//nolint:funlen,gocognit,nolintlint
+//nolint:gocognit
 func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration) template.FuncMap <span class="cov8" title="1">{
         cs := config.ContainerService
         profile := config.AgentPoolProfile
@@ -783,14 +783,14 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         return base64.StdEncoding.EncodeToString([]byte(kubenetCniTemplate))
                 }</span>,
                 "GetContainerdConfigContent": func() string <span class="cov8" title="1">{
-                        parameters := getParameters(config, "baker", "1.0")
+                        parameters := getParameters(config)
                         // get variable cloudInit
                         variables := getCustomDataVariables(config)
                         bakerFuncMap := getBakerFuncMap(config, parameters, variables)
                         containerdConfigTemplate := template.Must(template.New("kubenet").Funcs(bakerFuncMap).Parse(containerdConfigTemplateString))
                         var b bytes.Buffer
                         if err := containerdConfigTemplate.Execute(&amp;b, profile); err != nil </span><span class="cov0" title="0">{
-                                panic(fmt.Errorf("failed to execute sysctl template: %s", err))</span>
+                                panic(fmt.Errorf("failed to execute sysctl template: %w", err))</span>
                         }
                         <span class="cov8" title="1">return base64.StdEncoding.EncodeToString(b.Bytes())</span>
                 },
@@ -1272,7 +1272,7 @@ func (agentBaker *agentBakerImpl) GetDistroSigImageConfig(
         sigConfig datamodel.SIGConfig, region string) (map[datamodel.Distro]datamodel.SigImageConfig, error) <span class="cov0" title="0">{
         allAzureSigConfig, err := datamodel.GetSIGAzureCloudSpecConfig(sigConfig, region)
         if err != nil </span><span class="cov0" title="0">{
-                return nil, fmt.Errorf("failed to get sig image config: %v", err)
+                return nil, fmt.Errorf("failed to get sig image config: %w", err)
         }</span>
 
         <span class="cov0" title="0">allDistros := map[datamodel.Distro]datamodel.SigImageConfig{}
@@ -1338,8 +1338,8 @@ func IsSgxEnabledSKU(vmSize string) bool <span class="cov8" title="1">{
 }
 
 // IsMIGNode check if the node should be partitioned.
-func IsMIGNode(GPUInstanceProfile string) bool <span class="cov8" title="1">{
-        return GPUInstanceProfile != ""
+func IsMIGNode(gpuInstanceProfile string) bool <span class="cov8" title="1">{
+        return gpuInstanceProfile != ""
 }</span>
 
 // GetStorageAccountType returns the support managed disk storage tier for a give VM size.
@@ -2247,19 +2247,19 @@ func GetSIGAzureCloudSpecConfig(sigConfig SIGConfig, region string) (SIGAzureEnv
 
         fromACSUbuntu, err := withACSSIGConfig(sigConfig, "AKSUbuntu")
         if err != nil </span><span class="cov0" title="0">{
-                return SIGAzureEnvironmentSpecConfig{}, fmt.Errorf("unexpected error while constructing env-aware sig configuration for AKSUbuntu: %s", err)
+                return SIGAzureEnvironmentSpecConfig{}, fmt.Errorf("unexpected error while constructing env-aware sig configuration for AKSUbuntu: %w", err)
         }</span>
         <span class="cov0" title="0">c.SigUbuntuImageConfig = getSigUbuntuImageConfigMapWithOpts(fromACSUbuntu)
 
         fromACSCBLMariner, err := withACSSIGConfig(sigConfig, "AKSCBLMariner")
         if err != nil </span><span class="cov0" title="0">{
-                return SIGAzureEnvironmentSpecConfig{}, fmt.Errorf("unexpected error while constructing env-aware sig configuration for AKSCBLMariner: %s", err)
+                return SIGAzureEnvironmentSpecConfig{}, fmt.Errorf("unexpected error while constructing env-aware sig configuration for AKSCBLMariner: %w", err)
         }</span>
         <span class="cov0" title="0">c.SigCBLMarinerImageConfig = getSigCBLMarinerImageConfigMapWithOpts(fromACSCBLMariner)
 
         fromACSWindows, err := withACSSIGConfig(sigConfig, "AKSWindows")
         if err != nil </span><span class="cov0" title="0">{
-                return SIGAzureEnvironmentSpecConfig{}, fmt.Errorf("unexpected error while constructing env-aware sig configuration for Windows: %s", err)
+                return SIGAzureEnvironmentSpecConfig{}, fmt.Errorf("unexpected error while constructing env-aware sig configuration for Windows: %w", err)
         }</span>
         <span class="cov0" title="0">c.SigWindowsImageConfig = getSigWindowsImageConfigMapWithOpts(fromACSWindows)
 
@@ -2304,6 +2304,7 @@ func withEdgeZoneConfig(acsSigConfig SIGConfig) SigImageConfigOpt <span class="c
         }</span>
 }
 
+//nolint:unparam //subscriptionID only receives AzurePublicCloudSigSubscription
 func withSubscription(subscriptionID string) SigImageConfigOpt <span class="cov0" title="0">{
         return func(c *SigImageConfig) </span><span class="cov0" title="0">{
                 c.SubscriptionID = subscriptionID
@@ -3174,11 +3175,11 @@ func (p *Properties) GetCustomEnvironmentJSON(escape bool) (string, error) <span
                 }</span>()
                 <span class="cov0" title="0">bytes, err := json.Marshal(p.CustomCloudEnv)
                 if err != nil </span><span class="cov0" title="0">{
-                        return "", fmt.Errorf("could not serialize CustomCloudEnv object - %s", err.Error())
+                        return "", fmt.Errorf("could not serialize CustomCloudEnv object - %w", err)
                 }</span>
                 <span class="cov0" title="0">environmentJSON = string(bytes)
                 if escape </span><span class="cov0" title="0">{
-                        environmentJSON = strings.Replace(environmentJSON, "\"", "\\\"", -1)
+                        environmentJSON = strings.ReplaceAll(environmentJSON, "\"", "\\\"")
                 }</span>
         }
         <span class="cov8" title="1">return environmentJSON, nil</span>
@@ -3836,8 +3837,8 @@ customCloudProfile is empty. Because customCloudProfile is empty for deployment 
 AzureChinaCloud,AzureGermanCloud,AzureUSGovernmentCloud, The customCloudName value will be empty string
 for those clouds. */
 func FormatProdFQDNByLocation(fqdnPrefix string, location string, cloudSpecConfig *AzureEnvironmentSpecConfig) string <span class="cov0" title="0">{
-        FQDNFormat := cloudSpecConfig.EndpointConfig.ResourceManagerVMDNSSuffix
-        return fmt.Sprintf("%s.%s."+FQDNFormat, fqdnPrefix, location)
+        fqdnFormat := cloudSpecConfig.EndpointConfig.ResourceManagerVMDNSSuffix
+        return fmt.Sprintf("%s.%s."+fqdnFormat, fqdnPrefix, location)
 }</span>
 
 type K8sComponents struct {
@@ -4758,13 +4759,11 @@ func getAllKubernetesWindowsSupportedVersionsMap() map[string]bool <span class="
 }
 
 // GetSupportedVersions get supported version list for a certain orchestrator.
-func GetSupportedVersions(orchType string, isUpdate, hasWindows bool) (versions []string, defaultVersion string) <span class="cov0" title="0">{
-        switch orchType </span>{
-        case Kubernetes:<span class="cov0" title="0">
-                return GetAllSupportedKubernetesVersions(isUpdate, hasWindows), GetDefaultKubernetesVersion(hasWindows)</span>
-        default:<span class="cov0" title="0">
-                return nil, ""</span>
-        }
+func GetSupportedVersions(orchType string, isUpdate, hasWindows bool) ([]string, string) <span class="cov0" title="0">{
+        if orchType == Kubernetes </span><span class="cov0" title="0">{
+                return GetAllSupportedKubernetesVersions(isUpdate, hasWindows), GetDefaultKubernetesVersion(hasWindows)
+        }</span>
+        <span class="cov0" title="0">return nil, ""</span>
 }
 
 // GetValidPatchVersion gets the current valid patch version for the minor version of the passed in version.
@@ -4805,9 +4804,10 @@ func GetValidPatchVersion(orchType, orchVer string, isUpdate, hasWindows bool) s
 }
 
 // RationalizeReleaseAndVersion return a version when it can be rationalized from the input, otherwise "".
-func RationalizeReleaseAndVersion(orchType, orchRel, orchVer string, isUpdate, hasWindows bool) (version string) <span class="cov0" title="0">{
+func RationalizeReleaseAndVersion(orchType, orchRel, orchVer string, isUpdate, hasWindows bool) string <span class="cov0" title="0">{
         /* ignore "v" prefix in orchestrator version and release: "v1.8.0" is equivalent to "1.8.0", "v1.9"
         is equivalent to "1.9". */
+        var version string
         orchVer = strings.TrimPrefix(orchVer, "v")
         orchRel = strings.TrimPrefix(orchRel, "v")
         supportedVersions, defaultVersion := GetSupportedVersions(orchType, isUpdate, hasWindows)
@@ -4887,13 +4887,13 @@ func IsKubernetesVersionGe(actualVersion, version string) bool <span class="cov0
 GetLatestPatchVersion gets the most recent patch version from a list of semver versions
 given a major.minor string.
 */
-func GetLatestPatchVersion(majorMinor string, versionsList []string) (version string) <span class="cov0" title="0">{
+func GetLatestPatchVersion(majorMinor string, versionsList []string) string <span class="cov0" title="0">{
         // Try to get latest version matching the release.
-        version = ""
+        var version string
         for _, ver := range versionsList </span><span class="cov0" title="0">{
                 sv, err := semver.Make(ver)
                 if err != nil </span><span class="cov0" title="0">{
-                        return
+                        return ""
                 }</span>
                 <span class="cov0" title="0">sr := fmt.Sprintf("%d.%d", sv.Major, sv.Minor)
                 if sr == majorMinor </span><span class="cov0" title="0">{
@@ -4935,7 +4935,7 @@ import (
 )
 
 //nolint:gocognit
-func getParameters(config *datamodel.NodeBootstrappingConfiguration, generatorCode string, bakerVersion string) paramsMap <span class="cov8" title="1">{
+func getParameters(config *datamodel.NodeBootstrappingConfiguration) paramsMap <span class="cov8" title="1">{
         cs := config.ContainerService
         profile := config.AgentPoolProfile
         properties := cs.Properties
@@ -4951,14 +4951,15 @@ func getParameters(config *datamodel.NodeBootstrappingConfiguration, generatorCo
         // required since linux uses static value for that.
         <span class="cov8" title="1">if properties.HostedMasterProfile != nil </span><span class="cov8" title="1">{
                 // Agents only, use cluster DNS prefix
-                if properties.HostedMasterProfile.DNSPrefix != "" </span><span class="cov0" title="0">{
-                        addValue(parametersMap, "masterEndpointDNSNamePrefix", properties.HostedMasterProfile.DNSPrefix)
-                }</span> else<span class="cov8" title="1"> if properties.HostedMasterProfile.FQDNSubdomain != "" </span><span class="cov0" title="0">{
-                        addValue(parametersMap, "masterEndpointDNSNamePrefix", properties.HostedMasterProfile.FQDNSubdomain)
-                }</span> else<span class="cov8" title="1"> {
+                switch </span>{
+                case properties.HostedMasterProfile.DNSPrefix != "":<span class="cov0" title="0">
+                        addValue(parametersMap, "masterEndpointDNSNamePrefix", properties.HostedMasterProfile.DNSPrefix)</span>
+                case properties.HostedMasterProfile.FQDNSubdomain != "":<span class="cov0" title="0">
+                        addValue(parametersMap, "masterEndpointDNSNamePrefix", properties.HostedMasterProfile.FQDNSubdomain)</span>
+                default:<span class="cov8" title="1">
                         // should not happen but just in case, we fill in value "localcluster" just like linux
-                        addValue(parametersMap, "masterEndpointDNSNamePrefix", "localcluster")
-                }</span>
+                        addValue(parametersMap, "masterEndpointDNSNamePrefix", "localcluster")</span>
+                }
         }
         <span class="cov8" title="1">if properties.HostedMasterProfile != nil </span><span class="cov8" title="1">{
                 addValue(parametersMap, "vnetCidr", DefaultVNETCIDR)
@@ -4966,9 +4967,9 @@ func getParameters(config *datamodel.NodeBootstrappingConfiguration, generatorCo
 
         // Kubernetes Parameters
         <span class="cov8" title="1">if properties.OrchestratorProfile.IsKubernetes() </span><span class="cov8" title="1">{
-                assignKubernetesParameters(properties, parametersMap, cloudSpecConfig, config.K8sComponents, generatorCode, config)
+                assignKubernetesParameters(properties, parametersMap, cloudSpecConfig, config.K8sComponents, config)
                 if profile != nil </span><span class="cov8" title="1">{
-                        assignKubernetesParametersFromAgentProfile(profile, parametersMap, cloudSpecConfig, generatorCode, config)
+                        assignKubernetesParametersFromAgentProfile(profile, parametersMap, config)
                 }</span>
         }
 
@@ -5002,7 +5003,7 @@ func getParameters(config *datamodel.NodeBootstrappingConfiguration, generatorCo
 }
 
 func assignKubernetesParametersFromAgentProfile(profile *datamodel.AgentPoolProfile, parametersMap paramsMap,
-        cloudSpecConfig *datamodel.AzureEnvironmentSpecConfig, generatorCode string, config *datamodel.NodeBootstrappingConfiguration) <span class="cov8" title="1">{
+        config *datamodel.NodeBootstrappingConfiguration) <span class="cov8" title="1">{
         if config.RuncVersion != "" </span><span class="cov0" title="0">{
                 addValue(parametersMap, "runcVersion", config.RuncVersion)
         }</span>
@@ -5026,9 +5027,21 @@ func assignKubernetesParametersFromAgentProfile(profile *datamodel.AgentPoolProf
         }
 }
 
-func assignKubernetesParametersfromKubernetesConfig(kubernetesConfig *datamodel.KubernetesConfig, properties *datamodel.Properties,
-        parametersMap paramsMap, cloudSpecConfig *datamodel.AzureEnvironmentSpecConfig, k8sComponents *datamodel.K8sComponents,
-        config *datamodel.NodeBootstrappingConfiguration, k8sVersion string) <span class="cov8" title="1">{
+func assignKubernetesParametersfromKubernetesConfig(properties *datamodel.Properties, parametersMap paramsMap,
+        cloudSpecConfig *datamodel.AzureEnvironmentSpecConfig,
+        k8sComponents *datamodel.K8sComponents,
+        config *datamodel.NodeBootstrappingConfiguration) <span class="cov8" title="1">{
+        orchestratorProfile := properties.OrchestratorProfile
+
+        if !orchestratorProfile.IsKubernetes() </span><span class="cov0" title="0">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">k8sVersion := orchestratorProfile.OrchestratorVersion
+        addValue(parametersMap, "kubernetesVersion", k8sVersion)
+
+        kubernetesConfig := orchestratorProfile.KubernetesConfig
+
         if kubernetesConfig == nil </span><span class="cov0" title="0">{
                 return
         }</span>
@@ -5092,7 +5105,6 @@ func assignKubernetesParametersfromKubernetesConfig(kubernetesConfig *datamodel.
 func assignKubernetesParameters(properties *datamodel.Properties, parametersMap paramsMap,
         cloudSpecConfig *datamodel.AzureEnvironmentSpecConfig,
         k8sComponents *datamodel.K8sComponents,
-        generatorCode string,
         config *datamodel.NodeBootstrappingConfiguration) <span class="cov8" title="1">{
         orchestratorProfile := properties.OrchestratorProfile
 
@@ -5100,9 +5112,7 @@ func assignKubernetesParameters(properties *datamodel.Properties, parametersMap 
                 k8sVersion := orchestratorProfile.OrchestratorVersion
                 addValue(parametersMap, "kubernetesVersion", k8sVersion)
 
-                kubernetesConfig := orchestratorProfile.KubernetesConfig
-                assignKubernetesParametersfromKubernetesConfig(kubernetesConfig, properties, parametersMap, cloudSpecConfig,
-                        k8sComponents, config, k8sVersion)
+                assignKubernetesParametersfromKubernetesConfig(properties, parametersMap, cloudSpecConfig, k8sComponents, config)
 
                 servicePrincipalProfile := properties.ServicePrincipalProfile
 
@@ -5250,6 +5260,7 @@ func addKeyvaultReference(m paramsMap, k string, vaultID, secretName, secretVers
         }
 }</span>
 
+//nolint:unparam,nolintlint
 func addSecret(m paramsMap, k string, v interface{}, encode bool) <span class="cov8" title="1">{
         str, ok := v.(string)
         if !ok </span><span class="cov0" title="0">{
@@ -5321,10 +5332,10 @@ func makeWindowsExtensionScriptCommands(extension *datamodel.Extension, extensio
 
 func escapeSingleLine(escapedStr string) string <span class="cov8" title="1">{
         // template.JSEscapeString leaves undesirable chars that don't work with pretty print.
-        escapedStr = strings.Replace(escapedStr, "\\", "\\\\", -1)
-        escapedStr = strings.Replace(escapedStr, "\r\n", "\\n", -1)
-        escapedStr = strings.Replace(escapedStr, "\n", "\\n", -1)
-        escapedStr = strings.Replace(escapedStr, "\"", "\\\"", -1)
+        escapedStr = strings.ReplaceAll(escapedStr, "\\", "\\\\")
+        escapedStr = strings.ReplaceAll(escapedStr, "\r\n", "\\n")
+        escapedStr = strings.ReplaceAll(escapedStr, "\n", "\\n")
+        escapedStr = strings.ReplaceAll(escapedStr, "\"", "\\\"")
         return escapedStr
 }</span>
 
@@ -5345,7 +5356,7 @@ func getBase64EncodedGzippedCustomScript(csFilename string, config *datamodel.No
         <span class="cov8" title="1">var buffer bytes.Buffer
         templ.Execute(&amp;buffer, config.ContainerService)
         csStr := buffer.String()
-        csStr = strings.Replace(csStr, "\r\n", "\n", -1)
+        csStr = strings.ReplaceAll(csStr, "\r\n", "\n")
         return getBase64EncodedGzippedCustomScriptFromStr(csStr)</span>
 }
 
@@ -5925,13 +5936,14 @@ func getOutBoundCmd(nbc *datamodel.NodeBootstrappingConfiguration, cloudSpecConf
                 return ""
         }</span>
         <span class="cov8" title="1">registry := ""
-        if cloudSpecConfig.CloudName == datamodel.AzureChinaCloud </span><span class="cov0" title="0">{
-                registry = `gcr.azk8s.cn`
-        }</span> else<span class="cov8" title="1"> if cs.IsAKSCustomCloud() </span><span class="cov0" title="0">{
-                registry = cs.Properties.CustomCloudEnv.McrURL
-        }</span> else<span class="cov8" title="1"> {
-                registry = `mcr.microsoft.com`
-        }</span>
+        switch </span>{
+        case cloudSpecConfig.CloudName == datamodel.AzureChinaCloud:<span class="cov0" title="0">
+                registry = `gcr.azk8s.cn`</span>
+        case cs.IsAKSCustomCloud():<span class="cov0" title="0">
+                registry = cs.Properties.CustomCloudEnv.McrURL</span>
+        default:<span class="cov8" title="1">
+                registry = `mcr.microsoft.com`</span>
+        }
 
         <span class="cov8" title="1">if registry == "" </span><span class="cov0" title="0">{
                 return ""
