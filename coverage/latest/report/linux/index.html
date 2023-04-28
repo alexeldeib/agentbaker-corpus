@@ -57,7 +57,7 @@
 				
 				<option value="file0">/github/workspace/build-out/src/agentbaker/fuzz/api/main.go (80.0%)</option>
 				
-				<option value="file1">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (52.9%)</option>
+				<option value="file1">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (53.0%)</option>
 				
 				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/bakerapi.go (28.0%)</option>
 				
@@ -584,6 +584,9 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                 }</span>,
                 "IsKata": func() bool <span class="cov8" title="1">{
                         return profile.Distro.IsKataDistro()
+                }</span>,
+                "IsCustomImage": func() bool <span class="cov8" title="1">{
+                        return profile.Distro == datamodel.CustomizedImage
                 }</span>,
                 "EnableHostsConfigAgent": func() bool <span class="cov8" title="1">{
                         return cs.Properties.OrchestratorProfile.KubernetesConfig != nil &amp;&amp;
@@ -12015,12 +12018,14 @@ write_files:
     {{GetVariableProperty "cloudInitData" "provisionSourceUbuntu"}}
 {{end}}
 
+{{ if not IsCustomImage -}}
 - path: /opt/azure/containers/provision_start.sh
   permissions: "0744"
   encoding: gzip
   owner: root
   content: !!binary |
     {{GetVariableProperty "cloudInitData" "provisionStartScript"}}
+{{- end }}
 
 - path: /opt/azure/containers/provision.sh
   permissions: "0744"
