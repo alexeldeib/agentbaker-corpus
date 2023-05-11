@@ -67,13 +67,13 @@
 				
 				<option value="file5">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/sig_config.go (12.6%)</option>
 				
-				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (29.9%)</option>
+				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (30.3%)</option>
 				
-				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (4.9%)</option>
+				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (0.0%)</option>
 				
-				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (76.3%)</option>
+				<option value="file8">/github/workspace/build-out/src/agentbaker/pkg/agent/params.go (76.5%)</option>
 				
-				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (58.1%)</option>
+				<option value="file9">/github/workspace/build-out/src/agentbaker/pkg/agent/utils.go (57.9%)</option>
 				
 				<option value="file10">/github/workspace/build-out/src/agentbaker/pkg/agent/variables.go (78.0%)</option>
 				
@@ -374,19 +374,18 @@ func normalizeResourceGroupNameForLabel(resourceGroupName string) string <span c
         truncated := resourceGroupName
         truncated = strings.ReplaceAll(truncated, "(", "-")
         truncated = strings.ReplaceAll(truncated, ")", "-")
-        const maxLen = 63
-        if len(truncated) &gt; maxLen </span><span class="cov0" title="0">{
-                truncated = truncated[0:maxLen]
+        const maxKubernetesLabelLength = 63
+        if len(truncated) &gt; maxKubernetesLabelLength </span><span class="cov0" title="0">{
+                truncated = truncated[0:maxKubernetesLabelLength]
         }</span>
 
         <span class="cov8" title="1">if strings.HasSuffix(truncated, "-") ||
                 strings.HasSuffix(truncated, "_") ||
                 strings.HasSuffix(truncated, ".") </span><span class="cov0" title="0">{
-                if len(truncated) &gt; 62 </span><span class="cov0" title="0">{
+                if len(truncated) &gt; maxKubernetesLabelLength-1 </span><span class="cov0" title="0">{
                         return truncated[0:len(truncated)-1] + "z"
-                }</span> else<span class="cov0" title="0"> {
-                        return truncated + "z"
                 }</span>
+                <span class="cov0" title="0">return truncated + "z"</span>
         }
         <span class="cov8" title="1">return truncated</span>
 }
@@ -459,7 +458,7 @@ func validateAndSetWindowsNodeBootstrappingConfiguration(config *datamodel.NodeB
 // getContainerServiceFuncMap returns all functions used in template generation.
 /* These funcs are a thin wrapper for template generation operations,
 all business logic is implemented in the underlying func. */
-//nolint:gocognit
+//nolint:gocognit, funlen, cyclop, gocyclo
 func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration) template.FuncMap <span class="cov8" title="1">{
         cs := config.ContainerService
         profile := config.AgentPoolProfile
@@ -1273,6 +1272,7 @@ import (
         "github.com/Azure/agentbaker/pkg/agent/datamodel"
 )
 
+//nolint:revive // Name does not need to be modified to baker
 type AgentBaker interface {
         GetNodeBootstrapping(ctx context.Context, config *datamodel.NodeBootstrappingConfiguration) (*datamodel.NodeBootstrapping, error)
         GetLatestSigImageConfig(sigConfig datamodel.SIGConfig, region string, distro datamodel.Distro) (*datamodel.SigImageConfig, error)
@@ -1402,6 +1402,10 @@ import (
         "github.com/pkg/errors"
 )
 
+const (
+        minSizeNamePartCount = 2
+)
+
 // ValidateDNSPrefix is a helper function to check that a DNS Prefix is valid.
 func ValidateDNSPrefix(dnsName string) error <span class="cov0" title="0">{
         dnsNameRegex := `^([A-Za-z][A-Za-z0-9-]{1,43}[A-Za-z0-9])$`
@@ -1435,7 +1439,7 @@ func IsMIGNode(gpuInstanceProfile string) bool <span class="cov8" title="1">{
 // GetStorageAccountType returns the support managed disk storage tier for a give VM size.
 func GetStorageAccountType(sizeName string) (string, error) <span class="cov0" title="0">{
         spl := strings.Split(sizeName, "_")
-        if len(spl) &lt; 2 </span><span class="cov0" title="0">{
+        if len(spl) &lt; minSizeNamePartCount </span><span class="cov0" title="0">{
                 return "", errors.Errorf("Invalid sizeName: %s", sizeName)
         }</span>
         <span class="cov0" title="0">capability := spl[1]
@@ -1530,13 +1534,16 @@ func CreateMockContainerService(containerServiceName, orchestratorVersion string
         cs.Properties.OrchestratorProfile = &amp;OrchestratorProfile{}
         cs.Properties.OrchestratorProfile.OrchestratorType = Kubernetes
         cs.Properties.OrchestratorProfile.OrchestratorVersion = orchestratorVersion
+        const gcLowThreshold = 80
+        const gcHighThreshold = 85
+        const maxPods = 30
         cs.Properties.OrchestratorProfile.KubernetesConfig = &amp;KubernetesConfig{
                 EnableSecureKubelet:     to.BoolPtr(true),
                 EnableRbac:              to.BoolPtr(true),
                 DockerBridgeSubnet:      "172.17.0.1/16",
-                GCLowThreshold:          80,
-                GCHighThreshold:         85,
-                MaxPods:                 30,
+                GCLowThreshold:          gcLowThreshold,
+                GCHighThreshold:         gcHighThreshold,
+                MaxPods:                 maxPods,
                 ClusterSubnet:           "10.240.0.0/12",
                 ContainerRuntime:        Docker,
                 NetworkPlugin:           "kubenet",
@@ -1661,6 +1668,7 @@ func getMockAddon(name string) KubernetesAddon <span class="cov0" title="0">{
         }
 }</span>
 
+//nolint:gochecknoglobals
 var (
         AzurePublicCloudSpecForTest = &amp;AzureEnvironmentSpecConfig{
                 CloudName: "AzurePublicCloud",
@@ -1765,7 +1773,8 @@ func GetCloudTargetEnv(location string) string <span class="cov0" title="0">{
 AvailableUbuntu1804Distros : TODO(amaheshwari): these vars are not consumed by Agentbaker but by RP. do a
 cleanup to remove these after 20.04 work.
 */
-var AvailableUbuntu1804Distros []Distro = []Distro{
+//nolint:gochecknoglobals
+var AvailableUbuntu1804Distros = []Distro{
         AKSUbuntu1804,
         AKSUbuntu1804Gen2,
         AKSUbuntuGPU1804,
@@ -1783,13 +1792,15 @@ var AvailableUbuntu1804Distros []Distro = []Distro{
         AKSUbuntuEdgeZoneContainerd1804Gen2,
 }
 
-var AvailableUbuntu2004Distros []Distro = []Distro{
+//nolint:gochecknoglobals
+var AvailableUbuntu2004Distros = []Distro{
         AKSUbuntuContainerd2004CVMGen2,
         AKSUbuntuFipsContainerd2004,
         AKSUbuntuFipsContainerd2004Gen2,
 }
 
-var AvailableUbuntu2204Distros []Distro = []Distro{
+//nolint:gochecknoglobals
+var AvailableUbuntu2204Distros = []Distro{
         AKSUbuntuContainerd2204,
         AKSUbuntuContainerd2204Gen2,
         AKSUbuntuArm64Containerd2204Gen2,
@@ -1798,7 +1809,8 @@ var AvailableUbuntu2204Distros []Distro = []Distro{
         AKSUbuntuEdgeZoneContainerd2204Gen2,
 }
 
-var AvailableContainerdDistros []Distro = []Distro{
+//nolint:gochecknoglobals
+var AvailableContainerdDistros = []Distro{
         AKSUbuntuContainerd1804,
         AKSUbuntuContainerd1804Gen2,
         AKSUbuntuGPUContainerd1804,
@@ -1829,7 +1841,8 @@ var AvailableContainerdDistros []Distro = []Distro{
         AKSUbuntuEdgeZoneContainerd2204Gen2,
 }
 
-var AvailableGPUDistros []Distro = []Distro{
+//nolint:gochecknoglobals
+var AvailableGPUDistros = []Distro{
         AKSUbuntuGPU1804,
         AKSUbuntuGPU1804Gen2,
         AKSUbuntuGPUContainerd1804,
@@ -1838,7 +1851,8 @@ var AvailableGPUDistros []Distro = []Distro{
         AKSUbuntuFipsGPUContainerd1804Gen2,
 }
 
-var AvailableGen2Distros []Distro = []Distro{
+//nolint:gochecknoglobals
+var AvailableGen2Distros = []Distro{
         AKSUbuntu1804Gen2,
         AKSUbuntuGPU1804Gen2,
         AKSUbuntuContainerd1804Gen2,
@@ -1855,7 +1869,8 @@ var AvailableGen2Distros []Distro = []Distro{
         AKSUbuntuEdgeZoneContainerd2204Gen2,
 }
 
-var AvailableCBLMarinerDistros []Distro = []Distro{
+//nolint:gochecknoglobals
+var AvailableCBLMarinerDistros = []Distro{
         AKSCBLMarinerV1,
         AKSCBLMarinerV2,
         AKSCBLMarinerV2Gen2,
@@ -1920,6 +1935,8 @@ func (d Distro) IsWindowsPIRDistro() bool <span class="cov0" title="0">{
 }
 
 // SigImageConfigTemplate represents the SIG image configuration template.
+//
+//nolint:musttag // tags can be added if deemed necessary
 type SigImageConfigTemplate struct {
         ResourceGroup string
         Gallery       string
@@ -1944,7 +1961,8 @@ func (template SigImageConfigTemplate) WithOptions(options ...SigImageConfigOpt)
         <span class="cov0" title="0">return *config</span>
 }
 
-var AvailableWindowsSIGDistros []Distro = []Distro{
+//nolint:gochecknoglobals
+var AvailableWindowsSIGDistros = []Distro{
         AKSWindows2019,
         AKSWindows2019Containerd,
         AKSWindows2022Containerd,
@@ -1952,7 +1970,8 @@ var AvailableWindowsSIGDistros []Distro = []Distro{
         CustomizedWindowsOSImage,
 }
 
-var AvailableWindowsPIRDistros []Distro = []Distro{
+//nolint:gochecknoglobals
+var AvailableWindowsPIRDistros = []Distro{
         AKSWindows2019PIR,
 }
 
@@ -1995,8 +2014,13 @@ var edgeZoneJSONContentsEmbedded string
 //go:embed mariner_v2_kata_gen2_tl_sig_version.json
 var marinerV2KataGen2TLJSONContentsEmbedded string
 
+//nolint:gochecknoglobals
 var LinuxSIGImageVersion = getSIGVersionFromEmbeddedString(linuxVersionJSONContentsEmbedded)
+
+//nolint:gochecknoglobals
 var EdgeZoneSIGImageVersion = getSIGVersionFromEmbeddedString(edgeZoneJSONContentsEmbedded)
+
+//nolint:gochecknoglobals
 var CBLMarinerV2KataGen2TLSIGImageVersion = getSIGVersionFromEmbeddedString(marinerV2KataGen2TLJSONContentsEmbedded)
 
 func getSIGVersionFromEmbeddedString(contents string) string <span class="cov8" title="1">{
@@ -2016,6 +2040,8 @@ func getSIGVersionFromEmbeddedString(contents string) string <span class="cov8" 
 }
 
 // SIG config Template.
+//
+//nolint:gochecknoglobals
 var (
         SIGUbuntu1604ImageConfigTemplate = SigImageConfigTemplate{
                 ResourceGroup: AKSUbuntuResourceGroup,
@@ -2553,9 +2579,10 @@ const (
 CommandLineOmittedKubeletConfigFlags are the flags set by RP that should NOT be included within the set of
 command line flags when configuring kubelet.
 */
-var CommandLineOmittedKubeletConfigFlags map[string]bool = map[string]bool{
-        "--node-status-report-frequency": true,
-}
+func GetCommandLineOmittedKubeletConfigFlags() map[string]bool <span class="cov8" title="1">{
+        flags := map[string]bool{"--node-status-report-frequency": true}
+        return flags
+}</span>
 
 // Distro represents Linux distro to use for Linux VMs.
 type Distro string
@@ -2624,7 +2651,8 @@ const (
         USSecCloud = "USSecCloud"
 )
 
-var AKSDistrosAvailableOnVHD []Distro = []Distro{
+//nolint:gochecknoglobals
+var AKSDistrosAvailableOnVHD = []Distro{
         AKSUbuntu1604,
         AKSUbuntu1804,
         AKSUbuntu1804Gen2,
@@ -2898,8 +2926,8 @@ type WindowsProfile struct {
         AlwaysPullWindowsPauseImage    *bool                      `json:"alwaysPullWindowsPauseImage,omitempty"`
         ContainerdWindowsRuntimes      *ContainerdWindowsRuntimes `json:"containerdWindowsRuntimes,omitempty"`
         WindowsCalicoPackageURL        string                     `json:"windowsCalicoPackageURL,omitempty"`
-        WindowsSecureTlsEnabled        *bool                      `json:"windowsSecureTlsEnabled,omitempty"`
-        WindowsGmsaPackageUrl          string                     `json:"windowsGmsaPackageUrl,omitempty"`
+        WindowsSecureTLSEnabled        *bool                      `json:"windowsSecureTlsEnabled,omitempty"`
+        WindowsGMSAPackageURL          string                     `json:"windowsGmsaPackageUrl,omitempty"`
         CseScriptsPackageURL           string                     `json:"cseScriptsPackageURL,omitempty"`
         HnsRemediatorIntervalInMinutes *uint32                    `json:"hnsRemediatorIntervalInMinutes,omitempty"`
         LogGeneratorIntervalInMinutes  *uint32                    `json:"logGeneratorIntervalInMinutes,omitempty"`
@@ -3254,6 +3282,7 @@ func (p *Properties) GetClusterID() string <span class="cov8" title="1">{
                 }</span> else<span class="cov8" title="1"> if len(p.AgentPoolProfiles) &gt; 0 </span><span class="cov8" title="1">{
                         h.Write([]byte(p.AgentPoolProfiles[0].Name))
                 }</span>
+                //nolint:gosec // I think we want rand not crypto/rand here
                 <span class="cov8" title="1">r := rand.New(rand.NewSource(int64(h.Sum64())))
                 mutex.Lock()
                 p.ClusterID = fmt.Sprintf("%08d", r.Uint32())[:uniqueNameSuffixSize]
@@ -3656,12 +3685,12 @@ func (w *WindowsProfile) IsAlwaysPullWindowsPauseImage() bool <span class="cov0"
         return w.AlwaysPullWindowsPauseImage != nil &amp;&amp; *w.AlwaysPullWindowsPauseImage
 }</span>
 
-// IsWindowsSecureTlsEnabled returns true if secure TLS should be enabled for Windows nodes.
-func (w *WindowsProfile) IsWindowsSecureTlsEnabled() bool <span class="cov0" title="0">{
-        if w.WindowsSecureTlsEnabled != nil </span><span class="cov0" title="0">{
-                return *w.WindowsSecureTlsEnabled
+// IsWindowsSecureTLSEnabled returns true if secure TLS should be enabled for Windows nodes.
+func (w *WindowsProfile) IsWindowsSecureTLSEnabled() bool <span class="cov0" title="0">{
+        if w.WindowsSecureTLSEnabled != nil </span><span class="cov0" title="0">{
+                return *w.WindowsSecureTLSEnabled
         }</span>
-        <span class="cov0" title="0">return DefaultWindowsSecureTlsEnabled</span>
+        <span class="cov0" title="0">return DefaultWindowsSecureTLSEnabled</span>
 }
 
 // GetHnsRemediatorIntervalInMinutes gets HnsRemediatorIntervalInMinutes specified or returns default value.
@@ -3866,9 +3895,10 @@ func (config *NodeBootstrappingConfiguration) GetOrderedKubeletConfigStringForPo
                 return ""
         }</span>
 
-        <span class="cov0" title="0">keys := []string{}
+        <span class="cov0" title="0">commandLineOmmittedKubeletConfigFlags := GetCommandLineOmittedKubeletConfigFlags()
+        keys := []string{}
         for key := range kubeletConfig </span><span class="cov0" title="0">{
-                if !CommandLineOmittedKubeletConfigFlags[key] </span><span class="cov0" title="0">{
+                if !commandLineOmmittedKubeletConfigFlags[key] </span><span class="cov0" title="0">{
                         keys = append(keys, key)
                 }</span>
         }
@@ -3974,6 +4004,8 @@ type K8sComponents struct {
 
 // GetLatestSigImageConfigRequest describes the input for a GetLatestSigImageConfig HTTP request.
 // This is mostly a wrapper over existing types so RP doesn't have to manually construct JSON.
+//
+//nolint:musttag // tags can be added if deemed necessary
 type GetLatestSigImageConfigRequest struct {
         SIGConfig SIGConfig
         Region    string
@@ -3981,6 +4013,8 @@ type GetLatestSigImageConfigRequest struct {
 }
 
 // NodeBootstrappingConfiguration represents configurations for node bootstrapping.
+//
+//nolint:musttag // tags can be added if deemed necessary
 type NodeBootstrappingConfiguration struct {
         ContainerService              *ContainerService
         CloudSpecConfig               *AzureEnvironmentSpecConfig
@@ -4033,6 +4067,8 @@ const (
 )
 
 // NodeBootstrapping represents the custom data, CSE, and OS image info needed for node bootstrapping.
+//
+//nolint:musttag // tags can be added if deemed necessary
 type NodeBootstrapping struct {
         CustomData     string
         CSE            string
@@ -4494,10 +4530,10 @@ type AgentPoolWindowsProfile struct {
 }
 
 // IsDisableWindowsOutboundNat returns true if the Windows agent pool disable OutboundNAT.
-func (ap *AgentPoolProfile) IsDisableWindowsOutboundNat() bool <span class="cov0" title="0">{
-        return ap.AgentPoolWindowsProfile != nil &amp;&amp;
-                ap.AgentPoolWindowsProfile.DisableOutboundNat != nil &amp;&amp;
-                *ap.AgentPoolWindowsProfile.DisableOutboundNat
+func (a *AgentPoolProfile) IsDisableWindowsOutboundNat() bool <span class="cov0" title="0">{
+        return a.AgentPoolWindowsProfile != nil &amp;&amp;
+                a.AgentPoolWindowsProfile.DisableOutboundNat != nil &amp;&amp;
+                *a.AgentPoolWindowsProfile.DisableOutboundNat
 }</span>
 </pre>
 		
@@ -4517,6 +4553,8 @@ import (
 
 // AllKubernetesSupportedVersions is a whitelist map of all supported Kubernetes version strings.
 // The bool value indicates if creating new clusters with this version is allowed.
+//
+//nolint:gochecknoglobals
 var AllKubernetesSupportedVersions = map[string]bool{
         "1.6.6":          false,
         "1.6.9":          true, // need to keep 1.6.9 version support for v20160930.
@@ -4718,8 +4756,9 @@ a default version string if not.
 */
 func GetSupportedKubernetesVersion(version string, hasWindows bool) string <span class="cov0" title="0">{
         k8sVersion := GetDefaultKubernetesVersion(hasWindows)
+        allKubernetesWindowsSupportedVersions := getAllKubernetesWindowsSupportedVersionsMap()
         if hasWindows </span><span class="cov0" title="0">{
-                if AllKubernetesWindowsSupportedVersions[version] </span><span class="cov0" title="0">{
+                if allKubernetesWindowsSupportedVersions[version] </span><span class="cov0" title="0">{
                         k8sVersion = version
                 }</span>
         } else<span class="cov0" title="0"> {
@@ -4734,8 +4773,9 @@ func GetSupportedKubernetesVersion(version string, hasWindows bool) string <span
 func GetAllSupportedKubernetesVersions(isUpdate, hasWindows bool) []string <span class="cov0" title="0">{
         var versions []string
         allSupportedVersions := AllKubernetesSupportedVersions
+        allKubernetesWindowsSupportedVersions := getAllKubernetesWindowsSupportedVersionsMap()
         if hasWindows </span><span class="cov0" title="0">{
-                allSupportedVersions = AllKubernetesWindowsSupportedVersions
+                allSupportedVersions = allKubernetesWindowsSupportedVersions
         }</span>
         <span class="cov0" title="0">for ver, supported := range allSupportedVersions </span><span class="cov0" title="0">{
                 if isUpdate || supported </span><span class="cov0" title="0">{
@@ -4844,15 +4884,12 @@ func getSortedSemverVersions(versions []string, preRelease bool) []semver.Versio
         return semverVersions</span>
 }
 
-// AllKubernetesWindowsSupportedVersions maintain a set of available k8s Windows versions in aks-engine.
-var AllKubernetesWindowsSupportedVersions = getAllKubernetesWindowsSupportedVersionsMap()
-
-func getAllKubernetesWindowsSupportedVersionsMap() map[string]bool <span class="cov8" title="1">{
+func getAllKubernetesWindowsSupportedVersionsMap() map[string]bool <span class="cov0" title="0">{
         ret := make(map[string]bool)
-        for k, v := range AllKubernetesSupportedVersions </span><span class="cov8" title="1">{
+        for k, v := range AllKubernetesSupportedVersions </span><span class="cov0" title="0">{
                 ret[k] = v
         }</span>
-        <span class="cov8" title="1">for _, version := range []string{
+        <span class="cov0" title="0">for _, version := range []string{
                 "1.6.6",
                 "1.6.9",
                 "1.6.11",
@@ -4867,11 +4904,11 @@ func getAllKubernetesWindowsSupportedVersionsMap() map[string]bool <span class="
                 "1.10.0-beta.4",
                 "1.10.0-rc.1",
                 "1.11.0-alpha.1",
-                "1.11.0-alpha.2"} </span><span class="cov8" title="1">{
+                "1.11.0-alpha.2"} </span><span class="cov0" title="0">{
                 delete(ret, version)
         }</span>
         // 1.8.12 is the latest supported patch for Windows
-        <span class="cov8" title="1">ret["1.8.12"] = true
+        <span class="cov0" title="0">ret["1.8.12"] = true
         return ret</span>
 }
 
@@ -5125,23 +5162,24 @@ func assignKubernetesParametersFromAgentProfile(profile *datamodel.AgentPoolProf
                 addValue(parametersMap, "runcVersion", config.RuncVersion)
         }</span>
         <span class="cov8" title="1">addValue(parametersMap, "runcPackageURL", config.RuncPackageURL)
-        if profile.KubernetesConfig != nil &amp;&amp; profile.KubernetesConfig.ContainerRuntime != "" </span><span class="cov8" title="1">{
-                // override containerRuntime parameter value if specified in AgentPoolProfile
-                // this allows for heteregenous clusters
-                addValue(parametersMap, "containerRuntime", profile.KubernetesConfig.ContainerRuntime)
-                if profile.KubernetesConfig.ContainerRuntime == "containerd" </span><span class="cov8" title="1">{
-                        addValue(parametersMap, "cliTool", "ctr")
-                        if config.ContainerdVersion != "" </span><span class="cov0" title="0">{
-                                addValue(parametersMap, "containerdVersion", config.ContainerdVersion)
-                        }</span>
-                        <span class="cov8" title="1">if config.TeleportdPluginURL != "" </span><span class="cov0" title="0">{
-                                addValue(parametersMap, "teleportdPluginURL", config.TeleportdPluginURL)
-                        }</span>
-                        <span class="cov8" title="1">addValue(parametersMap, "containerdPackageURL", config.ContainerdPackageURL)</span>
-                } else<span class="cov0" title="0"> {
-                        addValue(parametersMap, "cliTool", "docker")
+        if profile.KubernetesConfig == nil || profile.KubernetesConfig.ContainerRuntime == "" </span><span class="cov8" title="1">{
+                return
+        }</span>
+        // override containerRuntime parameter value if specified in AgentPoolProfile
+        // this allows for heteregenous clusters
+        <span class="cov8" title="1">addValue(parametersMap, "containerRuntime", profile.KubernetesConfig.ContainerRuntime)
+        if profile.KubernetesConfig.ContainerRuntime == "containerd" </span><span class="cov8" title="1">{
+                addValue(parametersMap, "cliTool", "ctr")
+                if config.ContainerdVersion != "" </span><span class="cov0" title="0">{
+                        addValue(parametersMap, "containerdVersion", config.ContainerdVersion)
                 }</span>
-        }
+                <span class="cov8" title="1">if config.TeleportdPluginURL != "" </span><span class="cov0" title="0">{
+                        addValue(parametersMap, "teleportdPluginURL", config.TeleportdPluginURL)
+                }</span>
+                <span class="cov8" title="1">addValue(parametersMap, "containerdPackageURL", config.ContainerdPackageURL)</span>
+        } else<span class="cov0" title="0"> {
+                addValue(parametersMap, "cliTool", "docker")
+        }</span>
 }
 
 func assignKubernetesParametersfromKubernetesConfig(properties *datamodel.Properties, parametersMap paramsMap,
@@ -5311,7 +5349,8 @@ import (
 
 (if kubelet config file is enabled).
 */
-var TranslatedKubeletConfigFlags map[string]bool = map[string]bool{
+//nolint:gochecknoglobals
+var TranslatedKubeletConfigFlags = map[string]bool{
         "--address":                           true,
         "--anonymous-auth":                    true,
         "--client-ca-file":                    true,
@@ -5351,13 +5390,9 @@ var TranslatedKubeletConfigFlags map[string]bool = map[string]bool{
         "--container-log-max-files":           true,
 }
 
-var keyvaultSecretPathRe *regexp.Regexp
-
-func init() <span class="cov8" title="1">{
-        keyvaultSecretPathRe = regexp.MustCompile(`^(/subscriptions/\S+/resourceGroups/\S+/providers/Microsoft.KeyVault/vaults/\S+)/secrets/([^/\s]+)(/(\S+))?$`) //nolint:lll
-}</span>
-
 type paramsMap map[string]interface{}
+
+const numInPair = 2
 
 func addValue(m paramsMap, k string, v interface{}) <span class="cov8" title="1">{
         m[k] = paramsMap{
@@ -5384,7 +5419,8 @@ func addSecret(m paramsMap, k string, v interface{}, encode bool) <span class="c
                 addValue(m, k, v)
                 return
         }</span>
-        <span class="cov8" title="1">parts := keyvaultSecretPathRe.FindStringSubmatch(str)
+        <span class="cov8" title="1">keyvaultSecretPathRe := regexp.MustCompile(`^(/subscriptions/\S+/resourceGroups/\S+/providers/Microsoft.KeyVault/vaults/\S+)/secrets/([^/\s]+)(/(\S+))?$`) //nolint:lll
+        parts := keyvaultSecretPathRe.FindStringSubmatch(str)
         if parts == nil || len(parts) != 5 </span><span class="cov8" title="1">{
                 if encode </span><span class="cov8" title="1">{
                         addValue(m, k, base64.StdEncoding.EncodeToString([]byte(str)))
@@ -5471,8 +5507,12 @@ func getBase64EncodedGzippedCustomScript(csFilename string, config *datamodel.No
                 panic(fmt.Sprintf("BUG: %s", err.Error()))</span>
         }
         <span class="cov8" title="1">var buffer bytes.Buffer
-        templ.Execute(&amp;buffer, config.ContainerService)
-        csStr := buffer.String()
+        err = templ.Execute(&amp;buffer, config.ContainerService)
+        if err != nil </span><span class="cov0" title="0">{
+                // this should never happen and this is a bug.
+                panic(fmt.Sprintf("BUG: %s", err.Error()))</span>
+        }
+        <span class="cov8" title="1">csStr := buffer.String()
         csStr = strings.ReplaceAll(csStr, "\r\n", "\n")
         return getBase64EncodedGzippedCustomScriptFromStr(csStr)</span>
 }
@@ -5481,10 +5521,14 @@ func getBase64EncodedGzippedCustomScript(csFilename string, config *datamodel.No
 func getBase64EncodedGzippedCustomScriptFromStr(str string) string <span class="cov8" title="1">{
         var gzipB bytes.Buffer
         w := gzip.NewWriter(&amp;gzipB)
-        w.Write([]byte(str))
-        w.Close()
-        return base64.StdEncoding.EncodeToString(gzipB.Bytes())
-}</span>
+        _, err := w.Write([]byte(str))
+        if err != nil </span><span class="cov0" title="0">{
+                // this should never happen and this is a bug.
+                panic(fmt.Sprintf("BUG: %s", err.Error()))</span>
+        }
+        <span class="cov8" title="1">w.Close()
+        return base64.StdEncoding.EncodeToString(gzipB.Bytes())</span>
+}
 
 func getExtensionURL(rootURL, extensionName, version, fileName, query string) string <span class="cov0" title="0">{
         extensionsDir := "extensions"
@@ -5569,9 +5613,10 @@ func GetOrderedKubeletConfigFlagString(k map[string]string, cs *datamodel.Contai
         // Always force remove of dynamic-config-dir.
         <span class="cov8" title="1">kubeletConfigFileEnabled := IsKubeletConfigFileEnabled(cs, profile, kubeletConfigFileToggleEnabled)
         keys := []string{}
+        ommitedKubletConfigFlags := datamodel.GetCommandLineOmittedKubeletConfigFlags()
         for key := range k </span><span class="cov8" title="1">{
                 if !kubeletConfigFileEnabled || !TranslatedKubeletConfigFlags[key] </span><span class="cov8" title="1">{
-                        if !datamodel.CommandLineOmittedKubeletConfigFlags[key] </span><span class="cov8" title="1">{
+                        if !ommitedKubletConfigFlags[key] </span><span class="cov8" title="1">{
                                 keys = append(keys, key)
                         }</span>
                 }
@@ -5595,8 +5640,9 @@ func getOrderedKubeletConfigFlagWithCustomConfigurationString(customConfig, defa
         }
 
         <span class="cov0" title="0">keys := []string{}
+        ommitedKubletConfigFlags := datamodel.GetCommandLineOmittedKubeletConfigFlags()
         for key := range config </span><span class="cov0" title="0">{
-                if !datamodel.CommandLineOmittedKubeletConfigFlags[key] </span><span class="cov0" title="0">{
+                if !ommitedKubletConfigFlags[key] </span><span class="cov0" title="0">{
                         keys = append(keys, key)
                 }</span>
         }
@@ -5688,7 +5734,7 @@ func getAKSKubeletConfiguration(kc map[string]string) *datamodel.AKSKubeletConfi
 //nolint:gocognit
 func setCustomKubeletConfig(customKc *datamodel.CustomKubeletConfig,
         kubeletConfig *datamodel.AKSKubeletConfiguration) <span class="cov8" title="1">{
-        if customKc != nil </span><span class="cov0" title="0">{
+        if customKc != nil </span><span class="cov0" title="0">{ //nolint:nestif
                 if customKc.CPUManagerPolicy != "" </span><span class="cov0" title="0">{
                         kubeletConfig.CPUManagerPolicy = customKc.CPUManagerPolicy
                 }</span>
@@ -5821,7 +5867,7 @@ func strKeyValToMap(str string, strDelim string, pairDelim string) map[string]st
         pairs := strings.Split(str, strDelim)
         for _, pairRaw := range pairs </span><span class="cov8" title="1">{
                 pair := strings.Split(pairRaw, pairDelim)
-                if len(pair) == 2 </span><span class="cov8" title="1">{
+                if len(pair) == numInPair </span><span class="cov8" title="1">{
                         key := strings.TrimSpace(pair[0])
                         val := strings.TrimSpace(pair[1])
                         m[key] = val
@@ -5835,7 +5881,7 @@ func strKeyValToMapBool(str string, strDelim string, pairDelim string) map[strin
         pairs := strings.Split(str, strDelim)
         for _, pairRaw := range pairs </span><span class="cov8" title="1">{
                 pair := strings.Split(pairRaw, pairDelim)
-                if len(pair) == 2 </span><span class="cov8" title="1">{
+                if len(pair) == numInPair </span><span class="cov8" title="1">{
                         key := strings.TrimSpace(pair[0])
                         val := strings.TrimSpace(pair[1])
                         m[key] = strToBool(val)
@@ -5927,7 +5973,7 @@ func getCustomDataVariables(config *datamodel.NodeBootstrappingConfiguration) pa
                 },
         }
 
-        cloudInitData := cloudInitFiles["cloudInitData"].(paramsMap)
+        cloudInitData := cloudInitFiles["cloudInitData"].(paramsMap) //nolint:errcheck // no error is actually here
         if cs.IsAKSCustomCloud() </span><span class="cov0" title="0">{
                 // TODO(ace): do we care about both? 2nd one should be more general and catch custom VHD for mariner.
                 if config.AgentPoolProfile.Distro.IsCBLMarinerDistro() || isMariner(config.OSSKU) </span><span class="cov0" title="0">{
@@ -5981,8 +6027,8 @@ func getWindowsCustomDataVariables(config *datamodel.NodeBootstrappingConfigurat
                 "windowsPauseImageURL":                 cs.Properties.WindowsProfile.WindowsPauseImageURL,
                 "alwaysPullWindowsPauseImage":          strconv.FormatBool(cs.Properties.WindowsProfile.IsAlwaysPullWindowsPauseImage()),
                 "windowsCalicoPackageURL":              cs.Properties.WindowsProfile.WindowsCalicoPackageURL,
-                "windowsSecureTlsEnabled":              cs.Properties.WindowsProfile.IsWindowsSecureTlsEnabled(),
-                "windowsGmsaPackageUrl":                cs.Properties.WindowsProfile.WindowsGmsaPackageUrl,
+                "windowsSecureTlsEnabled":              cs.Properties.WindowsProfile.IsWindowsSecureTLSEnabled(),
+                "windowsGmsaPackageUrl":                cs.Properties.WindowsProfile.WindowsGMSAPackageURL,
                 "windowsCSEScriptsPackageURL":          cs.Properties.WindowsProfile.CseScriptsPackageURL,
                 "isDisableWindowsOutboundNat":          strconv.FormatBool(config.AgentPoolProfile.IsDisableWindowsOutboundNat()),
         }
@@ -6052,7 +6098,8 @@ func getOutBoundCmd(nbc *datamodel.NodeBootstrappingConfiguration, cloudSpecConf
         if cs.Properties.FeatureFlags.IsFeatureEnabled("BlockOutboundInternet") </span><span class="cov0" title="0">{
                 return ""
         }</span>
-        <span class="cov8" title="1">registry := ""
+
+        <span class="cov8" title="1">var registry string
         switch </span>{
         case cloudSpecConfig.CloudName == datamodel.AzureChinaCloud:<span class="cov0" title="0">
                 registry = `gcr.azk8s.cn`</span>
@@ -6071,7 +6118,7 @@ func getOutBoundCmd(nbc *datamodel.NodeBootstrappingConfiguration, cloudSpecConf
         <span class="cov8" title="1">clusterVersion, _ := semver.Make(cs.Properties.OrchestratorProfile.OrchestratorVersion)
         minVersion, _ := semver.Make("1.18.0")
 
-        connectivityCheckCommand := ""
+        var connectivityCheckCommand string
         if clusterVersion.GTE(minVersion) </span><span class="cov8" title="1">{
                 connectivityCheckCommand = `curl -v --insecure --proxy-insecure https://` + registry + `/v2/`
         }</span> else<span class="cov8" title="1"> {
