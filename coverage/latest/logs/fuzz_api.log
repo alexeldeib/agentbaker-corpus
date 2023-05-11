@@ -1,4 +1,4 @@
---- FAIL: TestFuzzCorpus (0.79s)
+--- FAIL: TestFuzzCorpus (0.71s)
     fuzz_test.go:35: Fuzz panicked in /github/workspace/cifuzz-corpus/fuzz_api/0120f972c7fde913bac1da1852cedda8ccc56460 error executing template for file linux/cloud-init/artifacts/cse_cmd.sh: template: linux/cloud-init/artifacts/cse_cmd.sh:90:20: executing "linux/cloud-init/artifacts/cse_cmd.sh" at <GetOutboundCommand>: error calling GetOutboundCommand: runtime error: invalid memory address or nil pointer dereference
 FAIL
 coverage: 39.9% of statements in github.com/Azure/agentbaker/...
