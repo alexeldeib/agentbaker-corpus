@@ -572,8 +572,8 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         if ulimitConfig.MaxLockedMemory != "" </span><span class="cov0" title="0">{
                                 sb.WriteString(fmt.Sprintf("LimitMEMLOCK=%s\n", ulimitConfig.MaxLockedMemory))
                         }</span>
-                        <span class="cov0" title="0">if ulimitConfig.NoFile != nil </span><span class="cov0" title="0">{
-                                sb.WriteString(fmt.Sprintf("LimitNOFILE=%d\n", *ulimitConfig.NoFile))
+                        <span class="cov0" title="0">if ulimitConfig.NoFile != "" </span><span class="cov0" title="0">{
+                                sb.WriteString(fmt.Sprintf("LimitNOFILE=%s\n", ulimitConfig.NoFile))
                         }</span>
                         <span class="cov0" title="0">return sb.String()</span>
                 },
@@ -3260,7 +3260,7 @@ type SysctlConfig struct {
 
 type UlimitConfig struct {
         MaxLockedMemory string `json:"maxLockedMemory ,omitempty"`
-        NoFile          *int32 `json:"noFile,omitempty"`
+        NoFile          string `json:"noFile,omitempty"`
 }
 
 type CustomConfiguration struct {
