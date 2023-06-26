@@ -1027,7 +1027,8 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         return getGPUDriverVersion(profile.VMSize)
                 }</span>,
                 "GetHnsRemediatorIntervalInMinutes": func() uint32 <span class="cov0" title="0">{
-                        if cs.Properties.WindowsProfile != nil </span><span class="cov0" title="0">{
+                        // Only need to enable HNSRemediator for Windows 2019
+                        if cs.Properties.WindowsProfile != nil &amp;&amp; profile.Distro == datamodel.AKSWindows2019Containerd </span><span class="cov0" title="0">{
                                 return cs.Properties.WindowsProfile.GetHnsRemediatorIntervalInMinutes()
                         }</span>
                         <span class="cov0" title="0">return 0</span>
