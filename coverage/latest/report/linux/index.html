@@ -57,7 +57,7 @@
 				
 				<option value="file0">/github/workspace/build-out/src/agentbaker/fuzz/api/main.go (80.0%)</option>
 				
-				<option value="file1">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (52.6%)</option>
+				<option value="file1">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (52.7%)</option>
 				
 				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/bakerapi.go (28.0%)</option>
 				
@@ -1063,6 +1063,9 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                         }</span>
                         <span class="cov8" title="1">return base64.StdEncoding.EncodeToString(b.Bytes()), nil</span>
                 },
+                "ShouldEnableCustomData": func() bool <span class="cov8" title="1">{
+                        return !config.DisableCustomData
+                }</span>,
         }
 }
 
@@ -4191,6 +4194,7 @@ type NodeBootstrappingConfiguration struct {
         CustomCATrustConfig            *CustomCATrustConfig
         DisableUnattendedUpgrades      bool
         SSHStatus                      SSHStatus
+        DisableCustomData              bool
 }
 
 type SSHStatus int
@@ -7255,10 +7259,13 @@ func linuxCloudInitArtifactsCrictlYaml() (*asset, error) <span class="cov0" titl
         return a, nil</span>
 }
 
-var _linuxCloudInitArtifactsCse_cmdSh = []byte(`echo $(date),$(hostname) &gt; /var/log/azure/cluster-provision-cse-output.log;
-cloud-init status --wait  &gt; /dev/null 2&gt;&amp;1;
-[ $? -ne 0 ] &amp;&amp; echo 'cloud-init failed' &gt;&gt; /var/log/azure/cluster-provision-cse-output.log &amp;&amp; exit 1;
-echo "cloud-init succeeded" &gt;&gt; /var/log/azure/cluster-provision-cse-output.log;
+var _linuxCloudInitArtifactsCse_cmdSh = []byte(`PROVISION_OUTPUT="/var/log/azure/cluster-provision-cse-output.log";
+echo $(date),$(hostname) &gt; ${PROVISION_OUTPUT};
+{{if ShouldEnableCustomData}}
+cloud-init status --wait &gt; /dev/null 2&gt;&amp;1;
+[ $? -ne 0 ] &amp;&amp; echo 'cloud-init failed' &gt;&gt; ${PROVISION_OUTPUT} &amp;&amp; exit 1;
+echo "cloud-init succeeded" &gt;&gt; ${PROVISION_OUTPUT};
+{{end}}
 {{if IsAKSCustomCloud}}
 REPO_DEPOT_ENDPOINT="{{AKSCustomCloudRepoDepotEndpoint}}"
 {{GetInitAKSCustomCloudFilepath}} &gt;&gt; /var/log/azure/cluster-provision.log 2&gt;&amp;1;
