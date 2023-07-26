@@ -67,7 +67,7 @@
 				
 				<option value="file5">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/sig_config.go (12.6%)</option>
 				
-				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (30.9%)</option>
+				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (30.7%)</option>
 				
 				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (0.0%)</option>
 				
@@ -3385,6 +3385,7 @@ type Properties struct {
         FeatureFlags            *FeatureFlags            `json:"featureFlags,omitempty"`
         CustomCloudEnv          *CustomCloudEnv          `json:"customCloudEnv,omitempty"`
         CustomConfiguration     *CustomConfiguration     `json:"customConfiguration,omitempty"`
+        SecurityProfile         *SecurityProfile         `json:"securityProfile,omitempty"`
 }
 
 // ContainerService complies with the ARM model of resource definition in a JSON template.
@@ -4728,6 +4729,26 @@ func (a *AgentPoolProfile) IsDisableWindowsOutboundNat() bool <span class="cov0"
                 a.AgentPoolWindowsProfile.DisableOutboundNat != nil &amp;&amp;
                 *a.AgentPoolWindowsProfile.DisableOutboundNat
 }</span>
+
+// SecurityProfile begin.
+type SecurityProfile struct {
+        PrivateEgress *PrivateEgress `json:"privateEgress,omitempty"`
+}
+
+type PrivateEgress struct {
+        Enabled                 bool   `json:"enabled"`
+        ContainerRegistryServer string `json:"containerRegistryServer"`
+        ProxyAddress            string `json:"proxyAddress"`
+}
+
+func (s *SecurityProfile) GetProxyAddress() string <span class="cov0" title="0">{
+        if s != nil &amp;&amp; s.PrivateEgress != nil &amp;&amp; s.PrivateEgress.Enabled </span><span class="cov0" title="0">{
+                return s.PrivateEgress.ProxyAddress
+        }</span>
+        <span class="cov0" title="0">return ""</span>
+}
+
+// SecurityProfile end.
 </pre>
 		
 		<pre class="file" id="file7" style="display: none">// Copyright (c) Microsoft Corporation. All rights reserved.
