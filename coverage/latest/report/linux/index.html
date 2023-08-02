@@ -57,7 +57,7 @@
 				
 				<option value="file0">/github/workspace/build-out/src/agentbaker/fuzz/api/main.go (80.0%)</option>
 				
-				<option value="file1">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (52.3%)</option>
+				<option value="file1">/github/workspace/build-out/src/agentbaker/pkg/agent/baker.go (52.4%)</option>
 				
 				<option value="file2">/github/workspace/build-out/src/agentbaker/pkg/agent/bakerapi.go (28.0%)</option>
 				
@@ -67,7 +67,7 @@
 				
 				<option value="file5">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/sig_config.go (12.6%)</option>
 				
-				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (30.7%)</option>
+				<option value="file6">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/types.go (31.3%)</option>
 				
 				<option value="file7">/github/workspace/build-out/src/agentbaker/pkg/agent/datamodel/versions.go (0.0%)</option>
 				
@@ -1068,6 +1068,9 @@ func getContainerServiceFuncMap(config *datamodel.NodeBootstrappingConfiguration
                 },
                 "ShouldEnableCustomData": func() bool <span class="cov8" title="1">{
                         return !config.DisableCustomData
+                }</span>,
+                "GetPrivateEgressProxyAddress": func() string <span class="cov8" title="1">{
+                        return config.ContainerService.Properties.SecurityProfile.GetProxyAddress()
                 }</span>,
         }
 }
@@ -4741,11 +4744,11 @@ type PrivateEgress struct {
         ProxyAddress            string `json:"proxyAddress"`
 }
 
-func (s *SecurityProfile) GetProxyAddress() string <span class="cov0" title="0">{
+func (s *SecurityProfile) GetProxyAddress() string <span class="cov8" title="1">{
         if s != nil &amp;&amp; s.PrivateEgress != nil &amp;&amp; s.PrivateEgress.Enabled </span><span class="cov0" title="0">{
                 return s.PrivateEgress.ProxyAddress
         }</span>
-        <span class="cov0" title="0">return ""</span>
+        <span class="cov8" title="1">return ""</span>
 }
 
 // SecurityProfile end.
@@ -8079,6 +8082,7 @@ CONTAINERD_CONFIG_CONTENT="{{GetContainerdConfigContent}}"
 CONTAINERD_CONFIG_NO_GPU_CONTENT="{{GetContainerdConfigNoGPUContent}}"
 IS_KATA="{{IsKata}}"
 SYSCTL_CONTENT="{{GetSysctlContent}}"
+PRIVATE_EGRESS_PROXY_ADDRESS="{{GetPrivateEgressProxyAddress}}"
 /usr/bin/nohup /bin/bash -c "/bin/bash /opt/azure/containers/provision_start.sh"`)
 
 func linuxCloudInitArtifactsCse_cmdShBytes() ([]byte, error) <span class="cov8" title="1">{
@@ -9613,6 +9617,10 @@ source "${CSE_CONFIG_FILEPATH}"
 if [[ "${DISABLE_SSH}" == "true" ]]; then
     disableSSH || exit $ERR_DISABLE_SSH
 fi
+
+# This involes using proxy, log the config before fetching packages
+echo "private egress proxy address is '${PRIVATE_EGRESS_PROXY_ADDRESS}'"
+# TODO update to use proxy
 
 if [[ "${SHOULD_CONFIGURE_HTTP_PROXY}" == "true" ]]; then
     if [[ "${SHOULD_CONFIGURE_HTTP_PROXY_CA}" == "true" ]]; then
@@ -13691,6 +13699,7 @@ $global:UseInstanceMetadata = "{{GetVariable "useInstanceMetadata"}}"
 $global:LoadBalancerSku = "{{GetVariable "loadBalancerSku"}}"
 $global:ExcludeMasterFromStandardLB = "{{GetVariable "excludeMasterFromStandardLB"}}"
 
+$global:PrivateEgressProxyAddress = "{{GetPrivateEgressProxyAddress}}"
 
 # Windows defaults, not changed by aks-engine
 $global:CacheDir = "c:\akse-cache"
@@ -13773,7 +13782,11 @@ try
         Write-Log "The script has been executed before, will exit without doing anything."
         return
     }
-   
+
+    # This involes using proxy, log the config before fetching packages
+    Write-Log "private egress proxy address is '$global:PrivateEgressProxyAddress'"
+    # TODO update to use proxy
+
     $WindowsCSEScriptsPackage = "aks-windows-cse-scripts-v0.0.29.zip"
     Write-Log "CSEScriptsPackageUrl is $global:CSEScriptsPackageUrl"
     Write-Log "WindowsCSEScriptsPackage is $WindowsCSEScriptsPackage"
